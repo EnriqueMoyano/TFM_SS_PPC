@@ -71,7 +71,13 @@ Global_Start_Stop();
 //                               n/N COEFFICIENT
 //****************************************************************************************
 
-nN_coeff_calculation();]]></ST>
+nN_coeff_calculation();
+
+//****************************************************************************************
+//                               MODBUS COMMS MAPPING
+//****************************************************************************************
+
+Modbus_mapping();]]></ST>
     </Implementation>
     <LineIds Name="CONVERTERS_COMMS">
       <LineId Id="54" Count="11" />
@@ -90,6 +96,8 @@ nN_coeff_calculation();]]></ST>
       <LineId Id="140" Count="0" />
       <LineId Id="49" Count="1" />
       <LineId Id="5" Count="0" />
+      <LineId Id="185" Count="4" />
+      <LineId Id="184" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
