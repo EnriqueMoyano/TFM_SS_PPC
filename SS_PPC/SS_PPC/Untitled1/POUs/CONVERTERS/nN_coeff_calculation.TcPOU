@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="nN_coeff_calculation" Id="{76a51f9a-789b-4048-a626-a8e3ed805077}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM nN_coeff_calculation
+VAR
+	I: WORD;//loop  variable
+	
+	power_accumulated_run: REAL := 0;// Auxiliar accumulator
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+***************************************************************************************************
+* \file    nN coefficient calculation
+* \author  Quique
+* \version V1.0.0
+* \date    12/08/2022
+* \brief   Calculation of n/N coefficient
+***************************************************************************************************
+
+\brief   Code block used to calculate n/N coefficient for converters running
+
+\details	This code looks which inverters are online and running (on state), understanding
+			that those inverters are controllable by PPC. Then it takes the power of those
+			controlable ones, sums it and compares with plant nominal power to obtain a 
+			coefficient of the inverters' powers running and able to control with respect to 
+			plant total.  
+	     
+*)
+
+FOR I := 1 TO GVL_CONV_COMMS.NUMBER_CONVERTERS DO;
+	
+	IF GVL_CONV_COMMS.Current_Status[I] = GVL_CONVERTERS_COMMON.CONVERTER_STATUS_RUN AND GVL_CONV_COMMS.ERROR_TASK[I] <> 1 THEN
+		//Only inverters in ON status and online are taken into account
+		power_accumulated_run := power_accumulated_run + GVL_CONV_COMMS.CONVERTERS[I].Capacity;
+	END_IF
+END_FOR
+
+GVL_CONV_COMMS.inverters_nN_coeff := power_accumulated_run / GVL_CONVERTERS_COMMON.Plant_capacity;
+power_accumulated_run := 0;]]></ST>
+    </Implementation>
+    <LineIds Name="nN_coeff_calculation">
+      <LineId Id="9" Count="16" />
+      <LineId Id="28" Count="2" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="31" Count="6" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="CONVERTER" Id="{26a21bcb-9e56-4ab9-a812-29efd7298f4a}">
+    <Declaration><![CDATA[TYPE CONVERTER :
+STRUCT
+	ReadRegs_INV: FB_MBReadRegs;
+	WriteRegs_INV: FB_MBWriteRegs;
+	
+	Capacity: REAL:= 1000;				//Snominal from inverter in kVA
+	IP: STRING(15):= '192.168.0.120';
+	Port: UINT:= 502;
+	UnitID: BYTE:= 255;
+	LengthRead: WORD:= 5;				//Amount of registers read from modbus
+	LengthWrite: WORD:= 7;				//Amount of registers written via modbus
+	InitAdressRead: WORD:= 4500;
+	InitAdressWrite: WORD:= 4550;
+	cbLenght: UDINT:= 2;
+	READING: ARRAY [1..5] OF WORD;
+    bReadBusy: BOOL;
+    bReadError: BOOL;
+    nReadErrorId: UDINT;
+    nReadCount: UDINT;
+	bWriteBusy: BOOL;
+    bWriteError: BOOL;
+    nWriteErrorId: UDINT;
+    nWriteCount: UDINT;
+	WRITING: ARRAY [1..7] OF WORD;
+	ErrorCount: UDINT:= 0;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
