@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="GVL_CONV_COMMS" Id="{86c50754-6a0b-40b3-b8bb-830076095ded}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	NUMBER_CONVERTERS: 	WORD:= 1; //Amount of conveters to control
+	Setpoint_P:			WORD:= 10000; //P setpoint to converters
+	Setpoint_Q:			INT:= 0; //Q setpoint to converters
+	Comms_Control_Word:	WORD:= 0; //Word to summarize bitwisely commands to converters
+	Start_Command:		BOOL:= 0; //Command to start (1) / stop (0) converters
+	Night_Mode_Active: BOOL:= 0; //Command to activate (1) / deactivate (0) converter's night mode
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

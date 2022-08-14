@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="GVL_ANALYZERS" Id="{f138ff50-4403-486f-b4af-1f0f47357b23}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	EL3453_loss_COMMS_Enable: BOOL;
+	EL3453_loss_COMMS_Alarm: BOOL;
+	EL3453_Status: WORD;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
