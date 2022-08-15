@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Q_ramp_module" Id="{eb7f69ba-e6f9-4349-bf84-8db289419e39}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Q_ramp_module
+VAR_INPUT
+	Q_reference: 				REAL;
+	Ramp_increasing_val: 		REAL;
+	Ramp_decreasing_val: 		REAL;
+	Ramp_unit_sel:				WORD;
+END_VAR
+
+VAR_OUTPUT
+	Q_ramp_out: 				REAL;
+	Time_span: 					REAL;
+END_VAR
+
+VAR
+	First_Iterarion: 			BOOL:= FALSE;
+	Q_error: 					REAL;
+	Aux_ramp: 					REAL;
+	Lim_ramp: 					REAL;
+	Ref_Prev: 					REAL;
+	
+	Ramp_scaled: 				REAL;
+	Time_span: 					REAL;
+	
+	Ramp_aux_scaled: 			REAL;
+	Ramp_incr_scaled: 			REAL;
+	Ramp_decr_scaled: 			REAL;
+
+	Executing_time:  			REAL:= 0.005; //Time of task execution
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CASE Ramp_unit_sel OF
+	0: //Ramp in %/s
+		Time_span:= 1;
+	1: //Ramp in %/min
+		Time_span:= 60;
+	2:	//Ramp in %/h
+		Time_span:= 3600;
+END_CASE
+
+IF GVL_Q_CONTROL.Ramp_enable THEN	
+	//Inicialization of the ramp to the measurement
+	IF First_Iterarion THEN
+		
+		Ref_prev:= GVL_ANALYZERS.Power_analyzer.Q_pu; 
+		First_Iterarion := FALSE;
+	
+	END_IF
+	
+	IF Q_ramp_out <> Q_reference THEN
+		
+		// First of all, calculate the error of Q
+		Q_error:= Q_reference - Ref_Prev;
+			
+		//Aux slope calculation and Slopes escalation:
+		Ramp_aux_scaled:= Q_error / Executing_time; 
+		Ramp_incr_scaled:= Ramp_increasing_val/Time_span;
+		Ramp_decr_scaled:= Ramp_decreasing_val/Time_span;
+	
+		//Limiting the ramp
+		Lim_ramp:= LIMIT(Ramp_decr_scaled, Ramp_aux_scaled, Ramp_incr_scaled);
+		
+		//Output
+		Ramp_scaled:= Lim_ramp;
+		Q_ramp_out:= (Ramp_scaled * Executing_time) + Ref_Prev;
+		Ref_Prev:= Q_ramp_out;
+	END_IF
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="Q_ramp_module">
+      <LineId Id="772" Count="2" />
+      <LineId Id="776" Count="1" />
+      <LineId Id="779" Count="1" />
+      <LineId Id="782" Count="26" />
+      <LineId Id="810" Count="1" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="815" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

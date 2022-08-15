@@ -35,14 +35,14 @@ END_VAR
 
 FOR I := 1 TO GVL_CONV_COMMS.NUMBER_CONVERTERS DO;
 	
-	GVL_CONV_COMMS.Setpoint_P[I] := GVL_P_CONTROL.P_output;
-	GVL_CONV_COMMS.Setpoint_Q[I] := REAL_TO_INT(QGENERAL.Out_pu * 10000);
+	GVL_CONV_COMMS.Setpoint_P[I] := REAL_TO_WORD(GVL_P_CONTROL.P_output);
+	GVL_CONV_COMMS.Setpoint_Q[I] := REAL_TO_INT(GVL_Q_CONTROL.Q_output);
 
 	//Powermeter loss comms section
 	IF GVL_ANALYZERS.EL3453_loss_COMMS_Enable THEN		
 		IF GVL_ANALYZERS.EL3453_Status <> 5 THEN
 			GVL_CONV_COMMS.Setpoint_P[I] := REAL_TO_WORD(GVL_P_CONTROL.P_safety);
-			GVL_CONV_COMMS.Setpoint_Q[I] := REAL_TO_INT(QGENERAL.Q_safety_pu * 10000);
+			GVL_CONV_COMMS.Setpoint_Q[I] := REAL_TO_INT(GVL_Q_CONTROL.Q_safety);
 			GVL_ANALYZERS.EL3453_loss_COMMS_Alarm:= TRUE;
 		END_IF
 	END_IF
@@ -65,19 +65,19 @@ END_FOR;
 //****************************************************************************************
 //							PLANT GLOBAL START / STOP
 //****************************************************************************************
-Global_Start_Stop();
+//Global_Start_Stop();
 
 //****************************************************************************************
 //                               n/N COEFFICIENT
 //****************************************************************************************
 
-nN_coeff_calculation();
+//nN_coeff_calculation();
 
 //****************************************************************************************
 //                               MODBUS COMMS MAPPING
 //****************************************************************************************
 
-Modbus_mapping();]]></ST>
+//Modbus_mapping();]]></ST>
     </Implementation>
     <LineIds Name="CONVERTERS_COMMS">
       <LineId Id="54" Count="11" />
