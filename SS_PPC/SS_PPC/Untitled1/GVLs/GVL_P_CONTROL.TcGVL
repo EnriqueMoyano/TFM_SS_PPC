@@ -6,9 +6,21 @@ VAR_GLOBAL
 	P_loop_type:	BOOL:= 0; //0 --> Control in CL; 1 --> Control in OL.
 	
 	//Control and PI variables
-	P_feedback:		REAL; //Feedback for PI control
-	P_block_output:	REAL; //Output of P control block
-	P_block_input:	REAL; //Output of P control block
+	P_feedback:		REAL:= 1; //Feedback for PI control
+	P_output:		REAL:= 1; //Output of P control block
+	P_reference:	REAL:= 0.02; //Input of P control block
+	
+	P_kp:			REAL:= 0.05; //Kp for P control
+	P_kp_min:		REAL:= 0.05; //Kp minimum for P control
+	P_Ti:			REAL:= 2; //Ti for P control
+	P_high_act:		REAL:= 100; //P high for PI antiwind up. Max control action
+	P_low_act:		REAL:= 0; //P low for PI antiwind up. Min control action
+	P_invert:		BOOL:= FALSE; //PI inversion
+	P_err_signal:	REAL:= 0; //Error signal calculated in PI´
+	
+	//Safety position
+	P_safety:		REAL:= 0; //P setpoint to converters at safety position
+	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

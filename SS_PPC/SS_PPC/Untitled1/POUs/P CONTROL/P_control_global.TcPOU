@@ -3,6 +3,7 @@
   <POU Name="P_control_global" Id="{a7a9c095-8cda-4718-9941-39253879d8f5}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM P_control_global
 VAR
+	P_PI: PI_BLOCK;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -10,9 +11,21 @@ END_VAR
 
 IF GVL_P_CONTROL.P_loop_type THEN
 	//Open loop control case
-	GVL_P_CONTROL.P_block_output:= GVL_P_CONTROL.P_block_input;
+	GVL_P_CONTROL.P_output:= GVL_P_CONTROL.P_reference;
 ELSE
 	//Closed loop control case
+	PI_BLOCK(
+		Setpoint:= GVL_P_CONTROL.P_reference, 
+		Feedback:= GVL_P_CONTROL.P_feedback, 
+		Inverted_PID:= GVL_P_CONTROL.P_invert, 
+		KP:= GVL_P_CONTROL.P_kp, 
+		KP_Min:= GVL_P_CONTROL.P_kp, 
+		TI:= GVL_P_CONTROL.P_Ti, 
+		Antiwindup_max:= GVL_P_CONTROL.P_high_act, 
+		Antiwindup_min:= GVL_P_CONTROL.P_low_act, 
+		Output_prev:= GVL_P_CONTROL.P_output, 
+		Output=> GVL_P_CONTROL.P_output, 
+		Error_Out=> GVL_P_CONTROL.P_err_signal);
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="P_control_global">
@@ -23,6 +36,8 @@ END_IF]]></ST>
       <LineId Id="10" Count="0" />
       <LineId Id="13" Count="0" />
       <LineId Id="15" Count="0" />
+      <LineId Id="19" Count="10" />
+      <LineId Id="18" Count="0" />
       <LineId Id="11" Count="0" />
     </LineIds>
   </POU>

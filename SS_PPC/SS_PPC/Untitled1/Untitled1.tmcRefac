@@ -16,5 +16,15 @@
       <From>Output_FB</From>
       <To>Output_prev</To>
     </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="478b6ebb-1ab1-4523-8af4-5bf8f6c18d1b">GVL_P_CONTROL</Type>
+      <From>P_block_output</From>
+      <To>P_output</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="478b6ebb-1ab1-4523-8af4-5bf8f6c18d1b">GVL_P_CONTROL</Type>
+      <From>P_block_input</From>
+      <To>P_reference</To>
+    </RenamedSymbol>
   </Renames>
 </Refactors>
