@@ -80,7 +80,7 @@
     <Compile Include="POUs\Q CONTROL\Q_ramp_module.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="P_task.TcTTO">
+    <Compile Include="Control_calc_task.TcTTO">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

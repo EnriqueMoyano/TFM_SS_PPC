@@ -21,9 +21,7 @@ VAR
 	Lim_ramp: 					REAL;
 	Ref_Prev: 					REAL;
 	
-	Ramp_scaled: 				REAL;
-	Time_span: 					REAL;
-	
+	Ramp_scaled: 				REAL;	
 	Ramp_aux_scaled: 			REAL;
 	Ramp_incr_scaled: 			REAL;
 	Ramp_decr_scaled: 			REAL;

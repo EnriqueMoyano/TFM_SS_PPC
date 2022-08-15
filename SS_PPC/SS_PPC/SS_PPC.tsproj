@@ -7,13 +7,13 @@
 					<Name>PlcTask</Name>
 				</Task>
 				<Task Id="4" Priority="2" CycleTime="50000" AmsPort="351" AdtTasks="true">
-					<Name>P_task</Name>
+					<Name>Control_calc_task</Name>
 				</Task>
 			</Tasks>
 		</System>
 		<Plc>
 			<Project GUID="{68A350B9-11BA-4732-8896-90A741CD2BA4}" Name="Untitled1" PrjFilePath="Untitled1\Untitled1.plcproj" TmcFilePath="Untitled1\Untitled1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{A8C8289C-7A09-3609-12E8-4618FCA84167}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Untitled1\Untitled1.tmc" TmcHash="{A80E31CA-5C68-585B-3932-5A48CCC0BF5E}">
 					<Name>Untitled1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>
@@ -28,7 +28,7 @@
 						</Context>
 						<Context>
 							<Id NeedCalleeCall="true">1</Id>
-							<Name>P_task</Name>
+							<Name>Control_calc_task</Name>
 							<ManualConfig>
 								<OTCID>#x02010040</OTCID>
 							</ManualConfig>

@@ -14,7 +14,7 @@ IF GVL_P_CONTROL.P_loop_type THEN
 	GVL_P_CONTROL.P_output:= GVL_P_CONTROL.P_reference;
 ELSE
 	//Closed loop control case
-	PI_BLOCK(
+	P_PI(
 		Setpoint:= GVL_P_CONTROL.P_reference, 
 		Feedback:= GVL_P_CONTROL.P_feedback, 
 		Inverted_PID:= GVL_P_CONTROL.P_invert, 

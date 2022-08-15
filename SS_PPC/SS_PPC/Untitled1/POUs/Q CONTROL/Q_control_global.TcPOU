@@ -22,7 +22,7 @@ IF GVL_Q_CONTROL.Ramp_enable THEN
 		Ramp_increasing_val:= GVL_Q_CONTROL.Ramp_up_value, 
 		Ramp_decreasing_val:= GVL_Q_CONTROL.Ramp_down_value, 
 		Ramp_unit_sel:= GVL_Q_CONTROL.Ramp_units, 
-		Q_ramp_out=> Q_setpoint
+		Q_ramp_out=> Q_setpoint,
 		Time_span=> GVL_Q_CONTROL.Time_span);
 END_IF
 
