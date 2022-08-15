@@ -35,13 +35,13 @@ END_VAR
 
 FOR I := 1 TO GVL_CONV_COMMS.NUMBER_CONVERTERS DO;
 	
-	GVL_CONV_COMMS.Setpoint_P[I] := GVL_CONV_COMMS.Actual_P_request_lim_PPC;
+	GVL_CONV_COMMS.Setpoint_P[I] := GVL_P_CONTROL.P_output;
 	GVL_CONV_COMMS.Setpoint_Q[I] := REAL_TO_INT(QGENERAL.Out_pu * 10000);
 
 	//Powermeter loss comms section
 	IF GVL_ANALYZERS.EL3453_loss_COMMS_Enable THEN		
 		IF GVL_ANALYZERS.EL3453_Status <> 5 THEN
-			GVL_CONV_COMMS.Setpoint_P[I] := REAL_TO_INT(Act_P.P_safety_pu * 10000);
+			GVL_CONV_COMMS.Setpoint_P[I] := REAL_TO_WORD(GVL_P_CONTROL.P_safety);
 			GVL_CONV_COMMS.Setpoint_Q[I] := REAL_TO_INT(QGENERAL.Q_safety_pu * 10000);
 			GVL_ANALYZERS.EL3453_loss_COMMS_Alarm:= TRUE;
 		END_IF

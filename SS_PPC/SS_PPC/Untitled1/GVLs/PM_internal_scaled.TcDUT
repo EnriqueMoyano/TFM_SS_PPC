@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="PM_internal_scaled" Id="{9269db0c-2b80-48f8-8934-78fd292ec15b}">
+    <Declaration><![CDATA[TYPE PM_internal_scaled :
+STRUCT
+	
+	//Single-phase electrical parameters in p.u.
+	P_L1_pu:			REAL;
+	P_L2_pu:			REAL;
+	P_L3_pu:			REAL;
+	Q_L1_pu:			REAL;
+	Q_L2_pu:			REAL;
+	Q_L3_pu:			REAL;
+	S_L1_pu:			REAL;
+	S_L2_pu:			REAL;
+	S_L3_pu:			REAL;
+	V_phase_avg_pu:		REAL;
+	
+	//Single-phase electrical parameters in engineering units
+	P_L1_kW:			REAL;
+	P_L2_kW:			REAL;
+	P_L3_kW:			REAL;
+	Q_L1_kVAr:			REAL;
+	Q_L2_kVAr:			REAL;
+	Q_L3_kVAr:			REAL;
+	S_L1_kVA:			REAL;
+	S_L2_kVA:			REAL;
+	S_L3_kVA:			REAL;
+	cos_phi_L1:			REAL;
+	cos_phi_L2:			REAL;
+	cos_phi_L3:			REAL;
+	V_L1N_Volt:			REAL;
+	V_L2N_Volt:			REAL;
+	V_L3N_Volt:			REAL;
+	V_phase_avg_Volt:	REAL;
+	
+	//Three-phase electrical parameters in p.u.
+	P_pu:				REAL;
+	Q_pu:				REAL;
+	S_pu:				REAL;
+	V_line_avg_pu:		REAL;
+	
+	//Three-phase electrical parameters in engineering units
+	P_kW:				REAL;
+	Q_kVAr:				REAL;
+	S_kVA:				REAL;
+	Freq_Hz:			REAL;
+	cos_phi:			REAL;
+	V_L1L2_Volt:		REAL;
+	V_L2L3_Volt:		REAL;
+	V_L3L1_Volt:		REAL;
+	I_L1_angle:			REAL;
+	I_L2_angle:			REAL;
+	I_L3_angle:			REAL;
+	V_L1L2_angle:		REAL;
+	V_L2L3_angle:		REAL;
+	V_line_avg_Volt:	REAL;
+	
+	//Rest of parameters
+	Meter_status:		WORD;
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

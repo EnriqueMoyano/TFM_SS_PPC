@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="PI_BLOCK" Id="{b2a43cc4-d3c2-4758-920c-cfadc1ea22e1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PI_BLOCK
+VAR_INPUT
+	Setpoint: REAL;
+	Feedback: REAL;
+	
+	Inverted_PID: BOOL := 0;
+	KP: REAL;
+	KP_Min: REAL;
+	TI: REAL;
+	
+	Antiwindup_max: REAL;
+	Antiwindup_min: REAL;
+	Output_prev: REAL;
+END_VAR
+VAR_OUTPUT
+	Output: REAL;
+	Error_Out: REAL;
+END_VAR
+VAR
+	Error: REAL;
+	Ki: REAL;
+	I_filtered: REAL;
+	KP_Operator: REAL;
+	kp_minimum: REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+ ************************************************************************************************************
+ * \file  PI_BLOCK
+ * \author Quique
+ * \version 1.0.0
+ * \Date Creation: 19/06/2022
+ * \brief PI function used for closed loop controls
+ ************************************************************************************************************
+ \defgroup CONTROL
+ 
+ \brief 	This block implements a PI to control electrical variables in closed loop (P and Q)
+		
+ \details 	First part considers if PI is configured to be inverter and calculates error signal
+ 			
+ 			Second part calculates integral action and applies antiwindup on it to guarantee integral action
+			by itself doesn't reach extremely high levels. It's also relevant to highlight that integral 
+			action is calculated using pervious output. Thus, this PI is suitable for all sampling times
+			(It doesn`t requires user to input it) and it can be easy de-saturated when needed.
+			
+			Third part calculates proportional action dinamically. It means, there are 2 defined KPs, so
+			that depending on the error signal calculated the greater the error, the greater the KP (nearer
+			to Kp value) and if the error is low, proportional action will be near to Kp_min. If user doesn't
+			want this functionality, it is enough equaling Kp and Kp_min.
+			
+			Fourth section inverts PI if needed.
+			
+			Fifth section applies antiwindup limits to the output calculated.
+ 
+*)
+ 
+//Error calculation part         
+IF Inverted_PID THEN;
+	Error := Feedback - Setpoint;
+ELSE
+	Error := Setpoint - Feedback;
+END_IF
+Error_Out := Error;
+
+//Integral action calculation
+IF TI > 0 THEN
+	Ki := 1 / TI;
+ELSE
+	Ki := 0;
+END_IF	
+I_filtered := (I_filtered + ((Output_prev - I_filtered) * Ki));
+
+//Antiwindup calculation and usage on output
+IF (I_filtered >= Antiwindup_max) THEN;
+	I_filtered := Antiwindup_max;
+ELSIF (I_filtered <= Antiwindup_min) THEN;
+	I_filtered := Antiwindup_min;
+END_IF
+
+//Proportional action calculation
+kp_minimum:= MIN(KP_Min, KP);
+
+KP_Operator := (ABS(KP - KP_Min) * ABS(Error)) + kp_minimum;
+KP_Operator := ABS(KP_Operator);
+
+//PI output calculation - Control action calculation
+Output := I_filtered + KP_Operator * (Setpoint - Feedback);
+
+//PI inversion if applied
+IF Inverted_PID = 1 THEN;
+	Output := - Output;
+END_IF
+
+//Antiwindup calculation and usage on output
+IF (Output >= Antiwindup_max) THEN;
+	Output := Antiwindup_max;
+ELSIF (Output <= Antiwindup_min) THEN;
+	Output := Antiwindup_min;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="PI_BLOCK">
+      <LineId Id="371" Count="72" />
+      <LineId Id="98" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Min_P_calculation" Id="{e96c23de-f090-4015-9779-51af7d6f83c7}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Min_P_calculation
+VAR
+	P_L1_ABS: REAL;
+	P_L2_ABS: REAL;
+	P_L3_ABS: REAL;
+	
+	P_L1_pu: REAL;
+	P_L2_pu: REAL;
+	P_L3_pu: REAL;
+	
+	P_min_indic: WORD:= 0;
+	P_min_pu: REAL:= 0;
+	P_min_3ph: REAL;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+ *************************************************************************************************************
+ * \file  Min_P_calculation
+ * \author Quique
+ * \version 1.0.0
+ * \date Creation: 16/07/2022
+ * \brief Determines which is the minimal P for P CL
+ *************************************************************************************************************
+ \defgroup P_CONTROLS - MIN_P_CALCULATION
+ 
+ \brief 	This algorithm is used to determine which is the phase with the less power consumption and then
+ 			this obtained value is used as the feedback of P loop of the system. The goal is that this value
+			is updated continuously to guarantee that there is null P injection to grid during stationary
+			regime, according to RD 244/19. 
+		
+ \details 	It is based on a first order approach assuming that line power equals the summatory 
+			of 3 single - phase powers (it assumes system loads are balanced. Thus and as it is mandatory
+			not to inject P to grid, the algorithm checks which is the single - phase power with the less 
+			consumption value, multiplies it by three and then it takes that value as P closed loop feedback, 
+			to have closed loop working in a pseudo three-phase, since all inverters generate 3-phase
+			balanced current, for P PI.
+			
+			In Open Loop it is not considered, since OL control doesn´t meet RD 244/19 requirements.
+
+*)
+	
+//P_meas min determination
+P_L1_ABS:= ABS(GVL_ANALYZERS.Power_analyzer.P_L1_kW);
+P_L2_ABS:= ABS(GVL_ANALYZERS.Power_analyzer.P_L2_kW);
+P_L3_ABS:= ABS(GVL_ANALYZERS.Power_analyzer.P_L3_kW);
+
+IF (P_L1_ABS < P_L2_ABS) AND (P_L1_ABS < P_L3_ABS) THEN
+	P_min_indic:= 0;
+ELSIF (P_L2_ABS < P_L1_ABS) AND (P_L2_ABS < P_L3_ABS) THEN
+	P_min_indic:= 1;
+ELSE
+	P_min_indic:= 2;
+END_IF
+
+//P_measured single-phase in p.u. 
+P_L1_pu:= GVL_ANALYZERS.Power_analyzer.P_L1_pu;
+P_L2_pu:= GVL_ANALYZERS.Power_analyzer.P_L2_pu;
+P_L3_pu:= GVL_ANALYZERS.Power_analyzer.P_L3_pu;
+
+//P_meas_min selection
+P_min_pu:= MUX(P_min_indic, P_L1_pu, P_L2_pu, P_L3_pu);
+GVL_ANALYZERS.P_min_indicator:= P_min_indic;
+
+//feedback value
+P_min_3ph:= P_min_pu * 3;
+GVL_ANALYZERS.P_min:= P_min_3ph;
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="Min_P_calculation">
+      <LineId Id="20" Count="16" />
+      <LineId Id="77" Count="5" />
+      <LineId Id="45" Count="1" />
+      <LineId Id="49" Count="13" />
+      <LineId Id="98" Count="3" />
+      <LineId Id="67" Count="8" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

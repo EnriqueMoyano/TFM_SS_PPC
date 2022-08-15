@@ -1,15 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Refactors>
   <Renames>
-    <RenamedType>
-      <Type guid="76a51f9a-789b-4048-a626-a8e3ed805077">NN_CALCULATION</Type>
-      <From>nN_calculation</From>
-      <To>nN_coeff_calculation</To>
-    </RenamedType>
-    <RenamedType>
-      <Type guid="39f4c466-d879-41dc-93cf-eafefe0349dd">POU</Type>
-      <From>POU</From>
-      <To>Modbus_mapping</To>
-    </RenamedType>
+    <RenamedSymbol>
+      <Type guid="b2a43cc4-d3c2-4758-920c-cfadc1ea22e1">PI_BLOCK</Type>
+      <From>Limit_Max</From>
+      <To>Antiwindup_max</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="b2a43cc4-d3c2-4758-920c-cfadc1ea22e1">PI_BLOCK</Type>
+      <From>Limit_Min</From>
+      <To>Antiwindup_min</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="b2a43cc4-d3c2-4758-920c-cfadc1ea22e1">PI_BLOCK</Type>
+      <From>Output_FB</From>
+      <To>Output_prev</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="478b6ebb-1ab1-4523-8af4-5bf8f6c18d1b">GVL_P_CONTROL</Type>
+      <From>P_block_output</From>
+      <To>P_output</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="478b6ebb-1ab1-4523-8af4-5bf8f6c18d1b">GVL_P_CONTROL</Type>
+      <From>P_block_input</From>
+      <To>P_reference</To>
+    </RenamedSymbol>
   </Renames>
 </Refactors>

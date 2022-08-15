@@ -3,9 +3,19 @@
   <GVL Name="GVL_ANALYZERS" Id="{f138ff50-4403-486f-b4af-1f0f47357b23}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
-	EL3453_loss_COMMS_Enable: BOOL;
-	EL3453_loss_COMMS_Alarm: BOOL;
-	EL3453_Status: WORD;
+
+	//Internal powermeter variables	
+	Power_analyzer: 			PM_internal_scaled;
+	
+	//Self-supply P variables
+	P_min:						REAL; //Minimum P in p.u. of the system for PI feedback
+	P_min_indicator:			WORD; //Minimum P indicator 0 --> L1; 1 --> L2; 2 --> L3
+
+	EL3453_loss_COMMS_Enable: 	BOOL;
+	EL3453_loss_COMMS_Alarm: 	BOOL;
+	EL3453_Status: 				WORD;
+	
+	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
