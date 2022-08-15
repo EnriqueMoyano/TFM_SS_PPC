@@ -7,11 +7,11 @@ STRUCT
 	WriteRegs_INV: FB_MBWriteRegs;
 	
 	Capacity: REAL:= 1000;				//Snominal from inverter in kVA
-	IP: STRING(15):= '192.168.0.120';
-	Port: UINT:= 502;
-	UnitID: BYTE:= 255;
-	LengthRead: WORD:= 5;				//Amount of registers read from modbus
-	LengthWrite: WORD:= 7;				//Amount of registers written via modbus
+	IP: STRING(15):= '192.168.1.254';
+	Port: UINT:= 502;					//Modbus port
+	UnitID: BYTE:= 1;					//Modbus ID if necessary
+	LengthRead: WORD:= 10;				//Amount of registers read from modbus
+	LengthWrite: WORD:= 10;				//Amount of registers written via modbus
 	InitAdressRead: WORD:= 4500;
 	InitAdressWrite: WORD:= 4550;
 	cbLenght: UDINT:= 2;
