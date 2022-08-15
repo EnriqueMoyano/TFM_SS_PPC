@@ -40,6 +40,9 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\CONTROL\PI_BLOCK.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\CONVERTERS\CONVERTERS_COMMS.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -60,6 +63,7 @@
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
     <Folder Include="POUs\CONVERTERS" />
+    <Folder Include="POUs\CONTROL" />
     <Folder Include="POUs\P CONTROL" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />

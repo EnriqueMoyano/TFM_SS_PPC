@@ -9,8 +9,10 @@ END_VAR
       <ST><![CDATA[P_feedback_calculation();
 
 IF GVL_P_CONTROL.P_loop_type THEN
-	//
+	//Open loop control case
 	GVL_P_CONTROL.P_block_output:= GVL_P_CONTROL.P_block_input;
+ELSE
+	//Closed loop control case
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="P_control_global">
@@ -18,7 +20,10 @@ END_IF]]></ST>
       <LineId Id="9" Count="0" />
       <LineId Id="8" Count="0" />
       <LineId Id="12" Count="0" />
-      <LineId Id="10" Count="1" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="11" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

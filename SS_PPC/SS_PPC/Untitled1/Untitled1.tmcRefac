@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Refactors>
+  <Renames>
+    <RenamedSymbol>
+      <Type guid="b2a43cc4-d3c2-4758-920c-cfadc1ea22e1">PI_BLOCK</Type>
+      <From>Limit_Max</From>
+      <To>Antiwindup_max</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="b2a43cc4-d3c2-4758-920c-cfadc1ea22e1">PI_BLOCK</Type>
+      <From>Limit_Min</From>
+      <To>Antiwindup_min</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="b2a43cc4-d3c2-4758-920c-cfadc1ea22e1">PI_BLOCK</Type>
+      <From>Output_FB</From>
+      <To>Output_prev</To>
+    </RenamedSymbol>
+  </Renames>
+</Refactors>
