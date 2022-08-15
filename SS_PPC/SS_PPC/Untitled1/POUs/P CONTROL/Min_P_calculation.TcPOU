@@ -43,42 +43,42 @@ END_VAR
 			In Open Loop it is not considered, since OL control doesn´t meet RD 244/19 requirements.
 
 *)
+	
+//P_meas min determination
+P_L1_ABS:= ABS(GVL_ANALYZERS.Power_analyzer.P_L1_kW);
+P_L2_ABS:= ABS(GVL_ANALYZERS.Power_analyzer.P_L2_kW);
+P_L3_ABS:= ABS(GVL_ANALYZERS.Power_analyzer.P_L3_kW);
 
-IF GVL_ANALYZERS.Main_Chosen_Analyzer = 0 THEN
-	
-	//P_meas min determination
-	P_L1_ABS:= ABS(EtherCAT_Meter.P_power_L1_Plant_REAL);
-	P_L2_ABS:= ABS(EtherCAT_Meter.P_power_L2_Plant_REAL);
-	P_L3_ABS:= ABS(EtherCAT_Meter.P_power_L3_Plant_REAL);
-	
-	IF (P_L1_ABS < P_L2_ABS) AND (P_L1_ABS < P_L3_ABS) THEN
-		P_min_indic:= 0;
-	ELSIF (P_L2_ABS < P_L1_ABS) AND (P_L2_ABS < P_L3_ABS) THEN
-		P_min_indic:= 1;
-	ELSE
-		P_min_indic:= 2;
-	END_IF
-	
-	//P_meas single-phase p.u. Remember EL3453 gives P in W and Plant nominal P is expressed in kW
-	P_L1_pu:= (EtherCAT_Meter.P_power_L1_Plant_REAL * 0.001) / Plant.Total_P_Plant;
-	P_L2_pu:= (EtherCAT_Meter.P_power_L2_Plant_REAL * 0.001) / Plant.Total_P_Plant;
-	P_L3_pu:= (EtherCAT_Meter.P_power_L3_Plant_REAL * 0.001) / Plant.Total_P_Plant;
-	
-	//P_meas_min selection
-	P_min_pu:= MUX(P_min_indic, P_L1_pu, P_L2_pu, P_L3_pu);
-	EMS_Prot.Phase_used:= P_min_indic;
-	
-	//feedback value
-	P_min_3ph:= P_min_pu * 3;
-	EMS_Prot.P_min_fback:= P_min_3ph;
-	
+IF (P_L1_ABS < P_L2_ABS) AND (P_L1_ABS < P_L3_ABS) THEN
+	P_min_indic:= 0;
+ELSIF (P_L2_ABS < P_L1_ABS) AND (P_L2_ABS < P_L3_ABS) THEN
+	P_min_indic:= 1;
+ELSE
+	P_min_indic:= 2;
 END_IF
+
+//P_measured single-phase in p.u. 
+P_L1_pu:= GVL_ANALYZERS.Power_analyzer.P_L1_pu;
+P_L2_pu:= GVL_ANALYZERS.Power_analyzer.P_L2_pu;
+P_L3_pu:= GVL_ANALYZERS.Power_analyzer.P_L3_pu;
+
+//P_meas_min selection
+P_min_pu:= MUX(P_min_indic, P_L1_pu, P_L2_pu, P_L3_pu);
+GVL_ANALYZERS.P_min_indicator:= P_min_indic;
+
+//feedback value
+P_min_3ph:= P_min_pu * 3;
+GVL_ANALYZERS.P_min:= P_min_3ph;
+
 ]]></ST>
     </Implementation>
     <LineIds Name="Min_P_calculation">
       <LineId Id="20" Count="16" />
       <LineId Id="77" Count="5" />
-      <LineId Id="45" Count="31" />
+      <LineId Id="45" Count="1" />
+      <LineId Id="49" Count="13" />
+      <LineId Id="98" Count="3" />
+      <LineId Id="67" Count="8" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

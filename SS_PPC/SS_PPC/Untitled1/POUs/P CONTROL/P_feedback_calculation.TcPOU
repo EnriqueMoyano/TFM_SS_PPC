@@ -30,19 +30,21 @@ END_VAR
 //Determination of P_measured_min
 Min_P_calculation();
 
-// EL3453 selected and Ploop in closed loop
-IF (GVL_ANALYZERS.Main_Chosen_Analyzer = 0) AND (Act_P.Loop = 0) THEN
-	
-	HMIA.P_fback_EMS:= EMS_Prot.P_min_fback;
-ELSE	
-	
-	HMIA.P_fback_EMS:= Act_P.General_Plant_P_pu;
+//  Ploop in closed loop
+IF NOT GVL_P_CONTROL.P_loop_type THEN
+	GVL_P_CONTROL.P_feedback:= GVL_ANALYZERS.P_min;
+ELSE
+// Ploop in open loop	
+	GVL_P_CONTROL.P_feedback:= GVL_ANALYZERS.Power_analyzer.P_pu;
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="P_feedback_calculation">
       <LineId Id="6" Count="16" />
       <LineId Id="27" Count="0" />
-      <LineId Id="31" Count="12" />
+      <LineId Id="31" Count="7" />
+      <LineId Id="40" Count="1" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="43" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

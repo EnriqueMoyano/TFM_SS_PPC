@@ -14,6 +14,7 @@ STRUCT
 	S_L1_pu:			REAL;
 	S_L2_pu:			REAL;
 	S_L3_pu:			REAL;
+	V_phase_avg_pu:		REAL;
 	
 	//Single-phase electrical parameters in engineering units
 	P_L1_kW:			REAL;
@@ -31,18 +32,29 @@ STRUCT
 	V_L1N_Volt:			REAL;
 	V_L2N_Volt:			REAL;
 	V_L3N_Volt:			REAL;
+	V_phase_avg_Volt:	REAL;
+	
+	//Three-phase electrical parameters in p.u.
+	P_pu:				REAL;
+	Q_pu:				REAL;
+	S_pu:				REAL;
+	V_line_avg_pu:		REAL;
 	
 	//Three-phase electrical parameters in engineering units
 	P_kW:				REAL;
 	Q_kVAr:				REAL;
 	S_kVA:				REAL;
+	Freq_Hz:			REAL;
 	cos_phi:			REAL;
 	V_L1L2_Volt:		REAL;
 	V_L2L3_Volt:		REAL;
 	V_L3L1_Volt:		REAL;
 	I_L1_angle:			REAL;
 	I_L2_angle:			REAL;
-	I_L3_angle:			real;
+	I_L3_angle:			REAL;
+	V_L1L2_angle:		REAL;
+	V_L2L3_angle:		REAL;
+	V_line_avg_Volt:	REAL;
 	
 	//Rest of parameters
 	Meter_status:		WORD;

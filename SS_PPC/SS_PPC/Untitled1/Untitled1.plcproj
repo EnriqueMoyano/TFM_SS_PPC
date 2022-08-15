@@ -30,6 +30,10 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
+    <Compile Include="GVLs\GVL_P_CONTROL.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="GVLs\PM_internal_scaled.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -43,6 +47,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\P CONTROL\Min_P_calculation.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\P CONTROL\P_control_global.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\P CONTROL\P_feedback_calculation.TcPOU">

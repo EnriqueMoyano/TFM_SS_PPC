@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="GVL_P_CONTROL" Id="{478b6ebb-1ab1-4523-8af4-5bf8f6c18d1b}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	P_loop_type:	BOOL:= 0; //0 --> Control in CL; 1 --> Control in OL.
+	
+	//Control and PI variables
+	P_feedback:		REAL; //Feedback for PI control
+	P_block_output:	REAL; //Output of P control block
+	P_block_input:	REAL; //Output of P control block
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
