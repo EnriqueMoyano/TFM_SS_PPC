@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Refactors>
+  <Renames>
+    <RenamedType>
+      <Type guid="76a51f9a-789b-4048-a626-a8e3ed805077">NN_CALCULATION</Type>
+      <From>nN_calculation</From>
+      <To>nN_coeff_calculation</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="39f4c466-d879-41dc-93cf-eafefe0349dd">POU</Type>
+      <From>POU</From>
+      <To>Modbus_mapping</To>
+    </RenamedType>
+  </Renames>
+</Refactors>
