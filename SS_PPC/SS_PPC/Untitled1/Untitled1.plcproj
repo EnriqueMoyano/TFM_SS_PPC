@@ -34,6 +34,10 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
+    <Compile Include="GVLs\GVL_Q_CONTROL.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="GVLs\PM_internal_scaled.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -58,12 +62,19 @@
     <Compile Include="POUs\P CONTROL\P_feedback_calculation.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Q CONTROL\Q_control_global.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Q CONTROL\Q_ramp_module.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
     <Folder Include="POUs\CONVERTERS" />
     <Folder Include="POUs\CONTROL" />
+    <Folder Include="POUs\Q CONTROL" />
     <Folder Include="POUs\P CONTROL" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />

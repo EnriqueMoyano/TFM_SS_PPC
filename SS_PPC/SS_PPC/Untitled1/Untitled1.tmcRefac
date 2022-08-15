@@ -16,5 +16,60 @@
       <From>Output_FB</From>
       <To>Output_prev</To>
     </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="eb7f69ba-e6f9-4349-bf84-8db289419e39">Q_ramp_module</Type>
+      <From>Ref_Algorithms</From>
+      <To>Q_reference</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="eb7f69ba-e6f9-4349-bf84-8db289419e39">Q_ramp_module</Type>
+      <From>RRL_Q_Output</From>
+      <To>Q_ramp_out</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="eb7f69ba-e6f9-4349-bf84-8db289419e39">Q_ramp_module</Type>
+      <From>RRL_Q_UNITS</From>
+      <To>Ramp_unit_sel</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="eb7f69ba-e6f9-4349-bf84-8db289419e39">Q_ramp_module</Type>
+      <From>Ramp_up_sc_Q</From>
+      <To>Ramp_increasing_val</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="eb7f69ba-e6f9-4349-bf84-8db289419e39">Q_ramp_module</Type>
+      <From>Ramp_down_sc_Q</From>
+      <To>Ramp_decreasing_val</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="eb7f69ba-e6f9-4349-bf84-8db289419e39">Q_ramp_module</Type>
+      <From>Ramp_up_sc_Q_scaled</From>
+      <To>Ramp_incr_scaled</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="eb7f69ba-e6f9-4349-bf84-8db289419e39">Q_ramp_module</Type>
+      <From>Ramp_down_sc_Q_scaled</From>
+      <To>Ramp_decr_scaled</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="eb7f69ba-e6f9-4349-bf84-8db289419e39">Q_ramp_module</Type>
+      <From>Aux_Slope</From>
+      <To>Aux_ramp</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="eb7f69ba-e6f9-4349-bf84-8db289419e39">Q_ramp_module</Type>
+      <From>Limited_Slope</From>
+      <To>Lim_ramp</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="eb7f69ba-e6f9-4349-bf84-8db289419e39">Q_ramp_module</Type>
+      <From>Scaled_Slope</From>
+      <To>Ramp_scaled</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="eb7f69ba-e6f9-4349-bf84-8db289419e39">Q_ramp_module</Type>
+      <From>Aux_Slope_scaled</From>
+      <To>Ramp_aux_scaled</To>
+    </RenamedSymbol>
   </Renames>
 </Refactors>

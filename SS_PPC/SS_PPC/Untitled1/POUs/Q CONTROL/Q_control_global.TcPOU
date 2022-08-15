@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Q_control_global" Id="{aa87b772-234f-4963-9c41-58006fb0ff5c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Q_control_global
+VAR
+	//Functions to be called
+	PI_Q:			PI_BLOCK;
+	Q_Ramp:			Q_ramp_module;
+	
+	//Control varaibles
+	Q_setpoint:		REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Control variables assignment
+Q_setpoint:= GVL_Q_CONTROL.Q_reference;
+
+IF GVL_Q_CONTROL.Ramp_enable THEN
+
+	Q_Ramp(
+		Q_reference:= Q_setpoint, 
+		Ramp_increasing_val:= GVL_Q_CONTROL.Ramp_up_value, 
+		Ramp_decreasing_val:= GVL_Q_CONTROL.Ramp_down_value, 
+		Ramp_unit_sel:= GVL_Q_CONTROL.Ramp_units, 
+		Q_ramp_out=> Q_setpoint
+		Time_span=> GVL_Q_CONTROL.Time_span);
+END_IF
+
+IF GVL_Q_CONTROL.Q_loop_type THEN
+	//Open loop control case
+	GVL_Q_CONTROL.Q_output:= Q_setpoint;
+ELSE
+	//Closed loop control case
+	PI_Q(
+		Setpoint:= Q_setpoint, 
+		Feedback:= GVL_Q_CONTROL.Q_feedback, 
+		Inverted_PID:= GVL_Q_CONTROL.Q_invert, 
+		KP:= GVL_Q_CONTROL.Q_kp, 
+		KP_Min:= GVL_Q_CONTROL.Q_kp, 
+		TI:= GVL_Q_CONTROL.Q_Ti, 
+		Antiwindup_max:= GVL_Q_CONTROL.Q_high_act, 
+		Antiwindup_min:= GVL_Q_CONTROL.Q_low_act, 
+		Output_prev:= GVL_Q_CONTROL.Q_output, 
+		Output=> GVL_Q_CONTROL.Q_output, 
+		Error_Out=> GVL_Q_CONTROL.Q_err_signal);
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="Q_control_global">
+      <LineId Id="54" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="45" Count="4" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="24" Count="16" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
