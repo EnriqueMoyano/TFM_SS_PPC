@@ -33,9 +33,9 @@ END_VAR
 			is updated continuously to guarantee that there is null P injection to grid during stationary
 			regime, according to RD 244/19. 
 		
- \details 	This algorithm is based on a first order approach assuming that line power equals the summatory 
-			of 3 single - phase powers (it assumes system loads are balanced. Thus and since it is mandatory
-			to not inject P to grid, the algorithm checks which is the single - phase power with the less 
+ \details 	It is based on a first order approach assuming that line power equals the summatory 
+			of 3 single - phase powers (it assumes system loads are balanced. Thus and as it is mandatory
+			not to inject P to grid, the algorithm checks which is the single - phase power with the less 
 			consumption value, multiplies it by three and then it takes that value as P closed loop feedback, 
 			to have closed loop working in a pseudo three-phase, since all inverters generate 3-phase
 			balanced current, for P PI.
