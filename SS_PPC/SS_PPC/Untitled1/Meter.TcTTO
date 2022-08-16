@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <Task Name="Meter" Id="{60cb218d-f018-4bc9-9944-722bc2180ab1}">
+    <!--CycleTime in micro seconds.-->
+    <CycleTime>1000</CycleTime>
+    <Priority>2</Priority>
+    <PouCall>
+      <Name>Analyzers</Name>
+    </PouCall>
+    <TaskFBGuid>{90dad5d3-6a63-4642-ae29-eb95a84bcec1}</TaskFBGuid>
+    <Fb_init>{1bbef0be-8f1e-45a9-b35b-8b233672e20a}</Fb_init>
+    <Fb_exit>{764151e9-9b70-4571-99ab-0fc3b296f246}</Fb_exit>
+    <CycleUpdate>{fdbe4a39-847e-4a2d-b96b-1fce7933c237}</CycleUpdate>
+    <PostCycleUpdate>{263284fa-eef7-497e-811c-851ecf475fa5}</PostCycleUpdate>
+  </Task>
+</TcPlcObject>

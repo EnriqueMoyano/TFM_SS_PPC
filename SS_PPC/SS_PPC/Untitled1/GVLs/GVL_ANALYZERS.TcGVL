@@ -13,8 +13,42 @@ VAR_GLOBAL
 
 	EL3453_loss_COMMS_Enable: 	BOOL;
 	EL3453_loss_COMMS_Alarm: 	BOOL;
-	EL3453_Status: 				WORD;
 	
+	//Data to be linked to metering board
+	//Single-phase data
+	M_board_P_L1_kW				AT %I*	: REAL;
+	M_board_P_L2_kW				AT %I*	: REAL;		
+	M_board_P_L3_kW				AT %I*	: REAL;		
+	M_board_Q_L1_kVAr			AT %I*	: REAL;		
+	M_board_Q_L2_kVAr			AT %I*	: REAL;		
+	M_board_Q_L3_kVAr			AT %I*	: REAL;		
+	M_board_S_L1_kVA			AT %I*	: REAL;		
+	M_board_S_L2_kVA			AT %I*	: REAL;		
+	M_board_S_L3_kVA			AT %I*	: REAL;		
+	M_board_cos_phi_L1			AT %I*	: REAL;		
+	M_board_cos_phi_L2			AT %I*	: REAL;		
+	M_board_cos_phi_L3			AT %I*	: REAL;		
+	M_board_V_L1N_Volt			AT %I*	: REAL;		
+	M_board_V_L2N_Volt			AT %I*	: REAL;		
+	M_board_V_L3N_Volt			AT %I*	: REAL;					
+						
+	//Three-phase data			
+	M_board_P_kW				AT %I*	: REAL;	
+	M_board_Q_kVAr				AT %I*	: REAL;	
+	M_board_S_kVA				AT %I*	: REAL;	
+	M_board_Freq_Hz				AT %I*	: REAL;		
+	M_board_cos_phi				AT %I*	: REAL;		
+	M_board_V_L1L2_Volt			AT %I*	: REAL;			
+	M_board_V_L2L3_Volt			AT %I*	: REAL;			
+	M_board_V_L3L1_Volt			AT %I*	: REAL;			
+	M_board_I_L1_angle			AT %I*	: REAL;		
+	M_board_I_L2_angle			AT %I*	: REAL;		
+	M_board_I_L3_angle			AT %I*	: REAL;		
+	M_board_V_L1L2_angle		AT %I* 	: REAL;			
+	M_board_V_L2L3_angle		AT %I*	: REAL;					
+	
+	//Rest of data								
+	M_board_Meter_status		AT %I*	: WORD;			
 	
 END_VAR]]></Declaration>
   </GVL>

@@ -56,14 +56,6 @@ STRUCT
 	V_L2L3_angle:		REAL;
 	V_line_avg_Volt:	REAL;
 	
-	//Total energies
-	Active_er_pos_kWh:	LINT;
-	Active_er_neg_kWh:	LINT;
-	Active_er_tot_kWh:	LINT;
-	React_er_pos_kVArh:	LINT;
-	React_er_neg_kVArh:	LINT;
-	React_er_tot_kVArh:	LINT;
-	
 	//Rest of parameters
 	Meter_status:		WORD;
 	

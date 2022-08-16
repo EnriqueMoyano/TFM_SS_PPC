@@ -44,10 +44,10 @@
     <Compile Include="GVLs\PM_internal_scaled.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Meter.TcTTO">
+    <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="PlcTask.TcTTO">
+    <Compile Include="POUs\BYTE_UNION.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\CONTROL\PI_BLOCK.TcPOU">
@@ -56,13 +56,13 @@
     <Compile Include="POUs\CONVERTERS\CONVERTERS_COMMS.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\CONVERTERS\Modbus_mapping.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\CONVERTERS\nN_coeff_calculation.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\METERING\Analyzers.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\METERING\FB_EL3453_handling.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\P CONTROL\Min_P_calculation.TcPOU">
@@ -80,19 +80,25 @@
     <Compile Include="POUs\Q CONTROL\Q_ramp_module.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Control_calc_task.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
     <Folder Include="POUs\CONVERTERS" />
     <Folder Include="POUs\CONTROL" />
-    <Folder Include="POUs\METERING" />
     <Folder Include="POUs\Q CONTROL" />
     <Folder Include="POUs\P CONTROL" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderReference Include="Tc2_MBus">
+      <DefaultResolution>Tc2_MBus, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_MBus</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_ModbusSrv">
       <DefaultResolution>Tc2_ModbusSrv, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_ModbusSrv</Namespace>

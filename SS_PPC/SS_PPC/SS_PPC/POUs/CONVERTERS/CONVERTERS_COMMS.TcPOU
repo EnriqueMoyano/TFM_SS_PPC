@@ -40,7 +40,7 @@ FOR I := 1 TO GVL_CONV_COMMS.NUMBER_CONVERTERS DO;
 
 	//Powermeter loss comms section
 	IF GVL_ANALYZERS.EL3453_loss_COMMS_Enable THEN		
-		IF GVL_ANALYZERS.M_board_Meter_status <> 8 THEN
+		IF GVL_ANALYZERS.EL3453_Status <> 5 THEN
 			GVL_CONV_COMMS.Setpoint_P[I] := REAL_TO_WORD(GVL_P_CONTROL.P_safety);
 			GVL_CONV_COMMS.Setpoint_Q[I] := REAL_TO_INT(GVL_Q_CONTROL.Q_safety);
 			GVL_ANALYZERS.EL3453_loss_COMMS_Alarm:= TRUE;
