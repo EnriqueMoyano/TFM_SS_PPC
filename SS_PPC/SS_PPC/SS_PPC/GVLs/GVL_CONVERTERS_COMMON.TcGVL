@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="GVL_CONVERTERS_COMMON" Id="{d890b9dd-8861-4c68-92be-9dd01149606d}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	CONVERTER_STATUS_RUN:	WORD:= 1; //Status told by the inverter when injecting P and Q
+	Plant_capacity:			REAL:= 4000; //Total capacity in kVA
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

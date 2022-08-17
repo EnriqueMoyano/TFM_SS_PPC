@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="AVG_3" Id="{f0f764f9-b572-4e8e-aec9-4adf72c02ed8}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION AVG_3 : real
+VAR_INPUT
+	IN_1:			REAL;
+	IN_2:			REAL;
+	IN_3:			REAL;
+END_VAR
+VAR
+	CTE_1_THIRD:	REAL:= 0.333333333333333333333;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[AVG_3:= (IN_1 + IN_2 + IN_3) * CTE_1_THIRD;
+]]></ST>
+    </Implementation>
+    <LineIds Name="AVG_3">
+      <LineId Id="7" Count="0" />
+      <LineId Id="12" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

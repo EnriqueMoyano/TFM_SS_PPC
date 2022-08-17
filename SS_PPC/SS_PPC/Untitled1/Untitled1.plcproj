@@ -21,7 +21,10 @@
     <Compile Include="DUTs\CONVERTER.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GVLs\GVL_ANALYZERS.TcGVL">
+    <Compile Include="FUNC\AVG_3.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\GVL_POWERMETER.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
@@ -33,6 +36,10 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
+    <Compile Include="GVLs\GVL_PLANT_DEF.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="GVLs\GVL_P_CONTROL.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -41,13 +48,13 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
-    <Compile Include="GVLs\PM_internal_scaled.TcDUT">
+    <Compile Include="GVLs\Meter_board_str.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Meter.TcTTO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\BYTE_UNION.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\CONTROL\PI_BLOCK.TcPOU">
@@ -56,13 +63,13 @@
     <Compile Include="POUs\CONVERTERS\CONVERTERS_COMMS.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\CONVERTERS\Modbus_mapping.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\CONVERTERS\nN_coeff_calculation.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\METERING\Analyzers.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\METERING\FB_EL3453_handling.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\P CONTROL\Min_P_calculation.TcPOU">
@@ -80,32 +87,23 @@
     <Compile Include="POUs\Q CONTROL\Q_ramp_module.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Control_calc_task.TcTTO">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
+    <Folder Include="FUNC" />
     <Folder Include="POUs\CONVERTERS" />
     <Folder Include="POUs\CONTROL" />
+    <Folder Include="POUs\METERING" />
     <Folder Include="POUs\Q CONTROL" />
     <Folder Include="POUs\P CONTROL" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
-    <PlaceholderReference Include="Tc2_MBus">
-      <DefaultResolution>Tc2_MBus, * (Beckhoff Automation GmbH)</DefaultResolution>
-      <Namespace>Tc2_MBus</Namespace>
-    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_ModbusSrv">
       <DefaultResolution>Tc2_ModbusSrv, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_ModbusSrv</Namespace>
-    </PlaceholderReference>
-    <PlaceholderReference Include="Tc2_Standard">
-      <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
-      <Namespace>Tc2_Standard</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc2_System">
       <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
@@ -120,6 +118,11 @@
     <None Include="Untitled1.tmc">
       <SubType>Content</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <LibraryReference Include="BASIC,3.31,OSCAT">
+      <Namespace>BASIC</Namespace>
+    </LibraryReference>
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="GVL_METERING_BOARD" Id="{ad26a4a1-5a9b-4541-8c18-4f1d30232b3f}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

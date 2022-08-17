@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="FB_EL3453_handling" Id="{607e69df-f40a-48cc-8fb1-54e07d0aad99}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_EL3453_handling
+VAR_INPUT
+END_VAR
+
+VAR_OUTPUT
+	Analyzer_str_out:			Meter_board_str;
+END_VAR
+
+VAR
+END_VAR
+
+VAR CONSTANT
+	CTE_1E_M3:					REAL:= 0.001;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Single-phase powers linkage + structure writing and scaling
+Analyzer_str_out.P_L1_kW:= GVL_POWERMETER.M_board_P_L1_kW * CTE_1E_M3;
+Analyzer_str_out.P_L2_kW:= GVL_POWERMETER.M_board_P_L2_kW * CTE_1E_M3;
+Analyzer_str_out.P_L3_kW:= GVL_POWERMETER.M_board_P_L3_kW * CTE_1E_M3;
+Analyzer_str_out.Q_L1_kVAr:= GVL_POWERMETER.M_board_Q_L1_kVAr * CTE_1E_M3;
+Analyzer_str_out.Q_L2_kVAr:= GVL_POWERMETER.M_board_Q_L2_kVAr * CTE_1E_M3;
+Analyzer_str_out.Q_L3_kVAr:= GVL_POWERMETER.M_board_Q_L3_kVAr * CTE_1E_M3;
+Analyzer_str_out.S_L1_kVA:= GVL_POWERMETER.M_board_S_L1_kVA * CTE_1E_M3;
+Analyzer_str_out.S_L2_kVA:= GVL_POWERMETER.M_board_S_L2_kVA * CTE_1E_M3;
+Analyzer_str_out.S_L3_kVA:= GVL_POWERMETER.M_board_S_L3_kVA * CTE_1E_M3;
+
+//Single-phase cos(phi) + structure writing 
+Analyzer_str_out.cos_phi_L1:= GVL_POWERMETER.M_board_cos_phi_L1;
+Analyzer_str_out.cos_phi_L2:= GVL_POWERMETER.M_board_cos_phi_L2;
+Analyzer_str_out.cos_phi_L3:= GVL_POWERMETER.M_board_cos_phi_L3;
+
+//Phase voltages + structure writing 
+Analyzer_str_out.V_L1N_Volt:= GVL_POWERMETER.M_board_V_L1N_Volt;
+Analyzer_str_out.V_L2N_Volt:= GVL_POWERMETER.M_board_V_L2N_Volt;
+Analyzer_str_out.V_L3N_Volt:= GVL_POWERMETER.M_board_V_L3N_Volt;
+Analyzer_str_out.V_phase_avg_Volt:= AVG_3(Analyzer_str_out.V_L1N_Volt, Analyzer_str_out.V_L2N_Volt, Analyzer_str_out.V_L3N_Volt);
+
+//Three-phase powers linkage + structure writing and scaling
+Analyzer_str_out.P_kW:= GVL_POWERMETER.M_board_P_kW * CTE_1E_M3;
+Analyzer_str_out.Q_kVAr:= GVL_POWERMETER.M_board_Q_kVAr * CTE_1E_M3;
+Analyzer_str_out.S_kVA:= GVL_POWERMETER.M_board_S_kVA * CTE_1E_M3;
+
+//Line voltages + structure writing 
+Analyzer_str_out.V_L1L2_Volt:= GVL_POWERMETER.M_board_V_L1L2_Volt;
+Analyzer_str_out.V_L2L3_Volt:= GVL_POWERMETER.M_board_V_L2L3_Volt;
+Analyzer_str_out.V_L3L1_Volt:= GVL_POWERMETER.M_board_V_L3L1_Volt;
+Analyzer_str_out.V_line_avg_Volt:= AVG_3(Analyzer_str_out.V_L1L2_Volt, Analyzer_str_out.V_L2L3_Volt, Analyzer_str_out.V_L3L1_Volt);
+
+//System angles
+Analyzer_str_out.I_L1_angle:= GVL_POWERMETER.M_board_I_L1_angle;
+Analyzer_str_out.I_L2_angle:= GVL_POWERMETER.M_board_I_L2_angle;
+Analyzer_str_out.I_L3_angle:= GVL_POWERMETER.M_board_I_L3_angle;
+Analyzer_str_out.V_L1L2_angle:= GVL_POWERMETER.M_board_V_L1L2_angle;
+Analyzer_str_out.V_L1L3_angle:= GVL_POWERMETER.M_board_V_L1L3_angle;
+
+//Rest of electrical parameters + structure writing 
+Analyzer_str_out.Freq_Hz:= GVL_POWERMETER.M_board_Freq_Hz;
+Analyzer_str_out.cos_phi:= GVL_POWERMETER.M_board_cos_phi;
+Analyzer_str_out.Meter_status:= GVL_POWERMETER.M_board_Meter_status;
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_EL3453_handling">
+      <LineId Id="90" Count="43" />
+      <LineId Id="61" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

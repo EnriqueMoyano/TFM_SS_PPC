@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Analyzers" Id="{907aa627-47e3-4482-a979-79b393bfe7d2}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Analyzers
+VAR
+	PM_beck_EL3453:			FB_EL3453_handling;
+	
+	S_nom_facility_inv:			REAL; //Inverse of Snom [1/kVA]
+	V_nom_facility_inv:			REAL; //Inverse of Snom [1/V]
+END_VAR
+
+VAR CONSTANT
+	tick_hourly: 				REAL:= 2.78E-7; //ms expressed in hours (how much hours is a tick)
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+PM_beck_EL3453(Analyzer_str_out=> GVL_POWERMETER.Power_analyzer);
+
+//Per unit values obtention - Single-phase powers
+GVL_POWERMETER.Power_analyzer.P_L1_pu:= GVL_POWERMETER.Power_analyzer.P_L1_kW * S_nom_facility_inv;
+GVL_POWERMETER.Power_analyzer.P_L2_pu:= GVL_POWERMETER.Power_analyzer.P_L2_kW * S_nom_facility_inv;
+GVL_POWERMETER.Power_analyzer.P_L3_pu:= GVL_POWERMETER.Power_analyzer.P_L3_kW * S_nom_facility_inv;
+GVL_POWERMETER.Power_analyzer.Q_L1_pu:= GVL_POWERMETER.Power_analyzer.Q_L1_kVAr * S_nom_facility_inv;
+GVL_POWERMETER.Power_analyzer.Q_L2_pu:= GVL_POWERMETER.Power_analyzer.Q_L2_kVAr * S_nom_facility_inv;
+GVL_POWERMETER.Power_analyzer.Q_L3_pu:= GVL_POWERMETER.Power_analyzer.Q_L3_kVAr * S_nom_facility_inv;
+GVL_POWERMETER.Power_analyzer.S_L1_pu:= GVL_POWERMETER.Power_analyzer.S_L1_kVA * S_nom_facility_inv;
+GVL_POWERMETER.Power_analyzer.S_L2_pu:= GVL_POWERMETER.Power_analyzer.S_L2_kVA * S_nom_facility_inv;
+GVL_POWERMETER.Power_analyzer.S_L3_pu:= GVL_POWERMETER.Power_analyzer.S_L3_kVA * S_nom_facility_inv;
+
+//Per unit values obtention - Three-phase powers
+GVL_POWERMETER.Power_analyzer.P_pu:= GVL_POWERMETER.Power_analyzer.P_kW * S_nom_facility_inv;
+GVL_POWERMETER.Power_analyzer.Q_pu:= GVL_POWERMETER.Power_analyzer.Q_kVAr * S_nom_facility_inv;
+GVL_POWERMETER.Power_analyzer.S_pu:= GVL_POWERMETER.Power_analyzer.S_kVA * S_nom_facility_inv;
+
+//Per unit values obtention - Voltages
+GVL_POWERMETER.Power_analyzer.V_line_avg_pu:= GVL_POWERMETER.Power_analyzer.V_line_avg_Volt * V_nom_facility_inv;
+GVL_POWERMETER.Power_analyzer.V_phase_avg_pu:= GVL_POWERMETER.Power_analyzer.V_phase_avg_Volt * V_nom_facility_inv;
+
+//Active energies calculation. It is an infinitesimal addition (an integration of P_measured)
+GVL_POWERMETER.Power_analyzer.Active_er_tot_kWh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.P_kW * tick_hourly) + 
+												GVL_POWERMETER.Power_analyzer.Active_er_tot_kWh;
+IF GVL_POWERMETER.Power_analyzer.P_kW  >= 0 THEN
+	GVL_POWERMETER.Power_analyzer.Active_er_pos_kWh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.P_kW * tick_hourly) + 
+													GVL_POWERMETER.Power_analyzer.Active_er_pos_kWh;
+ELSE	
+	GVL_POWERMETER.Power_analyzer.Active_er_neg_kWh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.P_kW * tick_hourly) + 
+													GVL_POWERMETER.Power_analyzer.Active_er_neg_kWh;
+END_IF
+	
+//Reactive energies calculation. It is an infinitesimal addition (an integration of Q_measured)
+GVL_POWERMETER.Power_analyzer.React_er_tot_kVArh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.Q_kVAr * tick_hourly) + 
+												GVL_POWERMETER.Power_analyzer.React_er_tot_kVArh;
+IF GVL_POWERMETER.Power_analyzer.Q_kVAr >= 0 THEN
+	GVL_POWERMETER.Power_analyzer.React_er_pos_kVArh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.Q_kVAr * tick_hourly) + 
+													GVL_POWERMETER.Power_analyzer.React_er_pos_kVArh;
+ELSE
+	GVL_POWERMETER.Power_analyzer.React_er_neg_kVArh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.Q_kVAr * tick_hourly) + 
+													GVL_POWERMETER.Power_analyzer.React_er_neg_kVArh;
+END_IF
+
+//Energies reset when desired
+IF GVL_POWERMETER.Energies_reset THEN
+	GVL_POWERMETER.Power_analyzer.Active_er_neg_kWh:= 0;
+	GVL_POWERMETER.Power_analyzer.Active_er_pos_kWh:= 0;
+	GVL_POWERMETER.Power_analyzer.Active_er_tot_kWh:= 0;
+	GVL_POWERMETER.Power_analyzer.React_er_neg_kVArh:= 0;
+	GVL_POWERMETER.Power_analyzer.React_er_pos_kVArh:= 0;
+	GVL_POWERMETER.Power_analyzer.React_er_tot_kVArh:= 0;
+	
+	GVL_POWERMETER.Energies_reset:= FALSE;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="Analyzers">
+      <LineId Id="16" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="18" Count="9" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="34" Count="2" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="47" Count="1" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="83" Count="1" />
+      <LineId Id="86" Count="1" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="54" Count="2" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="91" Count="3" />
+      <LineId Id="61" Count="6" />
+      <LineId Id="69" Count="4" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="17" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

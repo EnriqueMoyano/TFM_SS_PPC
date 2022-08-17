@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="CONVERTERS_COMMS" Id="{c162f4ba-a9b6-42e7-a4fb-400c412ae3dd}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM CONVERTERS_COMMS
+VAR
+	I: word;//loop  variable
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+ ************************************************************************************************************
+ * \file  CONVERTERS_COMMS
+ * \author Quique
+ * \version 1.0.0
+ * \date Creation: 15/06/2022
+ * \date Modification: 12/08/2022
+ * \brief Programm to handle / arrange communications with converters
+ ************************************************************************************************************
+ \defgroup CONVERTERS
+ 
+ \brief 	This program takes P and Q from all algorithms to write it to all converters
+		
+ \details 	First part takes P and Q from algorithms and write them to converters
+ 			
+ 			Second part handles communications with metering board to accomplish I.3.4 from RD 244/19
+			
+			Third part writes relevant bits to inverters using a single modbus register, but bitwisely,
+			so that
+			
+			bit 0 --> Stop / start command
+			bit 1 --> Heartbeat to converters.
+			bit 2 --> Night mode enabling.
+ 
+*)
+
+FOR I := 1 TO GVL_CONV_COMMS.NUMBER_CONVERTERS DO;
+	
+	GVL_CONV_COMMS.Setpoint_P[I] := REAL_TO_WORD(GVL_P_CONTROL.P_output);
+	GVL_CONV_COMMS.Setpoint_Q[I] := REAL_TO_INT(GVL_Q_CONTROL.Q_output);
+
+	//Powermeter loss comms section
+	IF GVL_ANALYZERS.EL3453_loss_COMMS_Enable THEN		
+		IF GVL_ANALYZERS.EL3453_Status <> 5 THEN
+			GVL_CONV_COMMS.Setpoint_P[I] := REAL_TO_WORD(GVL_P_CONTROL.P_safety);
+			GVL_CONV_COMMS.Setpoint_Q[I] := REAL_TO_INT(GVL_Q_CONTROL.Q_safety);
+			GVL_ANALYZERS.EL3453_loss_COMMS_Alarm:= TRUE;
+		END_IF
+	END_IF
+	
+	IF ((GVL_CONV_COMMS.Comms_Control_Word[I] AND 16#0001) > 0 ) THEN
+			GVL_CONV_COMMS.Start_Command[I] := 1;
+		ELSE
+			GVL_CONV_COMMS.Start_Command[I] := 0;
+		END_IF
+		
+		IF ((GVL_CONV_COMMS.Comms_Control_Word[I] AND 16#0004) > 0 ) THEN
+			GVL_CONV_COMMS.Night_Mode_Active[I] := 1;
+		ELSE
+			GVL_CONV_COMMS.Night_Mode_Active[I] := 0;
+		END_IF
+
+END_FOR;
+
+
+//****************************************************************************************
+//							PLANT GLOBAL START / STOP
+//****************************************************************************************
+//Global_Start_Stop();
+
+//****************************************************************************************
+//                               n/N COEFFICIENT
+//****************************************************************************************
+
+//nN_coeff_calculation();
+
+//****************************************************************************************
+//                               MODBUS COMMS MAPPING
+//****************************************************************************************
+
+//Modbus_mapping();]]></ST>
+    </Implementation>
+    <LineIds Name="CONVERTERS_COMMS">
+      <LineId Id="54" Count="11" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="85" Count="7" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="120" Count="0" />
+      <LineId Id="153" Count="3" />
+      <LineId Id="183" Count="0" />
+      <LineId Id="160" Count="21" />
+      <LineId Id="121" Count="0" />
+      <LineId Id="41" Count="6" />
+      <LineId Id="140" Count="0" />
+      <LineId Id="49" Count="1" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="185" Count="4" />
+      <LineId Id="184" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

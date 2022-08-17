@@ -43,7 +43,7 @@ IF GVL_Q_CONTROL.Ramp_enable THEN
 	//Inicialization of the ramp to the measurement
 	IF First_Iterarion THEN
 		
-		Ref_prev:= GVL_ANALYZERS.Power_analyzer.Q_pu; 
+		Ref_prev:= GVL_POWERMETER.Power_analyzer.Q_pu; 
 		First_Iterarion := FALSE;
 	
 	END_IF

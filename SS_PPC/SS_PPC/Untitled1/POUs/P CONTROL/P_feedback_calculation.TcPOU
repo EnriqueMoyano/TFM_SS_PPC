@@ -32,10 +32,10 @@ Min_P_calculation();
 
 //  Ploop in closed loop
 IF NOT GVL_P_CONTROL.P_loop_type THEN
-	GVL_P_CONTROL.P_feedback:= GVL_ANALYZERS.P_min;
+	GVL_P_CONTROL.P_feedback:= GVL_POWERMETER.P_min;
 ELSE
 // Ploop in open loop	
-	GVL_P_CONTROL.P_feedback:= GVL_ANALYZERS.Power_analyzer.P_pu;
+	GVL_P_CONTROL.P_feedback:= GVL_POWERMETER.Power_analyzer.P_pu;
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="P_feedback_calculation">

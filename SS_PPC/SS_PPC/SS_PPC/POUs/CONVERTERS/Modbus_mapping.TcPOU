@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Modbus_mapping" Id="{39f4c466-d879-41dc-93cf-eafefe0349dd}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Modbus_mapping
+VAR
+	I: WORD;//loop  variable
+	
+	WORD_FUSION:	BYTE_UNION;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+FOR I:=1 TO GVL_CONV_COMMS.NUMBER_CONVERTERS DO;
+	//Reading Mapping
+	GVL_CONV_COMMS.P_Measured[I] := GVL_CONV_COMMS.CONVERTERS[I].READING[1];
+	GVL_CONV_COMMS.Q_Measured[I] := GVL_CONV_COMMS.CONVERTERS[I].READING[2];
+	GVL_CONV_COMMS.S_Measured[I] := GVL_CONV_COMMS.CONVERTERS[I].READING[3];	
+	GVL_CONV_COMMS.cosphi_Measured[I] := GVL_CONV_COMMS.CONVERTERS[I].READING[4];
+	GVL_CONV_COMMS.Current_Status[I] := GVL_CONV_COMMS.CONVERTERS[I].READING[5];
+	
+	//Writting Mapping
+	GVL_CONV_COMMS.CONVERTERS[I].WRITING[1]:= INT_TO_WORD(GVL_CONV_COMMS.Setpoint_Q [I]);
+	GVL_CONV_COMMS.CONVERTERS[I].WRITING[2]:= GVL_CONV_COMMS.Setpoint_P [I];
+	
+	//GVL_CONV_COMMS.CONVERTERS[I].WRITING[3]:= INT_TO_WORD (GVL_CONV_COMMS.Start_Command[I]);
+	//GVL_CONV_COMMS.CONVERTERS[I].WRITING[4]:= GVL_CONV_COMMS.Watchdog_PPC;
+	//GVL_CONV_COMMS.CONVERTERS[I].WRITING[5]:= INT_TO_WORD (GVL_CONV_COMMS.Night_Mode_Active[I]);
+	GVL_CONV_COMMS.CONVERTERS[I].WRITING[3]:= BIT_TO_WORD (GVL_CONV_COMMS.Comms_Control_Word[I].0);
+	GVL_CONV_COMMS.CONVERTERS[I].WRITING[4]:= BIT_TO_WORD (GVL_CONV_COMMS.Comms_Control_Word[I].1);
+	GVL_CONV_COMMS.CONVERTERS[I].WRITING[5]:= BIT_TO_WORD (GVL_CONV_COMMS.Comms_Control_Word[I].2);	
+	
+	GVL_CONV_COMMS.Status_Byte[I]:= WORD_TO_BYTE(GVL_CONV_COMMS.Current_Status[I]);
+	GVL_CONV_COMMS.Control_Byte[I]:= WORD_TO_BYTE(GVL_CONV_COMMS.Comms_Control_Word[I]);
+	
+	WORD_FUSION(Upper_Byte:= GVL_CONV_COMMS.Status_Byte[I],
+				Lower_Byte:= GVL_CONV_COMMS.Control_Byte[I],
+				United_Word=> GVL_CONV_COMMS.Comms_Control_Word[I]);
+	
+END_FOR
+]]></ST>
+    </Implementation>
+    <LineIds Name="Modbus_mapping">
+      <LineId Id="113" Count="1" />
+      <LineId Id="81" Count="10" />
+      <LineId Id="118" Count="0" />
+      <LineId Id="92" Count="2" />
+      <LineId Id="96" Count="5" />
+      <LineId Id="107" Count="5" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
