@@ -18,6 +18,9 @@
     <Released>false</Released>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Control.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\CONVERTER.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -54,7 +57,7 @@
     <Compile Include="Meter.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="PlcTask.TcTTO">
+    <Compile Include="PlcTask_1.TcTTO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\CONTROL\PI_BLOCK.TcPOU">

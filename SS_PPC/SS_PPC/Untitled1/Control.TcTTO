@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <Task Name="Control" Id="{e7968e98-4788-4c8c-b72b-dcc29fd01aa4}">
+    <!--CycleTime in micro seconds.-->
+    <CycleTime>5000</CycleTime>
+    <Priority>1</Priority>
+    <PouCall>
+      <Name>Q_control_global</Name>
+    </PouCall>
+    <PouCall>
+      <Name>P_control_global</Name>
+    </PouCall>
+    <TaskFBGuid>{496c6638-7bbd-41f6-99f1-33e9c492d629}</TaskFBGuid>
+    <Fb_init>{984fe694-9562-42d7-beab-5635e929cc2c}</Fb_init>
+    <Fb_exit>{a4afb377-d3d4-4222-8315-3d13da0964c1}</Fb_exit>
+    <CycleUpdate>{e07e1ec4-dfaf-40ee-b76c-d8109848bbb5}</CycleUpdate>
+    <PostCycleUpdate>{f859a591-0c15-4bb9-976d-c1623a93c26f}</PostCycleUpdate>
+  </Task>
+</TcPlcObject>

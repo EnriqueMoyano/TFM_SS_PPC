@@ -163,11 +163,11 @@
 	<Project ProjectGUID="{27BCA835-7918-4574-A267-8BBE3E663FD5}" Target64Bit="true" ShowHideConfigurations="#x106">
 		<System>
 			<Tasks>
-				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
+				<Task Id="3" Priority="20" CycleTime="50000" AmsPort="350" AdtTasks="true">
 					<Name>PlcTask</Name>
 				</Task>
-				<Task Id="4" Priority="1" CycleTime="100000" AmsPort="351" AdtTasks="true">
-					<Name>P_task</Name>
+				<Task Id="4" Priority="1" CycleTime="50000" AmsPort="351" AdtTasks="true">
+					<Name>Control</Name>
 				</Task>
 				<Task Id="5" Priority="2" CycleTime="10000" AmsPort="352" AdtTasks="true">
 					<Name>Meter</Name>
@@ -319,7 +319,7 @@ Single-phase data]]></Comment>
 								<OTCID>#x02010030</OTCID>
 							</ManualConfig>
 							<Priority>20</Priority>
-							<CycleTime>10000000</CycleTime>
+							<CycleTime>5000000</CycleTime>
 						</Context>
 					</Contexts>
 					<TaskPouOids>
@@ -5713,6 +5713,7 @@ Single-phase data]]></Comment>
 				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_S_kVA" VarB="Total Apparent Reduced^Apparent Power"/>
 				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_V_L1L2_Volt" VarB="Total L-L Voltages^L1-L2 Voltage"/>
 				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_V_L1L2_angle" VarB="Total System Angles^Voltage Angle L1L2"/>
+				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_V_L1L3_angle" VarB="Total System Angles^Voltage Angle L1L3"/>
 				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_V_L1N_Volt" VarB="L1 Basic^Voltage"/>
 				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_V_L2L3_Volt" VarB="Total L-L Voltages^L2-L3 Voltage"/>
 				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_V_L2N_Volt" VarB="L2 Basic^Voltage"/>

@@ -163,11 +163,11 @@
 	<Project ProjectGUID="{27BCA835-7918-4574-A267-8BBE3E663FD5}" Target64Bit="true" ShowHideConfigurations="#x106">
 		<System>
 			<Tasks>
-				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
+				<Task Id="3" Priority="20" CycleTime="50000" AmsPort="350" AdtTasks="true">
 					<Name>PlcTask</Name>
 				</Task>
-				<Task Id="4" Priority="1" CycleTime="100000" AmsPort="351" AdtTasks="true">
-					<Name>P_task</Name>
+				<Task Id="4" Priority="1" CycleTime="50000" AmsPort="351" AdtTasks="true">
+					<Name>Control</Name>
 				</Task>
 				<Task Id="5" Priority="2" CycleTime="10000" AmsPort="352" AdtTasks="true">
 					<Name>Meter</Name>
@@ -176,135 +176,144 @@
 		</System>
 		<Plc>
 			<Project GUID="{68A350B9-11BA-4732-8896-90A741CD2BA4}" Name="Untitled1" PrjFilePath="Untitled1\Untitled1.plcproj" TmcFilePath="Untitled1\Untitled1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Untitled1\Untitled1.tmc" TmcHash="{B9FDFBC9-61BB-0441-935B-565927B575AC}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Untitled1\Untitled1.tmc" TmcHash="{BDBAF189-C6BD-97AC-11B8-89EC26B879DE}">
 					<Name>Untitled1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1" ContextId="1" AreaNo="16">
-						<Name>PlcTask Inputs</Name>
+						<Name>Meter Inputs</Name>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_P_L1_kW</Name>
+							<Name>GVL_POWERMETER.M_board_Meter_status</Name>
+							<Comment><![CDATA[Rest of data								]]></Comment>
+							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>GVL_POWERMETER.M_board_P_L1_kW</Name>
 							<Comment><![CDATA[Data to be linked to metering board
 Single-phase data]]></Comment>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_P_L2_kW</Name>
+							<Name>GVL_POWERMETER.M_board_P_L2_kW</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_P_L3_kW</Name>
+							<Name>GVL_POWERMETER.M_board_P_L3_kW</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_Q_L1_kVAr</Name>
+							<Name>GVL_POWERMETER.M_board_Q_L1_kVAr</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_Q_L2_kVAr</Name>
+							<Name>GVL_POWERMETER.M_board_Q_L2_kVAr</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_Q_L3_kVAr</Name>
+							<Name>GVL_POWERMETER.M_board_Q_L3_kVAr</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_S_L1_kVA</Name>
+							<Name>GVL_POWERMETER.M_board_S_L1_kVA</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_S_L2_kVA</Name>
+							<Name>GVL_POWERMETER.M_board_S_L2_kVA</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_S_L3_kVA</Name>
+							<Name>GVL_POWERMETER.M_board_S_L3_kVA</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_cos_phi_L1</Name>
+							<Name>GVL_POWERMETER.M_board_cos_phi_L1</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_cos_phi_L2</Name>
+							<Name>GVL_POWERMETER.M_board_cos_phi_L2</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_cos_phi_L3</Name>
+							<Name>GVL_POWERMETER.M_board_cos_phi_L3</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_V_L1N_Volt</Name>
+							<Name>GVL_POWERMETER.M_board_V_L1N_Volt</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_V_L2N_Volt</Name>
+							<Name>GVL_POWERMETER.M_board_V_L2N_Volt</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_V_L3N_Volt</Name>
+							<Name>GVL_POWERMETER.M_board_V_L3N_Volt</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_P_kW</Name>
+							<Name>GVL_POWERMETER.M_board_P_kW</Name>
 							<Comment><![CDATA[Three-phase data			]]></Comment>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_Q_kVAr</Name>
+							<Name>GVL_POWERMETER.M_board_Q_kVAr</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_S_kVA</Name>
+							<Name>GVL_POWERMETER.M_board_S_kVA</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_Freq_Hz</Name>
+							<Name>GVL_POWERMETER.M_board_Freq_Hz</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_cos_phi</Name>
+							<Name>GVL_POWERMETER.M_board_cos_phi</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_V_L1L2_Volt</Name>
+							<Name>GVL_POWERMETER.M_board_V_L1L2_Volt</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_V_L2L3_Volt</Name>
+							<Name>GVL_POWERMETER.M_board_V_L2L3_Volt</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_V_L3L1_Volt</Name>
+							<Name>GVL_POWERMETER.M_board_V_L3L1_Volt</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_I_L1_angle</Name>
+							<Name>GVL_POWERMETER.M_board_I_L1_angle</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_I_L2_angle</Name>
+							<Name>GVL_POWERMETER.M_board_I_L2_angle</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_I_L3_angle</Name>
+							<Name>GVL_POWERMETER.M_board_I_L3_angle</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_V_L1L2_angle</Name>
+							<Name>GVL_POWERMETER.M_board_V_L1L2_angle</Name>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_ANALYZERS.M_board_V_L1L3_angle</Name>
+							<Name>GVL_POWERMETER.M_board_V_L1L3_angle</Name>
 							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_ANALYZERS.M_board_Meter_status</Name>
-							<Comment><![CDATA[Rest of data								]]></Comment>
-							<Type>WORD</Type>
 						</Var>
 					</Vars>
 					<Contexts>
 						<Context>
 							<Id NeedCalleeCall="true">0</Id>
+							<Name>Control</Name>
+							<ManualConfig>
+								<OTCID>#x02010040</OTCID>
+							</ManualConfig>
+							<Priority>1</Priority>
+							<CycleTime>5000000</CycleTime>
+						</Context>
+						<Context>
+							<Id NeedCalleeCall="true">1</Id>
 							<Name>Meter</Name>
 							<ManualConfig>
 								<OTCID>#x02010050</OTCID>
@@ -313,16 +322,17 @@ Single-phase data]]></Comment>
 							<CycleTime>1000000</CycleTime>
 						</Context>
 						<Context>
-							<Id NeedCalleeCall="true">1</Id>
-							<Name>PlcTask</Name>
+							<Id NeedCalleeCall="true">2</Id>
+							<Name>PlcTask_1</Name>
 							<ManualConfig>
 								<OTCID>#x02010030</OTCID>
 							</ManualConfig>
 							<Priority>20</Priority>
-							<CycleTime>10000000</CycleTime>
+							<CycleTime>5000000</CycleTime>
 						</Context>
 					</Contexts>
 					<TaskPouOids>
+						<TaskPouOid Prio="1" OTCID="#x08502003"/>
 						<TaskPouOid Prio="2" OTCID="#x08502002"/>
 						<TaskPouOid Prio="20" OTCID="#x08502001"/>
 					</TaskPouOids>
@@ -5690,39 +5700,39 @@ Single-phase data]]></Comment>
 		</Io>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{00000000-2001-0850-0120-500810000403}" Id="#x02030010"/>
-		<MappingInfo Identifier="{00000000-2001-0850-0120-500821000403}" Id="#x02030020"/>
+		<MappingInfo Identifier="{00000000-2002-0850-0120-500810000403}" Id="#x02030010"/>
+		<MappingInfo Identifier="{00000000-2002-0850-0120-500821000403}" Id="#x02030020"/>
 		<OwnerA Name="TIPC^Untitled1^Untitled1 Instance">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL3453)">
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_Freq_Hz" VarB="Total Basic^Frequency"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_I_L1_angle" VarB="Total System Angles^Current Angle L1"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_I_L2_angle" VarB="Total System Angles^Current Angle L2"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_I_L3_angle" VarB="Total System Angles^Current Angle L3"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_Meter_status" VarB="InfoData^State"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_P_L1_kW" VarB="L1 Power^Active Power"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_P_L2_kW" VarB="L2 Power^Active Power"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_P_L3_kW" VarB="L3 Power^Active Power"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_P_kW" VarB="Total Active Reduced^Active Power"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_Q_L1_kVAr" VarB="L1 Power^Reactive Power"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_Q_L2_kVAr" VarB="L2 Power^Reactive Power"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_Q_L3_kVAr" VarB="L3 Power^Reactive Power"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_Q_kVAr" VarB="Total Reactive Reduced^Reactive Power"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_S_L1_kVA" VarB="L1 Power^Apparent Power"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_S_L2_kVA" VarB="L2 Power^Apparent Power"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_S_L3_kVA" VarB="L3 Power^Apparent Power"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_S_kVA" VarB="Total Apparent Reduced^Apparent Power"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_V_L1L2_Volt" VarB="Total L-L Voltages^L1-L2 Voltage"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_V_L1L2_angle" VarB="Total System Angles^Voltage Angle L1L2"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_V_L1L3_angle" VarB="Total System Angles^Voltage Angle L1L3"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_V_L1N_Volt" VarB="L1 Basic^Voltage"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_V_L2L3_Volt" VarB="Total L-L Voltages^L2-L3 Voltage"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_V_L2N_Volt" VarB="L2 Basic^Voltage"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_V_L3L1_Volt" VarB="Total L-L Voltages^L3-L1 Voltage"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_V_L3N_Volt" VarB="L3 Basic^Voltage"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_cos_phi" VarB="Total Basic^Power Factor"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_cos_phi_L1" VarB="L1 Power^Power Factor"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_cos_phi_L2" VarB="L2 Power^Power Factor"/>
-				<Link VarA="PlcTask Inputs^GVL_ANALYZERS.M_board_cos_phi_L3" VarB="L3 Power^Power Factor"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_Freq_Hz" VarB="Total Basic^Frequency"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_I_L1_angle" VarB="Total System Angles^Current Angle L1"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_I_L2_angle" VarB="Total System Angles^Current Angle L2"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_I_L3_angle" VarB="Total System Angles^Current Angle L3"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_Meter_status" VarB="InfoData^State"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_P_L1_kW" VarB="L1 Power^Active Power"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_P_L2_kW" VarB="L2 Power^Active Power"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_P_L3_kW" VarB="L3 Power^Active Power"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_P_kW" VarB="Total Active Reduced^Active Power"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_Q_L1_kVAr" VarB="L1 Power^Reactive Power"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_Q_L2_kVAr" VarB="L2 Power^Reactive Power"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_Q_L3_kVAr" VarB="L3 Power^Reactive Power"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_Q_kVAr" VarB="Total Reactive Reduced^Reactive Power"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_S_L1_kVA" VarB="L1 Power^Apparent Power"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_S_L2_kVA" VarB="L2 Power^Apparent Power"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_S_L3_kVA" VarB="L3 Power^Apparent Power"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_S_kVA" VarB="Total Apparent Reduced^Apparent Power"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_V_L1L2_Volt" VarB="Total L-L Voltages^L1-L2 Voltage"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_V_L1L2_angle" VarB="Total System Angles^Voltage Angle L1L2"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_V_L1L3_angle" VarB="Total System Angles^Voltage Angle L1L3"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_V_L1N_Volt" VarB="L1 Basic^Voltage"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_V_L2L3_Volt" VarB="Total L-L Voltages^L2-L3 Voltage"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_V_L2N_Volt" VarB="L2 Basic^Voltage"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_V_L3L1_Volt" VarB="Total L-L Voltages^L3-L1 Voltage"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_V_L3N_Volt" VarB="L3 Basic^Voltage"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_cos_phi" VarB="Total Basic^Power Factor"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_cos_phi_L1" VarB="L1 Power^Power Factor"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_cos_phi_L2" VarB="L2 Power^Power Factor"/>
+				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_cos_phi_L3" VarB="L3 Power^Power Factor"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>
