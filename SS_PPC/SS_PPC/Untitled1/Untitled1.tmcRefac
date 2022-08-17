@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Refactors>
+  <Renames>
+    <RenamedSymbol>
+      <Type guid="907aa627-47e3-4482-a979-79b393bfe7d2">Analyzers</Type>
+      <From>PM_beck_EL3454</From>
+      <To>PM_beck_EL3453</To>
+    </RenamedSymbol>
+    <RenamedType>
+      <Type guid="f138ff50-4403-486f-b4af-1f0f47357b23">GVL_ANALYZERS</Type>
+      <From>GVL_ANALYZERS</From>
+      <To>GVL_POWERMETER</To>
+    </RenamedType>
+  </Renames>
+</Refactors>

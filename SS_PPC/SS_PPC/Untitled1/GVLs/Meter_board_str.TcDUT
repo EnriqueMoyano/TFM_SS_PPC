@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
-  <DUT Name="PM_internal_scaled" Id="{9269db0c-2b80-48f8-8934-78fd292ec15b}">
-    <Declaration><![CDATA[TYPE PM_internal_scaled :
+  <DUT Name="Meter_board_str" Id="{9269db0c-2b80-48f8-8934-78fd292ec15b}">
+    <Declaration><![CDATA[TYPE Meter_board_str :
 STRUCT
 	
 	//Single-phase electrical parameters in p.u.
@@ -53,7 +53,7 @@ STRUCT
 	I_L2_angle:			REAL;
 	I_L3_angle:			REAL;
 	V_L1L2_angle:		REAL;
-	V_L2L3_angle:		REAL;
+	V_L1L3_angle:		REAL;
 	V_line_avg_Volt:	REAL;
 	
 	//Total energies

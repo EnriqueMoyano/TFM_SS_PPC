@@ -45,9 +45,9 @@ END_VAR
 *)
 	
 //P_meas min determination
-P_L1_ABS:= ABS(GVL_ANALYZERS.Power_analyzer.P_L1_kW);
-P_L2_ABS:= ABS(GVL_ANALYZERS.Power_analyzer.P_L2_kW);
-P_L3_ABS:= ABS(GVL_ANALYZERS.Power_analyzer.P_L3_kW);
+P_L1_ABS:= ABS(GVL_POWERMETER.Power_analyzer.P_L1_kW);
+P_L2_ABS:= ABS(GVL_POWERMETER.Power_analyzer.P_L2_kW);
+P_L3_ABS:= ABS(GVL_POWERMETER.Power_analyzer.P_L3_kW);
 
 IF (P_L1_ABS < P_L2_ABS) AND (P_L1_ABS < P_L3_ABS) THEN
 	P_min_indic:= 0;
@@ -58,17 +58,17 @@ ELSE
 END_IF
 
 //P_measured single-phase in p.u. 
-P_L1_pu:= GVL_ANALYZERS.Power_analyzer.P_L1_pu;
-P_L2_pu:= GVL_ANALYZERS.Power_analyzer.P_L2_pu;
-P_L3_pu:= GVL_ANALYZERS.Power_analyzer.P_L3_pu;
+P_L1_pu:= GVL_POWERMETER.Power_analyzer.P_L1_pu;
+P_L2_pu:= GVL_POWERMETER.Power_analyzer.P_L2_pu;
+P_L3_pu:= GVL_POWERMETER.Power_analyzer.P_L3_pu;
 
 //P_meas_min selection
 P_min_pu:= MUX(P_min_indic, P_L1_pu, P_L2_pu, P_L3_pu);
-GVL_ANALYZERS.P_min_indicator:= P_min_indic;
+GVL_POWERMETER.P_min_indicator:= P_min_indic;
 
 //feedback value
 P_min_3ph:= P_min_pu * 3;
-GVL_ANALYZERS.P_min:= P_min_3ph;
+GVL_POWERMETER.P_min:= P_min_3ph;
 
 ]]></ST>
     </Implementation>
