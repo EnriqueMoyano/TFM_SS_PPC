@@ -19,7 +19,7 @@ ELSE
 		Feedback:= GVL_P_CONTROL.P_feedback, 
 		Inverted_PID:= GVL_P_CONTROL.P_invert, 
 		KP:= GVL_P_CONTROL.P_kp, 
-		KP_Min:= GVL_P_CONTROL.P_kp, 
+		KP_Min:= GVL_P_CONTROL.P_kp_min, 
 		TI:= GVL_P_CONTROL.P_Ti, 
 		Antiwindup_max:= GVL_P_CONTROL.P_high_act, 
 		Antiwindup_min:= GVL_P_CONTROL.P_low_act, 

@@ -2,7 +2,7 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <GVL Name="GVL_PLANT_DEF" Id="{a5f1d5be-9c92-45cf-bd0a-b178953ab2b3}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
-VAR_GLOBAL
+VAR_GLOBAL PERSISTENT
 	Plant_capacity_nom:			REAL:= 4000; //Total capacity in kVA
 	PoC_Voltage_nom:			REAL:= 20000;//Point of Connection voltage in V
 	PoC_freq_nom:				REAL:= 50; //Point of Connection frequency in Hz

@@ -39,11 +39,11 @@ FOR I := 1 TO GVL_CONV_COMMS.NUMBER_CONVERTERS DO;
 	GVL_CONV_COMMS.Setpoint_Q[I] := REAL_TO_INT(GVL_Q_CONTROL.Q_output);
 
 	//Powermeter loss comms section
-	IF GVL_POWERMETER.EL3453_loss_COMMS_Enable THEN		
+	IF GVL_POWERMETER.Alg_lost_comms_enable THEN		
 		IF GVL_POWERMETER.M_board_Meter_status <> 8 THEN
 			GVL_CONV_COMMS.Setpoint_P[I] := REAL_TO_WORD(GVL_P_CONTROL.P_safety);
 			GVL_CONV_COMMS.Setpoint_Q[I] := REAL_TO_INT(GVL_Q_CONTROL.Q_safety);
-			GVL_POWERMETER.EL3453_loss_COMMS_Alarm:= TRUE;
+			GVL_POWERMETER.Meter_comms_status:= TRUE;
 		END_IF
 	END_IF
 	
@@ -71,32 +71,16 @@ END_FOR;
 //                               n/N COEFFICIENT
 //****************************************************************************************
 
-//nN_coeff_calculation();
+nN_coeff_calculation();
 
 //****************************************************************************************
 //                               MODBUS COMMS MAPPING
 //****************************************************************************************
 
-//Modbus_mapping();]]></ST>
+Modbus_mapping();]]></ST>
     </Implementation>
     <LineIds Name="CONVERTERS_COMMS">
-      <LineId Id="54" Count="11" />
-      <LineId Id="67" Count="0" />
-      <LineId Id="75" Count="0" />
-      <LineId Id="85" Count="7" />
-      <LineId Id="112" Count="0" />
-      <LineId Id="76" Count="0" />
-      <LineId Id="82" Count="0" />
-      <LineId Id="120" Count="0" />
-      <LineId Id="153" Count="3" />
-      <LineId Id="183" Count="0" />
-      <LineId Id="160" Count="21" />
-      <LineId Id="121" Count="0" />
-      <LineId Id="41" Count="6" />
-      <LineId Id="140" Count="0" />
-      <LineId Id="49" Count="1" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="185" Count="4" />
+      <LineId Id="264" Count="69" />
       <LineId Id="184" Count="0" />
     </LineIds>
   </POU>

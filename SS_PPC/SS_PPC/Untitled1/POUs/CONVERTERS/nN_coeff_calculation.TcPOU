@@ -37,7 +37,7 @@ FOR I := 1 TO GVL_CONV_COMMS.NUMBER_CONVERTERS DO;
 	END_IF
 END_FOR
 
-GVL_CONV_COMMS.inverters_nN_coeff := power_accumulated_run / GVL_CONVERTERS_COMMON.Plant_capacity;
+GVL_CONV_COMMS.converters_nN_coeff := power_accumulated_run / GVL_CONVERTERS_COMMON.Plant_capacity;
 power_accumulated_run := 0;]]></ST>
     </Implementation>
     <LineIds Name="nN_coeff_calculation">

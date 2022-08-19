@@ -3,27 +3,32 @@
   <GVL Name="GVL_Q_CONTROL" Id="{2bf81882-a0c2-41d3-8eb7-b756801623aa}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
-	Q_loop_type:		BOOL:= 1; //0 --> Control in CL; 1 --> Control in OL.
 	
 	//Control and PI variables
 	Q_feedback:			REAL:= 1; //Feedback for PI control
 	Q_output:			REAL:= 1; //Output of Q control block
-	Q_reference:		REAL:= 0; //Input of Q control block
+	Q_err_signal:		REAL:= 0; //Error signal calculated in PI´
 	
+	Time_span:			REAL:= 60; //Time length in s of ramp action
+END_VAR
+
+VAR_GLOBAL PERSISTENT
+	Q_loop_type:		BOOL:= 1; //0 --> Control in CL; 1 --> Control in OL.
+
+	//Control and PI variables
+	Q_reference:		REAL:= 0; //Input of Q control block
 	Q_kp:				REAL:= 0.05; //Kp for Q control
-	Q_kQ_min:			REAL:= 0.05; //Kp minimum for Q control
+	Q_kp_min:			REAL:= 0.05; //Kp minimum for Q control
 	Q_Ti:				REAL:= 3; //Ti for Q control
 	Q_high_act:			REAL:= 100; //Q high for PI antiwind up. Max control action
 	Q_low_act:			REAL:= -100; //Q low for PI antiwind up. Min control action
 	Q_invert:			BOOL:= FALSE; //PI inversion
-	Q_err_signal:		REAL:= 0; //Error signal calculated in PI´
 	
 	//Safety position
 	Q_safety:			REAL:= 0; //Q setpoint to converters at safety position
 	
 	//Ramps module
 	Ramp_enable:		BOOL:= FALSE; //Ramp functionality enable
-	Time_span:			REAL:= 60; //Time length in s of ramp action
 	Ramp_up_value:		REAL; //Increasing ramp value (units depend on selector)
 	Ramp_down_value:	REAL; //Increasing ramp value (units depend on selector)
 	Ramp_units:			WORD; //0 --> Ramp in %/s; 1 --> %/min; 2 --> %/h

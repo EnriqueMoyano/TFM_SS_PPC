@@ -9,11 +9,13 @@ VAR
 	
 	//Control varaibles
 	Q_setpoint:		REAL;
+	Q_feedback:		real;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//Control variables assignment
 Q_setpoint:= GVL_Q_CONTROL.Q_reference;
+Q_feedback:= GVL_POWERMETER.Power_analyzer.Q_pu;
 
 IF GVL_Q_CONTROL.Ramp_enable THEN
 
@@ -33,10 +35,10 @@ ELSE
 	//Closed loop control case
 	PI_Q(
 		Setpoint:= Q_setpoint, 
-		Feedback:= GVL_Q_CONTROL.Q_feedback, 
+		Feedback:= Q_feedback, 
 		Inverted_PID:= GVL_Q_CONTROL.Q_invert, 
 		KP:= GVL_Q_CONTROL.Q_kp, 
-		KP_Min:= GVL_Q_CONTROL.Q_kp, 
+		KP_Min:= GVL_Q_CONTROL.Q_kp_min, 
 		TI:= GVL_Q_CONTROL.Q_Ti, 
 		Antiwindup_max:= GVL_Q_CONTROL.Q_high_act, 
 		Antiwindup_min:= GVL_Q_CONTROL.Q_low_act, 
@@ -48,6 +50,7 @@ END_IF]]></ST>
     <LineIds Name="Q_control_global">
       <LineId Id="54" Count="0" />
       <LineId Id="56" Count="0" />
+      <LineId Id="77" Count="0" />
       <LineId Id="55" Count="0" />
       <LineId Id="42" Count="0" />
       <LineId Id="59" Count="0" />

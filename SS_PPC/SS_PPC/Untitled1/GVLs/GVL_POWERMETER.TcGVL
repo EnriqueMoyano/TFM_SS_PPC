@@ -6,14 +6,12 @@ VAR_GLOBAL
 
 	//Internal powermeter variables	
 	Power_analyzer: 			Meter_board_str;
+	Meter_comms_status: 		BOOL;
 	
 	//Self-supply P variables
 	P_min:						REAL; //Minimum P in p.u. of the system for PI feedback
 	P_min_indicator:			WORD; //Minimum P indicator 0 --> L1; 1 --> L2; 2 --> L3
 
-	EL3453_loss_COMMS_Enable: 	BOOL;
-	EL3453_loss_COMMS_Alarm: 	BOOL;
-	
 	//Enrgies handling
 	Energies_reset:				BOOL:= FALSE;
 	
@@ -52,6 +50,10 @@ VAR_GLOBAL
 	
 	//Rest of data								
 	M_board_Meter_status		AT %I*	: WORD;
+END_VAR
+
+VAR_GLOBAL PERSISTENT
+	Alg_lost_comms_enable: 		BOOL:= FALSE;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

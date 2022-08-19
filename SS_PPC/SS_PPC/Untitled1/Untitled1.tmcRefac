@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Refactors>
+  <Renames>
+    <RenamedSymbol>
+      <Type guid="86c50754-6a0b-40b3-b8bb-830076095ded">GVL_CONV_COMMS</Type>
+      <From>inverters_nN_coeff</From>
+      <To>converters_nN_coeff</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="f138ff50-4403-486f-b4af-1f0f47357b23">GVL_POWERMETER</Type>
+      <From>EL3453_loss_COMMS_Enable</From>
+      <To>Alg_lost_comms_enable</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="f138ff50-4403-486f-b4af-1f0f47357b23">GVL_POWERMETER</Type>
+      <From>EL3453_loss_COMMS_Alarm</From>
+      <To>Meter_comms_status</To>
+    </RenamedSymbol>
+  </Renames>
+</Refactors>
