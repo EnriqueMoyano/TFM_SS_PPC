@@ -16,5 +16,40 @@
       <From>EL3453_loss_COMMS_Alarm</From>
       <To>Meter_comms_status</To>
     </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="4f23abf8-42c1-445e-a248-63ce2fa2e3d3">Data_transforming</Type>
+      <From>Process_variable</From>
+      <To>Internal_logic_var</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="4f23abf8-42c1-445e-a248-63ce2fa2e3d3">Data_transforming</Type>
+      <From>Min_range</From>
+      <To>Min_val</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="4f23abf8-42c1-445e-a248-63ce2fa2e3d3">Data_transforming</Type>
+      <From>Max_range</From>
+      <To>Max_val</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="4f23abf8-42c1-445e-a248-63ce2fa2e3d3">Data_transforming</Type>
+      <From>Default_val</From>
+      <To>Def_val</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="4f23abf8-42c1-445e-a248-63ce2fa2e3d3">Data_transforming</Type>
+      <From>Number_of_parameter</From>
+      <To>Number_variable</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="4f23abf8-42c1-445e-a248-63ce2fa2e3d3">Data_transforming</Type>
+      <From>Web_variable</From>
+      <To>GUI_var</To>
+    </RenamedSymbol>
+    <RenamedSymbol>
+      <Type guid="4f23abf8-42c1-445e-a248-63ce2fa2e3d3">Data_transforming</Type>
+      <From>Modbus_REAL</From>
+      <To>Modbus_var_internal</To>
+    </RenamedSymbol>
   </Renames>
 </Refactors>

@@ -3,116 +3,81 @@
   <POU Name="Data_transforming" Id="{4f23abf8-42c1-445e-a248-63ce2fa2e3d3}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Data_transforming
 VAR_INPUT
-	Number_of_parameter: 		INT;
-	Description: 				STRING;
-	Process_variable: 			REAL;
-	Word_Process_Variable: 		WORD;
-	Word_Web_Variable:			WORD;
-	Web_variable: 				REAL;
-	Modbus_variable: 			INT;
-	R_W_mode: 					REAL;
+	Number_variable: 			WORD;
+	GUI_var: 					REAL;
+	Internal_logic_var:			REAL;
+	Modbus_variable: 			WORD;
+	R_W_mode: 					ReadWrite_Enum;
 	Scale: 						REAL;
-	Min_range: 					REAL;
-	Max_range: 					REAL;
-	Default_val: 				REAL;
+	Min_val: 					REAL;
+	Max_val: 					REAL;
+	Def_val: 					REAL;
+	Init_flag:					BOOL;
+	Vars_initialization:		BOOL;
+	Input_source:				BOOL; //TRUE -> Modbus, FALSE -> Web GUI
 END_VAR
+
 VAR_OUTPUT
 	Process_variable_out: 		REAL;
 	Process_variable_word_out: 	WORD;
 	Process_variable_BOOL_out: 	BOOL;
 	Process_variable_INT_out:	INT;
 	Process_variable_BYTE_out:	BYTE;
-	Process_variable_UINT_out:	UINT;
 	Web_variable_out: 			REAL;
-	Modbus_variable_out: 		INT;
+	Modbus_variable_out: 		WORD;
 END_VAR	
+
 VAR
-	Modbus_REAL : 				REAL;
-	Modbus_Byte : 				BYTE;
-	Proces_Variable_Word: 		WORD;
-	Proces_Variable_Byte:		BYTE;
-	Byte_Web_Variable: 			BYTE;
-	Byte_Modbus_Variable: 		BYTE;
-	I: 							INT;
-	R_W_Mode_String: 			STRING;
+	Modbus_var_internal : 		REAL;
 	
-	BYTE_EXTRACTION_1:			BYTE_EXTRACTION;
-	BYTE_EXTRACTION_2:			BYTE_EXTRACTION;
-	BYTE_UNION_1:				BYTE_UNION;
-	Control_Byte:				BYTE;
-	Status_Byte:				BYTE;
-	Real_Control_Byte:			REAL;
-	Real_Status_Byte:			REAL;
 END_VAR
 
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[(****************************************************************************************************
+      <ST><![CDATA[(*
+***************************************************************************************************
 
 Function to control the process variable from WEBSERVER or MODBUS. Also applies scales for the MB
 
-******************************************************************************************************)
+*****************************************************************************************************
+*)
 
 // First of all, it is necessary to know if the variable is read or write
-IF R_W_mode = R_W THEN
+IF R_W_mode = R_W_mode.R_W THEN
 	
-	IF Data_Handling.Init_Data_Handling = FALSE THEN
+	IF NOT Init_flag THEN
 	
 		// Check if the control is by webserver or by Modbus (in this case webserver)
-		IF COMMS_VAR.Control_COMMS = 0 THEN
+		IF NOT Input_source THEN
 			
 			// Compare if the web variable is different than the process variable
-			IF Web_variable <> Process_variable THEN
-				
-				// Registering of the parameter that is going to be modified
-				//Data_Handling_VAR.Parameter_recording[USER] := ;
-				Data_Handling_VAR.Parameter_recording[PARAMETER_NUMBER] := Number_of_parameter;
-				Data_Handling_VAR.Parameter_recording[OLD_VALUE] := Process_variable;
-				Data_Handling_VAR.Parameter_recording_String := Description;
-			
-				// Checking if the new value is withing the range. Is adding +/- scale because the decimal 
-				IF 	Web_variable >= Min_range AND Web_variable <= Max_range THEN
-					Process_variable := Web_variable;
+			IF GUI_var <> Internal_logic_var THEN
+				// Checking if the new value is within the range.
+				IF 	GUI_var >= Min_val AND GUI_var <= Max_val THEN
+					Internal_logic_var := GUI_var;
 				ELSE
-					Web_variable := Process_variable;
+					GUI_var := Internal_logic_var;
 				END_IF
-				
-				// Record the new value modified
-				Data_Handling_VAR.Parameter_recording[NEW_VALUE] := Process_variable;
-			
 			END_IF
-			
 		ELSE
-		
-			// When the control is by Modbus, first of all, it is necessary scale the Modbus Variable
-			Modbus_REAL := (INT_TO_REAL(Modbus_variable)) * Scale;
-			
+			// When the control is by Modbus apply scaling for decimal figures
+			Modbus_var_internal := (WORD_TO_REAL(Modbus_variable)) * Scale;
 			// Compare if the Modbus variable is different than the process variable
-			IF Modbus_REAL <> Process_variable THEN
-				
-				// Registering of the parameter that is going to be modified
-				//Data_Handling_VAR.Parameter_recording[USER] := ;
-				Data_Handling_VAR.Parameter_recording[PARAMETER_NUMBER] := Number_of_parameter;
-				Data_Handling_VAR.Parameter_recording[OLD_VALUE] := Process_variable;
-				Data_Handling_VAR.Parameter_recording_String := Description;
-			
-				// Checking if the new value is withing the range. Is adding +/- scale because the decimal 
-				IF 	Modbus_REAL >= Min_range AND Modbus_REAL < (Max_range + scale) THEN
-					Process_variable := Modbus_REAL;
+			IF Modbus_var_internal <> Internal_logic_var THEN
+				// Checking if the new value is within the range
+				IF 	Modbus_var_internal >= Min_val AND Modbus_var_internal <= Max_val THEN
+					Internal_logic_var := Modbus_var_internal;
 				ELSE
-					Modbus_REAL := Process_variable;
+					Modbus_var_internal := Internal_logic_var;
 				END_IF
-				
-				// Record the new value modified
-				Data_Handling_VAR.Parameter_recording[NEW_VALUE] := Process_variable;
 			
 			END_IF
 			
 		END_IF
 	ELSE
 	
-		Modbus_REAL := Process_variable;
-		Web_variable := Process_variable;
+		Modbus_var_internal := Internal_logic_var;
+		GUI_var := Internal_logic_var;
 		
 	END_IF
 	
@@ -120,11 +85,12 @@ END_IF
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+(*
 IF R_W_mode = R_W_STATUS THEN
 	
-	Proces_Variable_Word:= REAL_TO_WORD(Process_Variable);
+	Proces_Variable_Word:= REAL_TO_WORD(Internal_logic_var);
 
-	Byte_Web_Variable:= REAL_TO_BYTE(Web_variable);
+	Byte_Web_Variable:= REAL_TO_BYTE(GUI_var);
 	Byte_Modbus_Variable:= REAL_TO_BYTE(Modbus_variable);
 	
 	BYTE_EXTRACTION_1(	Divisible_Word:= Proces_Variable_Word,
@@ -149,12 +115,12 @@ IF R_W_mode = R_W_STATUS THEN
 				
 				// Registering of the parameter that is going to be modified
 				//Data_Handling_VAR.Parameter_recording[USER] := ;
-				Data_Handling_VAR.Parameter_recording[PARAMETER_NUMBER] := Number_of_parameter;
+				Data_Handling_VAR.Parameter_recording[PARAMETER_NUMBER] := Number_variable;
 				Data_Handling_VAR.Parameter_recording[OLD_VALUE] := BYTE_TO_REAL (Control_Byte);
 				Data_Handling_VAR.Parameter_recording_String := Description;
 			
 				// Checking if the new value is withing the range. Is adding +/- scale because the decimal 
-				IF 	Byte_Web_Variable >= Min_range AND Byte_Web_Variable <= Max_range THEN
+				IF 	Byte_Web_Variable >= Min_val AND Byte_Web_Variable <= Max_val THEN
 					Control_Byte := Byte_Web_Variable;
 				ELSE
 					Byte_Web_Variable := Control_Byte;
@@ -175,12 +141,12 @@ IF R_W_mode = R_W_STATUS THEN
 				
 				// Registering of the parameter that is going to be modified
 				//Data_Handling_VAR.Parameter_recording[USER] := ;
-				Data_Handling_VAR.Parameter_recording[PARAMETER_NUMBER] := Number_of_parameter;
+				Data_Handling_VAR.Parameter_recording[PARAMETER_NUMBER] := Number_variable;
 				Data_Handling_VAR.Parameter_recording[OLD_VALUE] := BYTE_TO_REAL(Control_Byte);
 				Data_Handling_VAR.Parameter_recording_String := Description;
 			
 				// Checking if the new value is withing the range. Is adding +/- scale because the decimal 
-				IF 	Modbus_Byte >= Min_range AND Modbus_Byte <= Max_range THEN
+				IF 	Modbus_Byte >= Min_val AND Modbus_Byte <= Max_val THEN
 					Control_Byte := Modbus_Byte;
 				ELSE
 					Modbus_Byte := Control_Byte;
@@ -194,8 +160,8 @@ IF R_W_mode = R_W_STATUS THEN
 		END_IF
 	ELSE
 	
-		Modbus_REAL := Process_variable;
-		Web_variable := Process_variable;
+		Modbus_var_internal := Internal_logic_var;
+		GUI_var := Internal_logic_var;
 		
 		
 		
@@ -205,58 +171,51 @@ IF R_W_mode = R_W_STATUS THEN
 					Lower_Byte:= Control_Byte,
 					United_Word=> Proces_Variable_Word);
 
-	Process_Variable:= WORD_TO_REAL(Proces_Variable_Word);
+	Internal_logic_var:= WORD_TO_REAL(Proces_Variable_Word);
 	
 	
 END_IF
+*)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// Finally, either Read or Read/Write, and not Read/Write Word, the process variable is written in the Modbus and Web variable
-	Process_variable_out:= Process_variable;
-	Process_variable_word_out := REAL_TO_WORD(Process_variable);
-	Process_variable_BOOL_out:= REAL_TO_BOOL(Process_variable);
-	Process_variable_INT_out:= REAL_TO_INT(Process_variable);
-	Process_variable_UINT_out:= REAL_TO_UINT(Process_variable);
-	Process_variable_BYTE_out:= REAL_TO_BYTE(Process_variable);
-	Web_variable_out := Process_variable;
-	Modbus_variable_out := REAL_TO_INT(Process_variable / scale);
-	// Registering of the parameter that is going to be modified
-	//Data_Handling_VAR.Parameter_recording[USER] := ;
-	Data_Handling_VAR.Minimum_range_Handling[Number_of_parameter]:= Min_range;
-	Data_Handling_VAR.Maximum_range_Handling[Number_of_parameter]:= Max_range;
-	Data_Handling_VAR.Description_Handling[Number_of_parameter]:= Description;
-	Data_Handling_VAR.Scale_Handling[Number_of_parameter]:= Scale;
-	Data_Handling_VAR.Default_Value_Handling[Number_of_parameter]:= Default_val;
-	
-	IF R_W_mode = 0 THEN
-		R_W_Mode_String:= 'READ';
-	ELSIF R_W_mode = 1 THEN
-		R_W_Mode_String:= 'READ/WRITE';
-	ELSIF R_W_mode = 2 THEN
-		R_W_Mode_String:= 'READ/WRITE STATUS';	
-	END_IF
-
-	Data_Handling_VAR.R_W_Mode_Handling[Number_of_parameter]:= R_W_Mode_String;
-	
+	Process_variable_out:= Internal_logic_var;
+	Process_variable_word_out := REAL_TO_WORD(Internal_logic_var);
+	Process_variable_BOOL_out:= REAL_TO_BOOL(Internal_logic_var);
+	Process_variable_INT_out:= REAL_TO_INT(Internal_logic_var);
+	Process_variable_BYTE_out:= REAL_TO_BYTE(Internal_logic_var);
+	Web_variable_out := Internal_logic_var;
+	Modbus_variable_out := REAL_TO_WORD(Internal_logic_var / scale);
 	
 	
 // When the user do a initialization, all variables takes the default value
-IF Data_Handling_VAR.Init_vars = TRUE THEN
-	Process_variable_out := Default_val;
-	Web_variable_out := Default_val;
-	Modbus_variable_out := REAL_TO_INT(Default_val / scale);
-	// Data modification Initializaton	
-	//Data_Handling_VAR.Parameter_recording[USER] := ;
-	Data_Handling_VAR.Parameter_recording[PARAMETER_NUMBER] := 0;
-	Data_Handling_VAR.Parameter_recording[OLD_VALUE] := 0;
-	Data_Handling_VAR.Parameter_recording[NEW_VALUE] := 0;
-	Data_Handling_VAR.Parameter_recording_String := 'TOTAL INITIALIZATION';
+IF Vars_initialization = TRUE THEN
+	Process_variable_out := Def_val;
+	Web_variable_out := Def_val;
+	Modbus_variable_out := REAL_TO_WORD(Def_val / scale);
 END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="Data_transforming">
-      <LineId Id="10" Count="205" />
+      <LineId Id="1798" Count="0" />
+      <LineId Id="1993" Count="0" />
+      <LineId Id="1799" Count="3" />
+      <LineId Id="1994" Count="0" />
+      <LineId Id="1803" Count="17" />
+      <LineId Id="1822" Count="0" />
+      <LineId Id="1824" Count="1" />
+      <LineId Id="1827" Count="1" />
+      <LineId Id="1836" Count="5" />
+      <LineId Id="1845" Count="13" />
+      <LineId Id="1995" Count="0" />
+      <LineId Id="1859" Count="89" />
+      <LineId Id="1996" Count="0" />
+      <LineId Id="1949" Count="7" />
+      <LineId Id="1958" Count="2" />
+      <LineId Id="1997" Count="0" />
+      <LineId Id="1980" Count="5" />
+      <LineId Id="1992" Count="0" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>

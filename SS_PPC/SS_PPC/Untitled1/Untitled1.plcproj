@@ -64,6 +64,9 @@
     <Compile Include="HANDLER_PARAM\Data_transforming.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="HANDLER_PARAM\ReadWrite_Enum.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Meter.TcTTO">
       <SubType>Code</SubType>
     </Compile>
