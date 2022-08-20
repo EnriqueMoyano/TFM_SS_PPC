@@ -27,6 +27,13 @@
     <Compile Include="FUNC\AVG_3.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FUNC\BYTE_UNION.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\GVL_HANDLER.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="GVLs\GVL_POWERMETER.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -52,6 +59,9 @@
       <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="GVLs\Meter_board_str.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HANDLER_PARAM\Data_transforming.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Meter.TcTTO">
@@ -104,6 +114,7 @@
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
     <Folder Include="FUNC" />
+    <Folder Include="HANDLER_PARAM" />
     <Folder Include="POUs\CONVERTERS" />
     <Folder Include="POUs\CONTROL" />
     <Folder Include="POUs\METERING" />
