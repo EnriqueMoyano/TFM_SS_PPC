@@ -61,12 +61,6 @@
     <Compile Include="GVLs\Meter_board_str.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="HANDLER_PARAM\Data_transforming.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="HANDLER_PARAM\ReadWrite_Enum.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Meter.TcTTO">
       <SubType>Code</SubType>
     </Compile>
@@ -86,6 +80,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\EXTERNAL_COMMS\Modbus_map.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\HANDLER_PARAM\Data_transforming.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\HANDLER_PARAM\MB_MAP_VARS_ENUM.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\HANDLER_PARAM\Parameters_handler.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\HANDLER_PARAM\ReadWrite_Enum.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
@@ -117,9 +123,9 @@
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
     <Folder Include="FUNC" />
-    <Folder Include="HANDLER_PARAM" />
     <Folder Include="POUs\CONVERTERS" />
     <Folder Include="POUs\CONTROL" />
+    <Folder Include="POUs\HANDLER_PARAM" />
     <Folder Include="POUs\METERING" />
     <Folder Include="POUs\EXTERNAL_COMMS" />
     <Folder Include="POUs\Q CONTROL" />

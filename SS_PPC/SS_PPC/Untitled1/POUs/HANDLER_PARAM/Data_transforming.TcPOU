@@ -3,27 +3,25 @@
   <POU Name="Data_transforming" Id="{4f23abf8-42c1-445e-a248-63ce2fa2e3d3}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Data_transforming
 VAR_INPUT
-	Number_variable: 			WORD;
+	Number_variable: 			INT;
 	GUI_var: 					REAL;
-	Internal_logic_var:			REAL;
 	Modbus_variable: 			WORD;
-	R_W_mode: 					ReadWrite_Enum;
+	Internal_logic_var:			REAL;
+	RO_RW: 						INT;
 	Scale: 						REAL;
 	Min_val: 					REAL;
 	Max_val: 					REAL;
 	Def_val: 					REAL;
-	Init_flag:					BOOL;
 	Vars_initialization:		BOOL;
 	Input_source:				BOOL; //TRUE -> Modbus, FALSE -> Web GUI
 END_VAR
 
 VAR_OUTPUT
-	Process_variable_out: 		REAL;
-	Process_variable_word_out: 	WORD;
-	Process_variable_BOOL_out: 	BOOL;
-	Process_variable_INT_out:	INT;
-	Process_variable_BYTE_out:	BYTE;
-	Web_variable_out: 			REAL;
+	Logic_var_out: 				REAL;
+	Logic_var_out_wd: 			WORD;
+	Logic_var_out_bl: 			BOOL;
+	
+	GUI_var_out: 				REAL;
 	Modbus_variable_out: 		WORD;
 END_VAR	
 
@@ -43,9 +41,7 @@ Function to control the process variable from WEBSERVER or MODBUS. Also applies 
 *)
 
 // First of all, it is necessary to know if the variable is read or write
-IF R_W_mode = R_W_mode.R_W THEN
-	
-	IF NOT Init_flag THEN
+IF RO_RW = R_W THEN
 	
 		// Check if the control is by webserver or by Modbus (in this case webserver)
 		IF NOT Input_source THEN
@@ -78,8 +74,6 @@ IF R_W_mode = R_W_mode.R_W THEN
 	
 		Modbus_var_internal := Internal_logic_var;
 		GUI_var := Internal_logic_var;
-		
-	END_IF
 	
 END_IF
 
@@ -179,43 +173,35 @@ END_IF
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	// Finally, either Read or Read/Write, and not Read/Write Word, the process variable is written in the Modbus and Web variable
-	Process_variable_out:= Internal_logic_var;
-	Process_variable_word_out := REAL_TO_WORD(Internal_logic_var);
-	Process_variable_BOOL_out:= REAL_TO_BOOL(Internal_logic_var);
-	Process_variable_INT_out:= REAL_TO_INT(Internal_logic_var);
-	Process_variable_BYTE_out:= REAL_TO_BYTE(Internal_logic_var);
-	Web_variable_out := Internal_logic_var;
-	Modbus_variable_out := REAL_TO_WORD(Internal_logic_var / scale);
+	// Finally, either Read or Read/Write, and not Read/Write Word, logic variable is written in the Modbus and GUI
+	Logic_var_out:= Internal_logic_var;
+	Logic_var_out_wd:= REAL_TO_WORD(Internal_logic_var);
+	Logic_var_out_bl:= REAL_TO_BOOL(Internal_logic_var);
 	
+	GUI_var_out := Internal_logic_var;
+	Modbus_variable_out := REAL_TO_WORD(Internal_logic_var / scale);
 	
 // When the user do a initialization, all variables takes the default value
 IF Vars_initialization = TRUE THEN
-	Process_variable_out := Def_val;
-	Web_variable_out := Def_val;
-	Modbus_variable_out := REAL_TO_WORD(Def_val / scale);
+	Logic_var_out := Def_val;
+	Logic_var_out_wd:= REAL_TO_WORD(Def_val);
+	Logic_var_out_bl:= REAL_TO_BOOL(Def_val);
+	
+	GUI_var_out := Def_val;
+	Modbus_variable_out := REAL_TO_WORD(Def_val / Scale);
 END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="Data_transforming">
-      <LineId Id="1798" Count="0" />
-      <LineId Id="1993" Count="0" />
-      <LineId Id="1799" Count="3" />
-      <LineId Id="1994" Count="0" />
-      <LineId Id="1803" Count="17" />
-      <LineId Id="1822" Count="0" />
-      <LineId Id="1824" Count="1" />
-      <LineId Id="1827" Count="1" />
-      <LineId Id="1836" Count="5" />
-      <LineId Id="1845" Count="13" />
-      <LineId Id="1995" Count="0" />
-      <LineId Id="1859" Count="89" />
-      <LineId Id="1996" Count="0" />
-      <LineId Id="1949" Count="7" />
-      <LineId Id="1958" Count="2" />
-      <LineId Id="1997" Count="0" />
-      <LineId Id="1980" Count="5" />
-      <LineId Id="1992" Count="0" />
+      <LineId Id="2419" Count="142" />
+      <LineId Id="2574" Count="0" />
+      <LineId Id="2578" Count="1" />
+      <LineId Id="2562" Count="2" />
+      <LineId Id="2566" Count="2" />
+      <LineId Id="2575" Count="0" />
+      <LineId Id="2580" Count="0" />
+      <LineId Id="2576" Count="0" />
+      <LineId Id="2569" Count="2" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>

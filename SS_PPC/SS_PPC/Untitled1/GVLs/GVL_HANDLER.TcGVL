@@ -3,7 +3,11 @@
   <GVL Name="GVL_HANDLER" Id="{30985e8d-421d-4e48-b13b-f5cc82c27dd4}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
-	Init_vars:				bool;
+	Init_vars:					BOOL; //initialization command
+	Input_src:					bool:= false; //FALSE--> Via GUI, TRUE--> Via Modbus
+
+	Modbus_srv_vars AT %MW0:	ARRAY [0..60000] OF WORD; //Variables for Modbus Server
+	GUI_vars:					ARRAY [0..60000] OF REAL; //Variables for Web GUI
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
