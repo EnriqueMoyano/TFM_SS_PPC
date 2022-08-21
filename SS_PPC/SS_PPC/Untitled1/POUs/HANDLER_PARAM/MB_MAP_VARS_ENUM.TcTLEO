@@ -5,8 +5,8 @@
 TYPE MB_MAP_VARS_ENUM :
 (
 	Plant_S_nom:= 0,
-	Plant_V_nom:= 1,
-	Plant_f_nom:= 2,
+	Plant_V_nom:= 2,
+	Plant_f_nom:= 4,
 	N_converters:= 20,
 	nN_converters:= 21,
 	Control_conv_0:= 22,
@@ -128,12 +128,12 @@ END_TYPE]]></Declaration>
             </o>
             <o>
               <v n="TextID">"Plant_V_nom"</v>
-              <v n="TextDefault">"1"</v>
+              <v n="TextDefault">"2"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
               <v n="TextID">"Plant_f_nom"</v>
-              <v n="TextDefault">"2"</v>
+              <v n="TextDefault">"4"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>

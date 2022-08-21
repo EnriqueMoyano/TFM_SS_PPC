@@ -85,6 +85,12 @@
     <Compile Include="POUs\HANDLER_PARAM\Data_transforming.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\HANDLER_PARAM\Data_transform_float32.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\HANDLER_PARAM\Data_transform_int64.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\HANDLER_PARAM\MB_MAP_VARS_ENUM.TcTLEO">
       <SubType>Code</SubType>
     </Compile>

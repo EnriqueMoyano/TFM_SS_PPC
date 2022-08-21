@@ -61,7 +61,7 @@ IF RO_RW = R_W THEN
 			// Compare if the Modbus variable is different than the process variable
 			IF Modbus_var_internal <> Internal_logic_var THEN
 				// Checking if the new value is within the range
-				IF 	Modbus_var_internal >= Min_val AND Modbus_var_internal <= Max_val THEN
+				IF 	Modbus_var_internal > Min_val AND Modbus_var_internal < Max_val THEN
 					Internal_logic_var := Modbus_var_internal;
 				ELSE
 					Modbus_var_internal := Internal_logic_var;
@@ -182,7 +182,7 @@ END_IF
 	Modbus_variable_out := REAL_TO_WORD(Internal_logic_var / scale);
 	
 // When the user do a initialization, all variables takes the default value
-IF Vars_initialization = TRUE THEN
+IF Vars_initialization THEN
 	Logic_var_out := Def_val;
 	Logic_var_out_wd:= REAL_TO_WORD(Def_val);
 	Logic_var_out_bl:= REAL_TO_BOOL(Def_val);
