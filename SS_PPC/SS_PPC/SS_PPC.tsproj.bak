@@ -176,16 +176,11 @@
 		</System>
 		<Plc>
 			<Project GUID="{68A350B9-11BA-4732-8896-90A741CD2BA4}" Name="Untitled1" PrjFilePath="Untitled1\Untitled1.plcproj" TmcFilePath="Untitled1\Untitled1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Untitled1\Untitled1.tmc" TmcHash="{4D83F3C9-843A-8D9E-9EE0-9BFB1E2225A3}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Untitled1\Untitled1.tmc" TmcHash="{5E40EBBE-1123-2424-60CE-FA1747FD4D6F}">
 					<Name>Untitled1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1" ContextId="1" AreaNo="16">
 						<Name>Meter Inputs</Name>
-						<Var>
-							<Name>GVL_POWERMETER.M_board_Meter_status</Name>
-							<Comment><![CDATA[Rest of data								]]></Comment>
-							<Type>WORD</Type>
-						</Var>
 						<Var>
 							<Name>GVL_POWERMETER.M_board_P_L1_kW</Name>
 							<Comment><![CDATA[Data to be linked to metering board
@@ -300,6 +295,14 @@ Single-phase data]]></Comment>
 						<Var>
 							<Name>GVL_POWERMETER.M_board_V_L1L3_angle</Name>
 							<Type>REAL</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="1" ContextId="2" AreaNo="32">
+						<Name>PlcTask_1 Inputs</Name>
+						<Var>
+							<Name>GVL_POWERMETER.M_board_Meter_status</Name>
+							<Comment><![CDATA[Rest of data								]]></Comment>
+							<Type>WORD</Type>
 						</Var>
 					</Vars>
 					<Contexts>
@@ -5700,15 +5703,14 @@ Single-phase data]]></Comment>
 		</Io>
 	</Project>
 	<Mappings>
+		<MappingInfo Identifier="{00000000-2001-0850-0220-500821000403}" Id="#x02030020"/>
 		<MappingInfo Identifier="{00000000-2002-0850-0120-500810000403}" Id="#x02030010"/>
-		<MappingInfo Identifier="{00000000-2002-0850-0120-500821000403}" Id="#x02030020"/>
 		<OwnerA Name="TIPC^Untitled1^Untitled1 Instance">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL3453)">
 				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_Freq_Hz" VarB="Total Basic^Frequency"/>
 				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_I_L1_angle" VarB="Total System Angles^Current Angle L1"/>
 				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_I_L2_angle" VarB="Total System Angles^Current Angle L2"/>
 				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_I_L3_angle" VarB="Total System Angles^Current Angle L3"/>
-				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_Meter_status" VarB="InfoData^State"/>
 				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_P_L1_kW" VarB="L1 Power^Active Power"/>
 				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_P_L2_kW" VarB="L2 Power^Active Power"/>
 				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_P_L3_kW" VarB="L3 Power^Active Power"/>
@@ -5733,6 +5735,7 @@ Single-phase data]]></Comment>
 				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_cos_phi_L1" VarB="L1 Power^Power Factor"/>
 				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_cos_phi_L2" VarB="L2 Power^Power Factor"/>
 				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_cos_phi_L3" VarB="L3 Power^Power Factor"/>
+				<Link VarA="PlcTask_1 Inputs^GVL_POWERMETER.M_board_Meter_status" VarB="InfoData^State"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>

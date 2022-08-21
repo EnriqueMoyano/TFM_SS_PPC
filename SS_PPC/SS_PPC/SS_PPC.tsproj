@@ -172,6 +172,9 @@
 				<Task Id="5" Priority="2" CycleTime="10000" AmsPort="352" AdtTasks="true">
 					<Name>Meter</Name>
 				</Task>
+				<Task Id="6" Priority="3" CycleTime="100000" AmsPort="353" AdtTasks="true">
+					<Name>GUI_task</Name>
+				</Task>
 			</Tasks>
 		</System>
 		<Plc>
