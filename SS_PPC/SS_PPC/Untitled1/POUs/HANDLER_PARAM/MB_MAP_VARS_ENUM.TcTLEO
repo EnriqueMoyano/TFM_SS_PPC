@@ -5,8 +5,8 @@
 TYPE MB_MAP_VARS_ENUM :
 (
 	Plant_S_nom:= 0,
-	Plant_V_nom:= 2,
-	Plant_f_nom:= 3,
+	Plant_V_nom:= 1,
+	Plant_f_nom:= 2,
 	N_converters:= 20,
 	nN_converters:= 21,
 	Control_conv_0:= 22,
@@ -62,59 +62,59 @@ TYPE MB_MAP_VARS_ENUM :
 	R_up_value:= 513,
 	R_down_value:= 514,
 	R_units:= 515,
-	P_L1_pu:= 1000,
-	P_L2_pu:= 1002,
-	P_L3_pu:= 1004,
-	Q_L1_pu:= 1006,
-	Q_L2_pu:= 1008,
-	Q_L3_pu:= 1010,
-	S_L1_pu:= 1012,
-	S_L2_pu:= 1014,
-	S_L3_pu:= 1016,
-	V_phase_avg_pu:= 1018,
-	P_L1_kW:= 1020,
-	P_L2_kW:= 1022,
-	P_L3_kW:= 1024,
-	Q_L1_kVAr:= 1026,
-	Q_L2_kVAr:= 1028,
-	Q_L3_kVAr:= 1030,
-	S_L1_kVA:= 1032,
-	S_L2_kVA:= 1034,
-	S_L3_kVA:= 1036,
-	cos_phi_L1:= 1038,
-	cos_phi_L2:= 1040,
-	cos_phi_L3:= 1042,
-	V_L1N_Volt:= 1044,
-	V_L2N_Volt:= 1046,
-	V_L3N_Volt:= 1048,
-	V_phase_avg_Volt:= 1050,
-	P_pu:= 1052,
-	Q_pu:= 1054,
-	S_pu:= 1056,
-	V_line_avg_pu:= 1058,
-	P_tot_kW:= 1060,
-	Q_tot_kVAr:= 1062,
-	S_tot_kVA:= 1064,
-	Freq_Hz:= 1066,
-	cos_phi:= 1068,
-	V_L1L2_Volt:= 1070,
-	V_L2L3_Volt:= 1072,
-	V_L3L1_Volt:= 1074,
-	I_L1_angle:= 1076,
-	I_L2_angle:= 1078,
-	I_L3_angle:= 1080,
-	V_L1L2_angle:= 1082,
-	V_L1L3_angle:= 1084,
-	V_line_avg_Volt:= 1086,
-	Active_er_pos_kWh:= 1100,
-	Active_er_neg_kWh:= 1104,
-	Active_er_tot_kWh:= 1108,
-	React_er_pos_kVArh:= 1112,
-	React_er_neg_kVArh:= 1116,
-	React_er_tot_kVArh:= 1120,
-	Energies_reset:= 1121,
+	P_L1_kW:= 1000,
+	P_L2_kW:= 1002,
+	P_L3_kW:= 1004,
+	Q_L1_kVAr:= 1006,
+	Q_L2_kVAr:= 1008,
+	Q_L3_kVAr:= 1010,
+	S_L1_kVA:= 1012,
+	S_L2_kVA:= 1014,
+	S_L3_kVA:= 1016,
+	cos_phi_L1:= 1018,
+	cos_phi_L2:= 1020,
+	cos_phi_L3:= 1022,
+	V_L1N_Volt:= 1024,
+	V_L2N_Volt:= 1026,
+	V_L3N_Volt:= 1028,
+	P_tot_kW:= 1030,
+	Q_tot_kVAr:= 1032,
+	S_tot_kVA:= 1034,
+	Freq_Hz:= 1036,
+	cos_phi:= 1038,
+	V_L1L2_Volt:= 1040,
+	V_L2L3_Volt:= 1042,
+	V_L3L1_Volt:= 1044,
+	I_L1_angle:= 1046,
+	I_L2_angle:= 1048,
+	I_L3_angle:= 1050,
+	V_L1L2_angle:= 1052,
+	V_L1L3_angle:= 1054,
+	V_phase_avg_Volt:= 1080,
+	V_line_avg_Volt:= 1082,
+	P_L1_pu:= 1084,
+	P_L2_pu:= 1086,
+	P_L3_pu:= 1088,
+	Q_L1_pu:= 1090,
+	Q_L2_pu:= 1092,
+	Q_L3_pu:= 1094,
+	S_L1_pu:= 1096,
+	S_L2_pu:= 1098,
+	S_L3_pu:= 1100,
+	P_tot_pu:= 1102,
+	Q_tot_pu:= 1104,
+	S_tot_pu:= 1106,
+	V_phase_avg_pu:= 1108,
+	V_line_avg_pu:= 1110,
+	Active_er_pos_kWh:= 1200,
+	Active_er_neg_kWh:= 1204,
+	Active_er_tot_kWh:= 1208,
+	React_er_pos_kVArh:= 1212,
+	React_er_neg_kVArh:= 1216,
+	React_er_tot_kVArh:= 1220,
+	Energies_reset:= 1224,
 	Meter_status:= 1130,
-	Lost_comms_enable:= 1131
+	Lost_comms_enable:= 1131	
 );
 END_TYPE]]></Declaration>
     <XmlArchive>
@@ -128,12 +128,12 @@ END_TYPE]]></Declaration>
             </o>
             <o>
               <v n="TextID">"Plant_V_nom"</v>
-              <v n="TextDefault">"2"</v>
+              <v n="TextDefault">"1"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
               <v n="TextID">"Plant_f_nom"</v>
-              <v n="TextDefault">"3"</v>
+              <v n="TextDefault">"2"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -412,258 +412,258 @@ END_TYPE]]></Declaration>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"P_L1_pu"</v>
+              <v n="TextID">"P_L1_kW"</v>
               <v n="TextDefault">"1000"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"P_L2_pu"</v>
+              <v n="TextID">"P_L2_kW"</v>
               <v n="TextDefault">"1002"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"P_L3_pu"</v>
+              <v n="TextID">"P_L3_kW"</v>
               <v n="TextDefault">"1004"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"Q_L1_pu"</v>
+              <v n="TextID">"Q_L1_kVAr"</v>
               <v n="TextDefault">"1006"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"Q_L2_pu"</v>
+              <v n="TextID">"Q_L2_kVAr"</v>
               <v n="TextDefault">"1008"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"Q_L3_pu"</v>
+              <v n="TextID">"Q_L3_kVAr"</v>
               <v n="TextDefault">"1010"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"S_L1_pu"</v>
+              <v n="TextID">"S_L1_kVA"</v>
               <v n="TextDefault">"1012"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"S_L2_pu"</v>
+              <v n="TextID">"S_L2_kVA"</v>
               <v n="TextDefault">"1014"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"S_L3_pu"</v>
+              <v n="TextID">"S_L3_kVA"</v>
               <v n="TextDefault">"1016"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"V_phase_avg_pu"</v>
+              <v n="TextID">"cos_phi_L1"</v>
               <v n="TextDefault">"1018"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"P_L1_kW"</v>
+              <v n="TextID">"cos_phi_L2"</v>
               <v n="TextDefault">"1020"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"P_L2_kW"</v>
+              <v n="TextID">"cos_phi_L3"</v>
               <v n="TextDefault">"1022"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"P_L3_kW"</v>
+              <v n="TextID">"V_L1N_Volt"</v>
               <v n="TextDefault">"1024"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"Q_L1_kVAr"</v>
+              <v n="TextID">"V_L2N_Volt"</v>
               <v n="TextDefault">"1026"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"Q_L2_kVAr"</v>
+              <v n="TextID">"V_L3N_Volt"</v>
               <v n="TextDefault">"1028"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"Q_L3_kVAr"</v>
+              <v n="TextID">"P_tot_kW"</v>
               <v n="TextDefault">"1030"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"S_L1_kVA"</v>
+              <v n="TextID">"Q_tot_kVAr"</v>
               <v n="TextDefault">"1032"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"S_L2_kVA"</v>
+              <v n="TextID">"S_tot_kVA"</v>
               <v n="TextDefault">"1034"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"S_L3_kVA"</v>
+              <v n="TextID">"Freq_Hz"</v>
               <v n="TextDefault">"1036"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"cos_phi_L1"</v>
+              <v n="TextID">"cos_phi"</v>
               <v n="TextDefault">"1038"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"cos_phi_L2"</v>
+              <v n="TextID">"V_L1L2_Volt"</v>
               <v n="TextDefault">"1040"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"cos_phi_L3"</v>
+              <v n="TextID">"V_L2L3_Volt"</v>
               <v n="TextDefault">"1042"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"V_L1N_Volt"</v>
+              <v n="TextID">"V_L3L1_Volt"</v>
               <v n="TextDefault">"1044"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"V_L2N_Volt"</v>
+              <v n="TextID">"I_L1_angle"</v>
               <v n="TextDefault">"1046"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"V_L3N_Volt"</v>
+              <v n="TextID">"I_L2_angle"</v>
               <v n="TextDefault">"1048"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"V_phase_avg_Volt"</v>
+              <v n="TextID">"I_L3_angle"</v>
               <v n="TextDefault">"1050"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"P_pu"</v>
+              <v n="TextID">"V_L1L2_angle"</v>
               <v n="TextDefault">"1052"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"Q_pu"</v>
+              <v n="TextID">"V_L1L3_angle"</v>
               <v n="TextDefault">"1054"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"S_pu"</v>
-              <v n="TextDefault">"1056"</v>
-              <l n="LanguageTexts" t="ArrayList" />
-            </o>
-            <o>
-              <v n="TextID">"V_line_avg_pu"</v>
-              <v n="TextDefault">"1058"</v>
-              <l n="LanguageTexts" t="ArrayList" />
-            </o>
-            <o>
-              <v n="TextID">"P_tot_kW"</v>
-              <v n="TextDefault">"1060"</v>
-              <l n="LanguageTexts" t="ArrayList" />
-            </o>
-            <o>
-              <v n="TextID">"Q_tot_kVAr"</v>
-              <v n="TextDefault">"1062"</v>
-              <l n="LanguageTexts" t="ArrayList" />
-            </o>
-            <o>
-              <v n="TextID">"S_tot_kVA"</v>
-              <v n="TextDefault">"1064"</v>
-              <l n="LanguageTexts" t="ArrayList" />
-            </o>
-            <o>
-              <v n="TextID">"Freq_Hz"</v>
-              <v n="TextDefault">"1066"</v>
-              <l n="LanguageTexts" t="ArrayList" />
-            </o>
-            <o>
-              <v n="TextID">"cos_phi"</v>
-              <v n="TextDefault">"1068"</v>
-              <l n="LanguageTexts" t="ArrayList" />
-            </o>
-            <o>
-              <v n="TextID">"V_L1L2_Volt"</v>
-              <v n="TextDefault">"1070"</v>
-              <l n="LanguageTexts" t="ArrayList" />
-            </o>
-            <o>
-              <v n="TextID">"V_L2L3_Volt"</v>
-              <v n="TextDefault">"1072"</v>
-              <l n="LanguageTexts" t="ArrayList" />
-            </o>
-            <o>
-              <v n="TextID">"V_L3L1_Volt"</v>
-              <v n="TextDefault">"1074"</v>
-              <l n="LanguageTexts" t="ArrayList" />
-            </o>
-            <o>
-              <v n="TextID">"I_L1_angle"</v>
-              <v n="TextDefault">"1076"</v>
-              <l n="LanguageTexts" t="ArrayList" />
-            </o>
-            <o>
-              <v n="TextID">"I_L2_angle"</v>
-              <v n="TextDefault">"1078"</v>
-              <l n="LanguageTexts" t="ArrayList" />
-            </o>
-            <o>
-              <v n="TextID">"I_L3_angle"</v>
+              <v n="TextID">"V_phase_avg_Volt"</v>
               <v n="TextDefault">"1080"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"V_L1L2_angle"</v>
+              <v n="TextID">"V_line_avg_Volt"</v>
               <v n="TextDefault">"1082"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"V_L1L3_angle"</v>
+              <v n="TextID">"P_L1_pu"</v>
               <v n="TextDefault">"1084"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"V_line_avg_Volt"</v>
+              <v n="TextID">"P_L2_pu"</v>
               <v n="TextDefault">"1086"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"Active_er_pos_kWh"</v>
+              <v n="TextID">"P_L3_pu"</v>
+              <v n="TextDefault">"1088"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_L1_pu"</v>
+              <v n="TextDefault">"1090"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_L2_pu"</v>
+              <v n="TextDefault">"1092"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_L3_pu"</v>
+              <v n="TextDefault">"1094"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"S_L1_pu"</v>
+              <v n="TextDefault">"1096"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"S_L2_pu"</v>
+              <v n="TextDefault">"1098"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"S_L3_pu"</v>
               <v n="TextDefault">"1100"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"Active_er_neg_kWh"</v>
+              <v n="TextID">"P_tot_pu"</v>
+              <v n="TextDefault">"1102"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_tot_pu"</v>
               <v n="TextDefault">"1104"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"Active_er_tot_kWh"</v>
+              <v n="TextID">"S_tot_pu"</v>
+              <v n="TextDefault">"1106"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"V_phase_avg_pu"</v>
               <v n="TextDefault">"1108"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"V_line_avg_pu"</v>
+              <v n="TextDefault">"1110"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Active_er_pos_kWh"</v>
+              <v n="TextDefault">"1200"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Active_er_neg_kWh"</v>
+              <v n="TextDefault">"1204"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Active_er_tot_kWh"</v>
+              <v n="TextDefault">"1208"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"React_er_pos_kVArh"</v>
-              <v n="TextDefault">"1112"</v>
+              <v n="TextDefault">"1212"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
               <v n="TextID">"React_er_neg_kVArh"</v>
-              <v n="TextDefault">"1116"</v>
+              <v n="TextDefault">"1216"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
               <v n="TextID">"React_er_tot_kVArh"</v>
-              <v n="TextDefault">"1120"</v>
+              <v n="TextDefault">"1220"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
               <v n="TextID">"Energies_reset"</v>
-              <v n="TextDefault">"1121"</v>
+              <v n="TextDefault">"1224"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>

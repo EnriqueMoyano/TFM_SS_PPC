@@ -16,64 +16,83 @@ END_VAR]]></Declaration>
       <ST><![CDATA[
 PM_beck_EL3453(Analyzer_str_out=> GVL_POWERMETER.Power_analyzer);
 
+//Average voltages obtention
+GVL_POWERMETER.V_phase_avg_Volt:= AVG_3(GVL_POWERMETER.Power_analyzer.V_L1N_Volt, 
+										GVL_POWERMETER.Power_analyzer.V_L2N_Volt, 
+										GVL_POWERMETER.Power_analyzer.V_L3N_Volt);
+										
+GVL_POWERMETER.V_line_avg_Volt:= AVG_3(GVL_POWERMETER.Power_analyzer.V_L1L2_Volt, 
+										GVL_POWERMETER.Power_analyzer.V_L2L3_Volt, 
+										GVL_POWERMETER.Power_analyzer.V_L3L1_Volt);
+
 //Per unit values obtention - Single-phase powers
-GVL_POWERMETER.Power_analyzer.P_L1_pu:= GVL_POWERMETER.Power_analyzer.P_L1_kW * S_nom_facility_inv;
-GVL_POWERMETER.Power_analyzer.P_L2_pu:= GVL_POWERMETER.Power_analyzer.P_L2_kW * S_nom_facility_inv;
-GVL_POWERMETER.Power_analyzer.P_L3_pu:= GVL_POWERMETER.Power_analyzer.P_L3_kW * S_nom_facility_inv;
-GVL_POWERMETER.Power_analyzer.Q_L1_pu:= GVL_POWERMETER.Power_analyzer.Q_L1_kVAr * S_nom_facility_inv;
-GVL_POWERMETER.Power_analyzer.Q_L2_pu:= GVL_POWERMETER.Power_analyzer.Q_L2_kVAr * S_nom_facility_inv;
-GVL_POWERMETER.Power_analyzer.Q_L3_pu:= GVL_POWERMETER.Power_analyzer.Q_L3_kVAr * S_nom_facility_inv;
-GVL_POWERMETER.Power_analyzer.S_L1_pu:= GVL_POWERMETER.Power_analyzer.S_L1_kVA * S_nom_facility_inv;
-GVL_POWERMETER.Power_analyzer.S_L2_pu:= GVL_POWERMETER.Power_analyzer.S_L2_kVA * S_nom_facility_inv;
-GVL_POWERMETER.Power_analyzer.S_L3_pu:= GVL_POWERMETER.Power_analyzer.S_L3_kVA * S_nom_facility_inv;
+GVL_POWERMETER.P_L1_pu:= GVL_POWERMETER.Power_analyzer.P_L1_kW * S_nom_facility_inv;
+GVL_POWERMETER.P_L2_pu:= GVL_POWERMETER.Power_analyzer.P_L2_kW * S_nom_facility_inv;
+GVL_POWERMETER.P_L3_pu:= GVL_POWERMETER.Power_analyzer.P_L3_kW * S_nom_facility_inv;
+GVL_POWERMETER.Q_L1_pu:= GVL_POWERMETER.Power_analyzer.Q_L1_kVAr * S_nom_facility_inv;
+GVL_POWERMETER.Q_L2_pu:= GVL_POWERMETER.Power_analyzer.Q_L2_kVAr * S_nom_facility_inv;
+GVL_POWERMETER.Q_L3_pu:= GVL_POWERMETER.Power_analyzer.Q_L3_kVAr * S_nom_facility_inv;
+GVL_POWERMETER.S_L1_pu:= GVL_POWERMETER.Power_analyzer.S_L1_kVA * S_nom_facility_inv;
+GVL_POWERMETER.S_L2_pu:= GVL_POWERMETER.Power_analyzer.S_L2_kVA * S_nom_facility_inv;
+GVL_POWERMETER.S_L3_pu:= GVL_POWERMETER.Power_analyzer.S_L3_kVA * S_nom_facility_inv;
 
 //Per unit values obtention - Three-phase powers
-GVL_POWERMETER.Power_analyzer.P_pu:= GVL_POWERMETER.Power_analyzer.P_kW * S_nom_facility_inv;
-GVL_POWERMETER.Power_analyzer.Q_pu:= GVL_POWERMETER.Power_analyzer.Q_kVAr * S_nom_facility_inv;
-GVL_POWERMETER.Power_analyzer.S_pu:= GVL_POWERMETER.Power_analyzer.S_kVA * S_nom_facility_inv;
+GVL_POWERMETER.P_pu:= GVL_POWERMETER.Power_analyzer.P_kW * S_nom_facility_inv;
+GVL_POWERMETER.Q_pu:= GVL_POWERMETER.Power_analyzer.Q_kVAr * S_nom_facility_inv;
+GVL_POWERMETER.S_pu:= GVL_POWERMETER.Power_analyzer.S_kVA * S_nom_facility_inv;
 
 //Per unit values obtention - Voltages
-GVL_POWERMETER.Power_analyzer.V_line_avg_pu:= GVL_POWERMETER.Power_analyzer.V_line_avg_Volt * V_nom_facility_inv;
-GVL_POWERMETER.Power_analyzer.V_phase_avg_pu:= GVL_POWERMETER.Power_analyzer.V_phase_avg_Volt * V_nom_facility_inv;
+GVL_POWERMETER.V_line_avg_pu:= GVL_POWERMETER.V_line_avg_Volt * V_nom_facility_inv;
+GVL_POWERMETER.V_phase_avg_pu:= GVL_POWERMETER.V_phase_avg_Volt * V_nom_facility_inv;
 
 //Active energies calculation. It is an infinitesimal addition (an integration of P_measured)
-GVL_POWERMETER.Power_analyzer.Active_er_tot_kWh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.P_kW * tick_hourly) + 
-												GVL_POWERMETER.Power_analyzer.Active_er_tot_kWh;
+GVL_POWERMETER.Active_er_tot_kWh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.P_kW * tick_hourly) + 
+												GVL_POWERMETER.Active_er_tot_kWh;
 IF GVL_POWERMETER.Power_analyzer.P_kW  >= 0 THEN
-	GVL_POWERMETER.Power_analyzer.Active_er_pos_kWh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.P_kW * tick_hourly) + 
-													GVL_POWERMETER.Power_analyzer.Active_er_pos_kWh;
+	GVL_POWERMETER.Active_er_pos_kWh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.P_kW * tick_hourly) + 
+													GVL_POWERMETER.Active_er_pos_kWh;
 ELSE	
-	GVL_POWERMETER.Power_analyzer.Active_er_neg_kWh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.P_kW * tick_hourly) + 
-													GVL_POWERMETER.Power_analyzer.Active_er_neg_kWh;
+	GVL_POWERMETER.Active_er_neg_kWh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.P_kW * tick_hourly) + 
+													GVL_POWERMETER.Active_er_neg_kWh;
 END_IF
 	
 //Reactive energies calculation. It is an infinitesimal addition (an integration of Q_measured)
-GVL_POWERMETER.Power_analyzer.React_er_tot_kVArh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.Q_kVAr * tick_hourly) + 
-												GVL_POWERMETER.Power_analyzer.React_er_tot_kVArh;
+GVL_POWERMETER.React_er_tot_kVArh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.Q_kVAr * tick_hourly) + 
+												GVL_POWERMETER.React_er_tot_kVArh;
 IF GVL_POWERMETER.Power_analyzer.Q_kVAr >= 0 THEN
-	GVL_POWERMETER.Power_analyzer.React_er_pos_kVArh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.Q_kVAr * tick_hourly) + 
-													GVL_POWERMETER.Power_analyzer.React_er_pos_kVArh;
+	GVL_POWERMETER.React_er_pos_kVArh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.Q_kVAr * tick_hourly) + 
+													GVL_POWERMETER.React_er_pos_kVArh;
 ELSE
-	GVL_POWERMETER.Power_analyzer.React_er_neg_kVArh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.Q_kVAr * tick_hourly) + 
-													GVL_POWERMETER.Power_analyzer.React_er_neg_kVArh;
+	GVL_POWERMETER.React_er_neg_kVArh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.Q_kVAr * tick_hourly) + 
+													GVL_POWERMETER.React_er_neg_kVArh;
 END_IF
 
 //Energies reset when desired
 IF GVL_POWERMETER.Energies_reset THEN
-	GVL_POWERMETER.Power_analyzer.Active_er_neg_kWh:= 0;
-	GVL_POWERMETER.Power_analyzer.Active_er_pos_kWh:= 0;
-	GVL_POWERMETER.Power_analyzer.Active_er_tot_kWh:= 0;
-	GVL_POWERMETER.Power_analyzer.React_er_neg_kVArh:= 0;
-	GVL_POWERMETER.Power_analyzer.React_er_pos_kVArh:= 0;
-	GVL_POWERMETER.Power_analyzer.React_er_tot_kVArh:= 0;
+	GVL_POWERMETER.Active_er_neg_kWh:= 0;
+	GVL_POWERMETER.Active_er_pos_kWh:= 0;
+	GVL_POWERMETER.Active_er_tot_kWh:= 0;
+	GVL_POWERMETER.React_er_neg_kVArh:= 0;
+	GVL_POWERMETER.React_er_pos_kVArh:= 0;
+	GVL_POWERMETER.React_er_tot_kVArh:= 0;
 	
 	GVL_POWERMETER.Energies_reset:= FALSE;
 END_IF
+
+//Powermeter variables publishing via Modbus
+MEMCPY(destAddr:= ADR(GVL_HANDLER.Modbus_srv_vars[P_L1_kW]), srcAddr:= ADR(GVL_POWERMETER.Power_analyzer), n:= SIZEOF(GVL_POWERMETER.Power_analyzer));
+		
+
 ]]></ST>
     </Implementation>
     <LineIds Name="Analyzers">
       <LineId Id="16" Count="0" />
       <LineId Id="5" Count="0" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="157" Count="0" />
+      <LineId Id="160" Count="3" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="167" Count="1" />
       <LineId Id="31" Count="0" />
       <LineId Id="18" Count="9" />
       <LineId Id="74" Count="0" />
@@ -84,21 +103,15 @@ END_IF
       <LineId Id="33" Count="0" />
       <LineId Id="40" Count="0" />
       <LineId Id="45" Count="0" />
-      <LineId Id="47" Count="1" />
-      <LineId Id="76" Count="0" />
-      <LineId Id="49" Count="0" />
-      <LineId Id="81" Count="0" />
-      <LineId Id="83" Count="1" />
-      <LineId Id="86" Count="1" />
-      <LineId Id="80" Count="0" />
-      <LineId Id="54" Count="2" />
-      <LineId Id="90" Count="0" />
-      <LineId Id="57" Count="0" />
-      <LineId Id="60" Count="0" />
-      <LineId Id="91" Count="3" />
-      <LineId Id="61" Count="6" />
-      <LineId Id="69" Count="4" />
+      <LineId Id="131" Count="20" />
+      <LineId Id="62" Count="2" />
+      <LineId Id="105" Count="4" />
+      <LineId Id="71" Count="2" />
       <LineId Id="46" Count="0" />
+      <LineId Id="152" Count="1" />
+      <LineId Id="156" Count="0" />
+      <LineId Id="155" Count="0" />
+      <LineId Id="154" Count="0" />
       <LineId Id="17" Count="0" />
     </LineIds>
   </POU>

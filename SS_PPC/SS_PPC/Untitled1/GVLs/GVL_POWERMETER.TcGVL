@@ -8,12 +8,40 @@ VAR_GLOBAL
 	Power_analyzer: 			Meter_board_str;
 	Meter_comms_status: 		BOOL;
 	
+	//Internal calculated powermeter variables
+		//Average voltages in engineering units
+	V_phase_avg_Volt:	REAL;
+	V_line_avg_Volt:	REAL;
+		//Single-phase electrical parameters in p.u.
+	P_L1_pu:			REAL;
+	P_L2_pu:			REAL;
+	P_L3_pu:			REAL;
+	Q_L1_pu:			REAL;
+	Q_L2_pu:			REAL;
+	Q_L3_pu:			REAL;
+	S_L1_pu:			REAL;
+	S_L2_pu:			REAL;
+	S_L3_pu:			REAL;
+		//Three-phase electrical parameters in p.u.
+	P_pu:				REAL;
+	Q_pu:				REAL;
+	S_pu:				REAL;
+		//Average voltages in engineering units
+	V_phase_avg_pu:		REAL;
+	V_line_avg_pu:		REAL;
+	
 	//Self-supply P variables
 	P_min:						REAL; //Minimum P in p.u. of the system for PI feedback
 	P_min_indicator:			WORD; //Minimum P indicator 0 --> L1; 1 --> L2; 2 --> L3
 
-	//Enrgies handling
+	//Enrgies handling & values
 	Energies_reset:				BOOL:= FALSE;
+	Active_er_neg_kWh: 			LINT:=0; //Active energy (three-phase) calculated if P_tot < 0
+	Active_er_pos_kWh:			LINT:=0; //Active energy (three-phase) calculated if P_tot > 0
+	Active_er_tot_kWh: 			LINT:=0; //Active energy (three-phase) calculated. Net calculation
+	React_er_neg_kVArh: 		LINT:=0; //Rective energy (three-phase) calculated if Q_tot < 0
+	React_er_pos_kVArh: 		LINT:=0; //Rective energy (three-phase) calculated if Q_tot > 0
+	React_er_tot_kVArh: 		LINT:=0; //Reactive energy (three-phase) calculated. Net calculation
 	
 	//Data to be linked to metering board
 	//Single-phase data

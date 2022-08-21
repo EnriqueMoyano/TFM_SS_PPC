@@ -58,9 +58,9 @@ ELSE
 END_IF
 
 //P_measured single-phase in p.u. 
-P_L1_pu:= GVL_POWERMETER.Power_analyzer.P_L1_pu;
-P_L2_pu:= GVL_POWERMETER.Power_analyzer.P_L2_pu;
-P_L3_pu:= GVL_POWERMETER.Power_analyzer.P_L3_pu;
+P_L1_pu:= GVL_POWERMETER.P_L1_pu;
+P_L2_pu:= GVL_POWERMETER.P_L2_pu;
+P_L3_pu:= GVL_POWERMETER.P_L3_pu;
 
 //P_meas_min selection
 P_min_pu:= MUX(P_min_indic, P_L1_pu, P_L2_pu, P_L3_pu);
