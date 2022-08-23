@@ -6,6 +6,9 @@ VAR_GLOBAL PERSISTENT
 	Plant_capacity_nom:			REAL:= 4000; //Total capacity in kVA
 	PoC_Voltage_nom:			REAL:= 20000;//Point of Connection voltage in V
 	PoC_freq_nom:				REAL:= 50; //Point of Connection frequency in Hz
+	
+	dummy:WORD:=0;
+	switch_col:BOOL;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

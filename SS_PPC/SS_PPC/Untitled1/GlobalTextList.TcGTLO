@@ -66,6 +66,12 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"227"</v>
+              <v n="TextDefault">"Meter
+config"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"539"</v>
               <v n="TextDefault">"Meter cfg"</v>
               <l n="LanguageTexts" t="ArrayList" />

@@ -8,12 +8,23 @@ END_VAR
     <Implementation>
       <ST><![CDATA[CONVERTERS_COMMS();
 
-Parameters_handler();]]></ST>
+Parameters_handler();
+
+IF GVL_PLANT_DEF.dummy = 0 THEN
+	GVL_PLANT_DEF.switch_col:= FALSE;
+ELSE
+	GVL_PLANT_DEF.switch_col:= TRUE;
+END_IF]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="2" Count="0" />
       <LineId Id="10" Count="0" />
       <LineId Id="6" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="18" Count="1" />
+      <LineId Id="17" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

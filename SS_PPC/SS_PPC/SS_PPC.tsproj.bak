@@ -162,6 +162,12 @@
 	</ImageDatas>
 	<Project ProjectGUID="{27BCA835-7918-4574-A267-8BBE3E663FD5}" Target64Bit="true" ShowHideConfigurations="#x106">
 		<System>
+			<Licenses>
+				<Target>
+					<ManualSelect>{7AFD0713-1333-4A3B-938C-7B9BD0418C8D}</ManualSelect>
+					<ManualSelect>{6952449D-F68C-49A2-ADE4-8639D85B33A4}</ManualSelect>
+				</Target>
+			</Licenses>
 			<Tasks>
 				<Task Id="3" Priority="20" CycleTime="50000" AmsPort="350" AdtTasks="true">
 					<Name>PlcTask</Name>
@@ -172,11 +178,17 @@
 				<Task Id="5" Priority="2" CycleTime="10000" AmsPort="352" AdtTasks="true">
 					<Name>Meter</Name>
 				</Task>
+				<Task Id="6" Priority="3" CycleTime="100000" AmsPort="353" AdtTasks="true">
+					<Name>GUI_task</Name>
+				</Task>
+				<Task Id="7" Priority="30" CycleTime="2000000" AmsPort="354" DisableFpExceptions="true" AdtTasks="true">
+					<Name>VISU_TASK</Name>
+				</Task>
 			</Tasks>
 		</System>
 		<Plc>
 			<Project GUID="{68A350B9-11BA-4732-8896-90A741CD2BA4}" Name="Untitled1" PrjFilePath="Untitled1\Untitled1.plcproj" TmcFilePath="Untitled1\Untitled1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Untitled1\Untitled1.tmc" TmcHash="{5E40EBBE-1123-2424-60CE-FA1747FD4D6F}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Untitled1\Untitled1.tmc" TmcHash="{853D48E4-E97F-8610-4589-59DD38607DDD}">
 					<Name>Untitled1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1" ContextId="1" AreaNo="16">
@@ -297,7 +309,7 @@ Single-phase data]]></Comment>
 							<Type>REAL</Type>
 						</Var>
 					</Vars>
-					<Vars VarGrpType="1" ContextId="2" AreaNo="32">
+					<Vars VarGrpType="1" ContextId="3" AreaNo="48">
 						<Name>PlcTask_1 Inputs</Name>
 						<Var>
 							<Name>GVL_POWERMETER.M_board_Meter_status</Name>
@@ -326,6 +338,15 @@ Single-phase data]]></Comment>
 						</Context>
 						<Context>
 							<Id NeedCalleeCall="true">2</Id>
+							<Name>GUI_task</Name>
+							<ManualConfig>
+								<OTCID>#x02010060</OTCID>
+							</ManualConfig>
+							<Priority>3</Priority>
+							<CycleTime>10000000</CycleTime>
+						</Context>
+						<Context>
+							<Id NeedCalleeCall="true">3</Id>
 							<Name>PlcTask_1</Name>
 							<ManualConfig>
 								<OTCID>#x02010030</OTCID>
@@ -333,17 +354,28 @@ Single-phase data]]></Comment>
 							<Priority>20</Priority>
 							<CycleTime>5000000</CycleTime>
 						</Context>
+						<Context>
+							<Id NeedCalleeCall="true">4</Id>
+							<Name>VISU_TASK</Name>
+							<ManualConfig>
+								<OTCID>#x02010070</OTCID>
+							</ManualConfig>
+							<Priority>30</Priority>
+							<CycleTime>200000000</CycleTime>
+						</Context>
 					</Contexts>
 					<TaskPouOids>
 						<TaskPouOid Prio="1" OTCID="#x08502003"/>
 						<TaskPouOid Prio="2" OTCID="#x08502002"/>
+						<TaskPouOid Prio="3" OTCID="#x08502004"/>
 						<TaskPouOid Prio="20" OTCID="#x08502001"/>
+						<TaskPouOid Prio="30" OTCID="#x08502005"/>
 					</TaskPouOids>
 				</Instance>
 			</Project>
 		</Plc>
 		<Io>
-			<Device Id="1" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="192.168.222.1.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="2">
+			<Device Id="1" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="192.168.222.1.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="2">
 				<Name>Device 1 (EtherCAT)</Name>
 				<AddressInfo>
 					<Pnp>
@@ -359,7 +391,7 @@ Single-phase data]]></Comment>
 					<Name>Term 1 (EK1200)</Name>
 					<ImageId>1000</ImageId>
 					<EtherCAT PdiType="#x0100" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x04b02c52" RevisionNo="#x00001b58" InfoDataState="false" PortPhys="49" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1200-7000 EtherCAT Power supply (1,5A E-Bus)" Desc="EK1200" PortABoxInfo="#x00ffffff"/>
-					<Box Id="4" BoxType="9099" BoxFlags="#x00000020">
+					<Box Id="4" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 						<Name>Term 4 (EL1259)</Name>
 						<ImageId>7</ImageId>
 						<EtherCAT SlaveType="2" PdiType="#x0405" MboxDataLinkLayer="true" StateMBoxPolling="true" CfgModeSafeOp="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x04eb3052" RevisionNo="#x00120000" InfoDataAddr="true" InfoDataDcTimes="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1259 8Ch. Dig Input 24V/8Ch. Dig. Output 24V with Multi-Time-Stamp" Desc="EL1259" PortABoxInfo="#x01000001">
@@ -4571,7 +4603,7 @@ Single-phase data]]></Comment>
 							<CoeProfile ProfileNo="7934857"/>
 						</EtherCAT>
 					</Box>
-					<Box Id="2" BoxType="9099" BoxFlags="#x00000020">
+					<Box Id="2" Disabled="true" BoxType="9099" BoxFlags="#x00000020">
 						<Name>Term 5 (EL3453)</Name>
 						<ImageId>1001</ImageId>
 						<EtherCAT SlaveType="2" PdiType="#x0c05" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x0d7d3052" RevisionNo="#x00160000" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL3453 3Ch. Power Measuring" Desc="EL3453" PortABoxInfo="#x01000004">
@@ -5695,16 +5727,14 @@ Single-phase data]]></Comment>
 					<Box Id="3" BoxType="9099">
 						<Name>Term 3 (EL9011)</Name>
 						<ImageId>1002</ImageId>
-						<EtherCAT CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x23333050" InfoDataState="false" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL9011 End Terminal" Desc="EL9011" PortABoxInfo="#x01000002"/>
+						<EtherCAT CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x23333050" InfoDataState="false" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL9011 End Terminal" Desc="EL9011" PortABoxInfo="#x01000001"/>
 					</Box>
 				</Box>
-				<EtherCAT DcSyncMode="3"/>
+				<EtherCAT/>
 			</Device>
 		</Io>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{00000000-2001-0850-0220-500821000403}" Id="#x02030020"/>
-		<MappingInfo Identifier="{00000000-2002-0850-0120-500810000403}" Id="#x02030010"/>
 		<OwnerA Name="TIPC^Untitled1^Untitled1 Instance">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL3453)">
 				<Link VarA="Meter Inputs^GVL_POWERMETER.M_board_Freq_Hz" VarB="Total Basic^Frequency"/>

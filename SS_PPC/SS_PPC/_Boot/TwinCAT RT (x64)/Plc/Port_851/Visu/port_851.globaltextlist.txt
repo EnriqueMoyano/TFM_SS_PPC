@@ -1,0 +1,24 @@
+Id;Default
+238;%.3f
+824;%.3f kVAr
+667;%.3f kW
+633;%.3f V
+637;%d kVArh
+393;%d kWh
+101;%f.3
+135;Converters
+565;Energy_act
+171;Er_act_tot
+966;Er_reac_tot
+948;Main
+227;Meter$R$Nconfig
+539;Meter cfg
+741;Meter config
+392;P_3ph
+113;P_control
+992;P_measured
+220;Q_3ph
+276;Q_control
+782;V_line avg
+530;V_phase avg
+472;_3ph
