@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="GVL_GUI" Id="{7b29b4a0-86ee-44a1-b79a-085736615147}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	//Main GUI logic
+	main_button_logic: 			BOOL:= TRUE;
+	pcontrol_button_logic: 		BOOL:= FALSE;
+	qcontrol_button_logic:		BOOL:= FALSE;
+	conv_button_logic:			BOOL:= FALSE;
+	meter_cfg_button_logic:		BOOL:= FALSE;
+	
+	frame_indic:				WORD:= 0;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
