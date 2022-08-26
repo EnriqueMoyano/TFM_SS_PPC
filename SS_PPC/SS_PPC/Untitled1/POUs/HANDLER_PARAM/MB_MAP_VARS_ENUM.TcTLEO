@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <EnumerationTextList Name="MB_MAP_VARS_ENUM" Id="{7ec9e1d6-220f-422b-9ddc-4aed3e74df3f}">
-    <Declaration><![CDATA[
-TYPE MB_MAP_VARS_ENUM :
+    <Declaration><![CDATA[TYPE MB_MAP_VARS_ENUM :
 (
 	Plant_S_nom:= 0,
 	Plant_V_nom:= 2,
@@ -36,7 +35,7 @@ TYPE MB_MAP_VARS_ENUM :
 	Control_conv_24:= 46,
 	Control_conv_25:= 47,
 	P_loop:= 300,
-	P_refence:= 301,
+	P_reference:= 301,
 	P_feedback:= 302,
 	P_output:= 303,
 	P_kp:= 304,
@@ -282,7 +281,7 @@ END_TYPE]]></Declaration>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"P_refence"</v>
+              <v n="TextID">"P_reference"</v>
               <v n="TextDefault">"301"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>

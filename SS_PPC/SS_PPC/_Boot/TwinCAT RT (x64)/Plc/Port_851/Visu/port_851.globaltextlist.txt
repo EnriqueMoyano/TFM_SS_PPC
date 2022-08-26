@@ -1,4 +1,6 @@
 Id;Default
+612;%%.2f %
+848;%.2f %%
 238;%.3f
 824;%.3f kVAr
 667;%.3f kW
@@ -6,6 +8,10 @@ Id;Default
 637;%d kVArh
 393;%d kWh
 101;%f.3
+148;+
+901;-
+920;Awindup max
+427;Awindup min
 135;Converters
 565;Energy_act
 171;Er_act_tot
@@ -14,11 +20,24 @@ Id;Default
 227;Meter$R$Nconfig
 539;Meter cfg
 741;Meter config
+420;P control Open Loop
+224;P control out
+851;P invert PI
+887;P loop
+321;P measured
+64;P PI invert
+228;PI +Kp_min
+875;PI Kp
+479;PI Kp_min
+257;PI TI
 392;P_3ph
 113;P_control
 992;P_measured
+312;P_reference
 220;Q_3ph
 276;Q_control
+309;Sat max
+659;Sat min
 782;V_line avg
 530;V_phase avg
 472;_3ph

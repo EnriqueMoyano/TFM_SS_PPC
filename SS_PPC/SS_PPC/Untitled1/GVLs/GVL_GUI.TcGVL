@@ -11,6 +11,10 @@ VAR_GLOBAL
 	meter_cfg_button_logic:		BOOL:= FALSE;
 	
 	frame_indic:				WORD:= 0;
+	
+	//P controller screen vars
+	P_OL_sel_button:			BOOL:= FALSE;
+	P_invert_button:			BOOL:= FALSE;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

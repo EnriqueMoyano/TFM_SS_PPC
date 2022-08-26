@@ -2180,7 +2180,7 @@
                 <v n="VisualElementIdentifier">"GenElemInst_51"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="STSnippetInputAction[]">
                   <v>OnMouseDown</v>
                   <a cet="STSnippetInputAction">
                     <o>
@@ -2362,7 +2362,7 @@ END_IF"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_53"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="STSnippetInputAction[]">
                   <v>OnMouseDown</v>
                   <a cet="STSnippetInputAction">
                     <o>
@@ -2544,7 +2544,7 @@ END_IF"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_55"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="STSnippetInputAction[]">
                   <v>OnMouseDown</v>
                   <a cet="STSnippetInputAction">
                     <o>
@@ -2726,7 +2726,7 @@ END_IF"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_57"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="STSnippetInputAction[]">
                   <v>OnMouseDown</v>
                   <a cet="STSnippetInputAction">
                     <o>
@@ -2909,7 +2909,7 @@ config"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_59"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="STSnippetInputAction[]">
                   <v>OnMouseDown</v>
                   <a cet="STSnippetInputAction">
                     <o>
@@ -3038,7 +3038,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">3549563837L</v>
-                      <v n="Value">"ANISOTROPIC"</v>
+                      <v n="Value">"FIXED"</v>
                     </o>
                     <o>
                       <v n="Id">363316305L</v>
@@ -3712,10 +3712,10 @@ END_IF"</v>
               <d n="FbMethods" t="CaseInsensitiveHashtable_1" ckt="String" cvt="Guid">
                 <v>FB_Init</v>
                 <v>3efd7e82-f4ce-4750-80ef-d6eccb27de64</v>
-                <v>FB_Exit</v>
-                <v>16b37ae2-3b0c-4e21-ab9e-12b5a1157839</v>
                 <v>FB_Reinit</v>
                 <v>0362a400-285d-4269-91f6-2e8e34e07e69</v>
+                <v>FB_Exit</v>
+                <v>16b37ae2-3b0c-4e21-ab9e-12b5a1157839</v>
               </d>
               <v n="FbName">"NotImportant"</v>
               <v n="FbGuid">{7963cec7-9c41-45fc-b757-296fe74f8e48}</v>
@@ -3826,7 +3826,6 @@ END_IF"</v>
         <Type n="Guid">System.Guid</Type>
         <Type n="Hashtable">System.Collections.Hashtable</Type>
         <Type n="HotkeyConfiguration">{6b108d46-58af-4e41-a3f4-174d8f160cc4}</Type>
-        <Type n="IInputAction[]">_3S.CoDeSys.VisualElem.IInputAction[], VisualElem, Version=3.5.13.0, Culture=neutral, PublicKeyToken=null</Type>
         <Type n="Int16">System.Int16</Type>
         <Type n="Int32">System.Int32</Type>
         <Type n="Int64">System.Int64</Type>
@@ -3835,6 +3834,7 @@ END_IF"</v>
         <Type n="String">System.String</Type>
         <Type n="StructuredTypeNode">{503c5b2e-e80e-4ee7-ae00-c5b93a62b1aa}</Type>
         <Type n="STSnippetInputAction">{6302d3fe-6ea5-4c42-819a-a9734a133b3d}</Type>
+        <Type n="STSnippetInputAction[]">_3S.CoDeSys.VisualElem.STSnippetInputAction[], VisualElem.plugin, Version=3.5.13.32, Culture=neutral, PublicKeyToken=null</Type>
         <Type n="TextDocument">{f3878285-8e4f-490b-bb1b-9acbb7eb04db}</Type>
         <Type n="TextLine">{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}</Type>
         <Type n="TypeClass">{16f7aa24-038f-444e-9d81-b001bc091d35}</Type>

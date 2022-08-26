@@ -31,7 +31,7 @@ Id;Default
 46;Control_conv_24
 47;Control_conv_25
 300;P_loop
-301;P_refence
+301;P_reference
 302;P_feedback
 303;P_output
 304;P_kp

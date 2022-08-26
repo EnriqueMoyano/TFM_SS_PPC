@@ -6,6 +6,16 @@
         <o xml:space="preserve" t="GlobalTextListObject">
           <l n="TextList" t="ArrayList" cet="TextListRow">
             <o>
+              <v n="TextID">"612"</v>
+              <v n="TextDefault">"%%.2f %"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"848"</v>
+              <v n="TextDefault">"%.2f %%"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"238"</v>
               <v n="TextDefault">"%.3f"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -38,6 +48,26 @@
             <o>
               <v n="TextID">"101"</v>
               <v n="TextDefault">"%f.3"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"148"</v>
+              <v n="TextDefault">"+"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"901"</v>
+              <v n="TextDefault">"-"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"920"</v>
+              <v n="TextDefault">"Awindup max"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"427"</v>
+              <v n="TextDefault">"Awindup min"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -82,6 +112,56 @@ config"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"420"</v>
+              <v n="TextDefault">"P control Open Loop"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"224"</v>
+              <v n="TextDefault">"P control out"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"851"</v>
+              <v n="TextDefault">"P invert PI"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"887"</v>
+              <v n="TextDefault">"P loop"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"321"</v>
+              <v n="TextDefault">"P measured"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"64"</v>
+              <v n="TextDefault">"P PI invert"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"228"</v>
+              <v n="TextDefault">"PI +Kp_min"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"875"</v>
+              <v n="TextDefault">"PI Kp"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"479"</v>
+              <v n="TextDefault">"PI Kp_min"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"257"</v>
+              <v n="TextDefault">"PI TI"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"392"</v>
               <v n="TextDefault">"P_3ph"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -97,6 +177,11 @@ config"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"312"</v>
+              <v n="TextDefault">"P_reference"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"220"</v>
               <v n="TextDefault">"Q_3ph"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -104,6 +189,16 @@ config"</v>
             <o>
               <v n="TextID">"276"</v>
               <v n="TextDefault">"Q_control"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"309"</v>
+              <v n="TextDefault">"Sat max"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"659"</v>
+              <v n="TextDefault">"Sat min"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>

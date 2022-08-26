@@ -57,7 +57,7 @@ IF RO_RW = R_W THEN
 			END_IF
 		ELSE
 			// When the control is by Modbus apply scaling for decimal figures
-			Modbus_var_internal := (WORD_TO_REAL(Modbus_variable)) * Scale;
+			Modbus_var_internal := (WORD_TO_INT(Modbus_variable)) * Scale;
 			// Compare if the Modbus variable is different than the process variable
 			IF Modbus_var_internal <> Internal_logic_var THEN
 				// Checking if the new value is within the range

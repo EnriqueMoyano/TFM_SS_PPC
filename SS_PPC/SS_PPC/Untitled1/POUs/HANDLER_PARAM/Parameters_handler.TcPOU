@@ -110,9 +110,9 @@ Param_handler(
 	
 // MB_address 40302. P reference 
 Param_handler(
-	Number_variable:= P_refence, 
-	GUI_var:= GVL_HANDLER.GUI_vars[P_refence], 
-	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[P_refence], 
+	Number_variable:= P_reference, 
+	GUI_var:= GVL_HANDLER.GUI_vars[P_reference], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[P_reference], 
 	Internal_logic_var:= GVL_P_CONTROL.P_reference, 
 	RO_RW:= R_W, 
 	Scale:= 0.01, 
@@ -122,8 +122,8 @@ Param_handler(
 	Vars_initialization:= GVL_HANDLER.Init_vars, 
 	Input_source:= GVL_HANDLER.Input_src, 
 	Logic_var_out=> GVL_P_CONTROL.P_reference, 
-	GUI_var_out=> GVL_HANDLER.GUI_vars[P_refence], 
-	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[P_refence]);
+	GUI_var_out=> GVL_HANDLER.GUI_vars[P_reference], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[P_reference]);
 
 // MB_address 40303. P feedback 
 Param_handler(
