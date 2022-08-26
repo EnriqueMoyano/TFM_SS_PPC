@@ -1529,10 +1529,10 @@
                                 <v>TL_ElementProperties.Points</v>
                                 <v>DescriptionUseFromParent</v>
                                 <v></v>
-                                <v>DefaultArraySize</v>
-                                <v>500</v>
                                 <v>''NORMAL__COMMENT</v>
                                 <v> There is no more information than the parent provides</v>
+                                <v>DefaultArraySize</v>
+                                <v>500</v>
                               </d>
                               <v n="ConvDone">true</v>
                             </o>
@@ -1585,8 +1585,6 @@
                         <o n="TypeNodeAttributes" t="TypeNodeAttributes2">
                           <v n="AttrFlags">81920UL</v>
                           <d n="TypeNodeAttributesData" t="CaseInsensitiveHashtable" ckt="String" cvt="String">
-                            <v>PolygonPoints</v>
-                            <v></v>
                             <v>DescriptionTextId</v>
                             <v>TL_ElementProperties.Desc_StaticLinePos</v>
                             <v>DisplayTextId</v>
@@ -1603,6 +1601,8 @@
                             <v>visu_elemdev</v>
                             <v>Storable</v>
                             <v>True</v>
+                            <v>PolygonPoints</v>
+                            <v></v>
                           </d>
                           <v n="ConvDone">true</v>
                         </o>
@@ -2371,10 +2371,10 @@
                                 <v>TL_ElementProperties.Points</v>
                                 <v>DescriptionUseFromParent</v>
                                 <v></v>
-                                <v>''NORMAL__COMMENT</v>
-                                <v> There is no more information than the parent provides</v>
                                 <v>DefaultArraySize</v>
                                 <v>500</v>
+                                <v>''NORMAL__COMMENT</v>
+                                <v> There is no more information than the parent provides</v>
                               </d>
                               <v n="ConvDone">true</v>
                             </o>
@@ -2427,6 +2427,8 @@
                         <o n="TypeNodeAttributes" t="TypeNodeAttributes2">
                           <v n="AttrFlags">81920UL</v>
                           <d n="TypeNodeAttributesData" t="CaseInsensitiveHashtable" ckt="String" cvt="String">
+                            <v>PolygonPoints</v>
+                            <v></v>
                             <v>DescriptionTextId</v>
                             <v>TL_ElementProperties.Desc_StaticLinePos</v>
                             <v>DisplayTextId</v>
@@ -2443,8 +2445,6 @@
                             <v>visu_elemdev</v>
                             <v>Storable</v>
                             <v>True</v>
-                            <v>PolygonPoints</v>
-                            <v></v>
                           </d>
                           <v n="ConvDone">true</v>
                         </o>
@@ -3054,10 +3054,10 @@
                                 <v>TL_ElementProperties.Points</v>
                                 <v>DescriptionUseFromParent</v>
                                 <v></v>
-                                <v>DefaultArraySize</v>
-                                <v>500</v>
                                 <v>''NORMAL__COMMENT</v>
                                 <v> There is no more information than the parent provides</v>
+                                <v>DefaultArraySize</v>
+                                <v>500</v>
                               </d>
                               <v n="ConvDone">true</v>
                             </o>
@@ -3110,8 +3110,6 @@
                         <o n="TypeNodeAttributes" t="TypeNodeAttributes2">
                           <v n="AttrFlags">81920UL</v>
                           <d n="TypeNodeAttributesData" t="CaseInsensitiveHashtable" ckt="String" cvt="String">
-                            <v>PolygonPoints</v>
-                            <v></v>
                             <v>DescriptionTextId</v>
                             <v>TL_ElementProperties.Desc_StaticLinePos</v>
                             <v>DisplayTextId</v>
@@ -3128,6 +3126,8 @@
                             <v>visu_elemdev</v>
                             <v>Storable</v>
                             <v>True</v>
+                            <v>PolygonPoints</v>
+                            <v></v>
                           </d>
                           <v n="ConvDone">true</v>
                         </o>
@@ -3737,10 +3737,10 @@
                                 <v>TL_ElementProperties.Points</v>
                                 <v>DescriptionUseFromParent</v>
                                 <v></v>
-                                <v>DefaultArraySize</v>
-                                <v>500</v>
                                 <v>''NORMAL__COMMENT</v>
                                 <v> There is no more information than the parent provides</v>
+                                <v>DefaultArraySize</v>
+                                <v>500</v>
                               </d>
                               <v n="ConvDone">true</v>
                             </o>
@@ -3793,8 +3793,6 @@
                         <o n="TypeNodeAttributes" t="TypeNodeAttributes2">
                           <v n="AttrFlags">81920UL</v>
                           <d n="TypeNodeAttributesData" t="CaseInsensitiveHashtable" ckt="String" cvt="String">
-                            <v>PolygonPoints</v>
-                            <v></v>
                             <v>DescriptionTextId</v>
                             <v>TL_ElementProperties.Desc_StaticLinePos</v>
                             <v>DisplayTextId</v>
@@ -3811,6 +3809,8 @@
                             <v>visu_elemdev</v>
                             <v>Storable</v>
                             <v>True</v>
+                            <v>PolygonPoints</v>
+                            <v></v>
                           </d>
                           <v n="ConvDone">true</v>
                         </o>
@@ -4420,10 +4420,10 @@
                                 <v>TL_ElementProperties.Points</v>
                                 <v>DescriptionUseFromParent</v>
                                 <v></v>
-                                <v>''NORMAL__COMMENT</v>
-                                <v> There is no more information than the parent provides</v>
                                 <v>DefaultArraySize</v>
                                 <v>500</v>
+                                <v>''NORMAL__COMMENT</v>
+                                <v> There is no more information than the parent provides</v>
                               </d>
                               <v n="ConvDone">true</v>
                             </o>
@@ -4476,6 +4476,8 @@
                         <o n="TypeNodeAttributes" t="TypeNodeAttributes2">
                           <v n="AttrFlags">81920UL</v>
                           <d n="TypeNodeAttributesData" t="CaseInsensitiveHashtable" ckt="String" cvt="String">
+                            <v>PolygonPoints</v>
+                            <v></v>
                             <v>DescriptionTextId</v>
                             <v>TL_ElementProperties.Desc_StaticLinePos</v>
                             <v>DisplayTextId</v>
@@ -4492,8 +4494,6 @@
                             <v>visu_elemdev</v>
                             <v>Storable</v>
                             <v>True</v>
-                            <v>PolygonPoints</v>
-                            <v></v>
                           </d>
                           <v n="ConvDone">true</v>
                         </o>
@@ -5103,10 +5103,10 @@
                                 <v>TL_ElementProperties.Points</v>
                                 <v>DescriptionUseFromParent</v>
                                 <v></v>
-                                <v>DefaultArraySize</v>
-                                <v>500</v>
                                 <v>''NORMAL__COMMENT</v>
                                 <v> There is no more information than the parent provides</v>
+                                <v>DefaultArraySize</v>
+                                <v>500</v>
                               </d>
                               <v n="ConvDone">true</v>
                             </o>
@@ -5159,8 +5159,6 @@
                         <o n="TypeNodeAttributes" t="TypeNodeAttributes2">
                           <v n="AttrFlags">81920UL</v>
                           <d n="TypeNodeAttributesData" t="CaseInsensitiveHashtable" ckt="String" cvt="String">
-                            <v>PolygonPoints</v>
-                            <v></v>
                             <v>DescriptionTextId</v>
                             <v>TL_ElementProperties.Desc_StaticLinePos</v>
                             <v>DisplayTextId</v>
@@ -5177,6 +5175,8 @@
                             <v>visu_elemdev</v>
                             <v>Storable</v>
                             <v>True</v>
+                            <v>PolygonPoints</v>
+                            <v></v>
                           </d>
                           <v n="ConvDone">true</v>
                         </o>
@@ -5786,10 +5786,10 @@
                                 <v>TL_ElementProperties.Points</v>
                                 <v>DescriptionUseFromParent</v>
                                 <v></v>
-                                <v>''NORMAL__COMMENT</v>
-                                <v> There is no more information than the parent provides</v>
                                 <v>DefaultArraySize</v>
                                 <v>500</v>
+                                <v>''NORMAL__COMMENT</v>
+                                <v> There is no more information than the parent provides</v>
                               </d>
                               <v n="ConvDone">true</v>
                             </o>
@@ -5842,6 +5842,8 @@
                         <o n="TypeNodeAttributes" t="TypeNodeAttributes2">
                           <v n="AttrFlags">81920UL</v>
                           <d n="TypeNodeAttributesData" t="CaseInsensitiveHashtable" ckt="String" cvt="String">
+                            <v>PolygonPoints</v>
+                            <v></v>
                             <v>DescriptionTextId</v>
                             <v>TL_ElementProperties.Desc_StaticLinePos</v>
                             <v>DisplayTextId</v>
@@ -5858,8 +5860,6 @@
                             <v>visu_elemdev</v>
                             <v>Storable</v>
                             <v>True</v>
-                            <v>PolygonPoints</v>
-                            <v></v>
                           </d>
                           <v n="ConvDone">true</v>
                         </o>
@@ -6469,10 +6469,10 @@
                                 <v>TL_ElementProperties.Points</v>
                                 <v>DescriptionUseFromParent</v>
                                 <v></v>
-                                <v>''NORMAL__COMMENT</v>
-                                <v> There is no more information than the parent provides</v>
                                 <v>DefaultArraySize</v>
                                 <v>500</v>
+                                <v>''NORMAL__COMMENT</v>
+                                <v> There is no more information than the parent provides</v>
                               </d>
                               <v n="ConvDone">true</v>
                             </o>
@@ -6525,6 +6525,8 @@
                         <o n="TypeNodeAttributes" t="TypeNodeAttributes2">
                           <v n="AttrFlags">81920UL</v>
                           <d n="TypeNodeAttributesData" t="CaseInsensitiveHashtable" ckt="String" cvt="String">
+                            <v>PolygonPoints</v>
+                            <v></v>
                             <v>DescriptionTextId</v>
                             <v>TL_ElementProperties.Desc_StaticLinePos</v>
                             <v>DisplayTextId</v>
@@ -6541,8 +6543,6 @@
                             <v>visu_elemdev</v>
                             <v>Storable</v>
                             <v>True</v>
-                            <v>PolygonPoints</v>
-                            <v></v>
                           </d>
                           <v n="ConvDone">true</v>
                         </o>
@@ -7152,10 +7152,10 @@
                                 <v>TL_ElementProperties.Points</v>
                                 <v>DescriptionUseFromParent</v>
                                 <v></v>
-                                <v>''NORMAL__COMMENT</v>
-                                <v> There is no more information than the parent provides</v>
                                 <v>DefaultArraySize</v>
                                 <v>500</v>
+                                <v>''NORMAL__COMMENT</v>
+                                <v> There is no more information than the parent provides</v>
                               </d>
                               <v n="ConvDone">true</v>
                             </o>
@@ -7208,6 +7208,8 @@
                         <o n="TypeNodeAttributes" t="TypeNodeAttributes2">
                           <v n="AttrFlags">81920UL</v>
                           <d n="TypeNodeAttributesData" t="CaseInsensitiveHashtable" ckt="String" cvt="String">
+                            <v>PolygonPoints</v>
+                            <v></v>
                             <v>DescriptionTextId</v>
                             <v>TL_ElementProperties.Desc_StaticLinePos</v>
                             <v>DisplayTextId</v>
@@ -7224,8 +7226,6 @@
                             <v>visu_elemdev</v>
                             <v>Storable</v>
                             <v>True</v>
-                            <v>PolygonPoints</v>
-                            <v></v>
                           </d>
                           <v n="ConvDone">true</v>
                         </o>
@@ -7835,10 +7835,10 @@
                                 <v>TL_ElementProperties.Points</v>
                                 <v>DescriptionUseFromParent</v>
                                 <v></v>
-                                <v>DefaultArraySize</v>
-                                <v>500</v>
                                 <v>''NORMAL__COMMENT</v>
                                 <v> There is no more information than the parent provides</v>
+                                <v>DefaultArraySize</v>
+                                <v>500</v>
                               </d>
                               <v n="ConvDone">true</v>
                             </o>
@@ -7891,8 +7891,6 @@
                         <o n="TypeNodeAttributes" t="TypeNodeAttributes2">
                           <v n="AttrFlags">81920UL</v>
                           <d n="TypeNodeAttributesData" t="CaseInsensitiveHashtable" ckt="String" cvt="String">
-                            <v>PolygonPoints</v>
-                            <v></v>
                             <v>DescriptionTextId</v>
                             <v>TL_ElementProperties.Desc_StaticLinePos</v>
                             <v>DisplayTextId</v>
@@ -7909,6 +7907,8 @@
                             <v>visu_elemdev</v>
                             <v>Storable</v>
                             <v>True</v>
+                            <v>PolygonPoints</v>
+                            <v></v>
                           </d>
                           <v n="ConvDone">true</v>
                         </o>
@@ -8178,7 +8178,7 @@
                 <v n="VisualElementIdentifier">"GenElemInst_37"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="InputBoxInputAction[]">
                   <v>OnMouseClick</v>
                   <a cet="InputBoxInputAction">
                     <o>
@@ -8189,7 +8189,7 @@
                       <v n="InputBoxDialogTitle">""</v>
                       <v n="Password">false</v>
                       <v n="UseTextOutputVariable">true</v>
-                      <v n="TextOutputVariableInitialized">false</v>
+                      <v n="TextOutputVariableInitialized">true</v>
                       <v n="OtherVarConversion">""</v>
                       <v n="Format">""</v>
                       <v n="DialogPosition" t="DialogPositionSetting">UseGlobalSetting</v>
@@ -8529,7 +8529,7 @@
                 <v n="VisualElementIdentifier">"GenElemInst_41"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="InputBoxInputAction[]">
                   <v>OnMouseClick</v>
                   <a cet="InputBoxInputAction">
                     <o>
@@ -8540,7 +8540,7 @@
                       <v n="InputBoxDialogTitle">""</v>
                       <v n="Password">false</v>
                       <v n="UseTextOutputVariable">true</v>
-                      <v n="TextOutputVariableInitialized">false</v>
+                      <v n="TextOutputVariableInitialized">true</v>
                       <v n="OtherVarConversion">""</v>
                       <v n="Format">""</v>
                       <v n="DialogPosition" t="DialogPositionSetting">UseGlobalSetting</v>
@@ -8880,7 +8880,7 @@
                 <v n="VisualElementIdentifier">"GenElemInst_45"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="InputBoxInputAction[]">
                   <v>OnMouseClick</v>
                   <a cet="InputBoxInputAction">
                     <o>
@@ -8891,7 +8891,7 @@
                       <v n="InputBoxDialogTitle">""</v>
                       <v n="Password">false</v>
                       <v n="UseTextOutputVariable">true</v>
-                      <v n="TextOutputVariableInitialized">false</v>
+                      <v n="TextOutputVariableInitialized">true</v>
                       <v n="OtherVarConversion">""</v>
                       <v n="Format">""</v>
                       <v n="DialogPosition" t="DialogPositionSetting">UseGlobalSetting</v>
@@ -9571,10 +9571,10 @@
                                 <v>TL_ElementProperties.Points</v>
                                 <v>DescriptionUseFromParent</v>
                                 <v></v>
-                                <v>DefaultArraySize</v>
-                                <v>500</v>
                                 <v>''NORMAL__COMMENT</v>
                                 <v> There is no more information than the parent provides</v>
+                                <v>DefaultArraySize</v>
+                                <v>500</v>
                               </d>
                               <v n="ConvDone">true</v>
                             </o>
@@ -9627,8 +9627,6 @@
                         <o n="TypeNodeAttributes" t="TypeNodeAttributes2">
                           <v n="AttrFlags">81920UL</v>
                           <d n="TypeNodeAttributesData" t="CaseInsensitiveHashtable" ckt="String" cvt="String">
-                            <v>PolygonPoints</v>
-                            <v></v>
                             <v>DescriptionTextId</v>
                             <v>TL_ElementProperties.Desc_StaticLinePos</v>
                             <v>DisplayTextId</v>
@@ -9645,6 +9643,8 @@
                             <v>visu_elemdev</v>
                             <v>Storable</v>
                             <v>True</v>
+                            <v>PolygonPoints</v>
+                            <v></v>
                           </d>
                           <v n="ConvDone">true</v>
                         </o>
@@ -10254,10 +10254,10 @@
                                 <v>TL_ElementProperties.Points</v>
                                 <v>DescriptionUseFromParent</v>
                                 <v></v>
-                                <v>DefaultArraySize</v>
-                                <v>500</v>
                                 <v>''NORMAL__COMMENT</v>
                                 <v> There is no more information than the parent provides</v>
+                                <v>DefaultArraySize</v>
+                                <v>500</v>
                               </d>
                               <v n="ConvDone">true</v>
                             </o>
@@ -10310,8 +10310,6 @@
                         <o n="TypeNodeAttributes" t="TypeNodeAttributes2">
                           <v n="AttrFlags">81920UL</v>
                           <d n="TypeNodeAttributesData" t="CaseInsensitiveHashtable" ckt="String" cvt="String">
-                            <v>PolygonPoints</v>
-                            <v></v>
                             <v>DescriptionTextId</v>
                             <v>TL_ElementProperties.Desc_StaticLinePos</v>
                             <v>DisplayTextId</v>
@@ -10328,6 +10326,8 @@
                             <v>visu_elemdev</v>
                             <v>Storable</v>
                             <v>True</v>
+                            <v>PolygonPoints</v>
+                            <v></v>
                           </d>
                           <v n="ConvDone">true</v>
                         </o>
@@ -10937,10 +10937,10 @@
                                 <v>TL_ElementProperties.Points</v>
                                 <v>DescriptionUseFromParent</v>
                                 <v></v>
-                                <v>''NORMAL__COMMENT</v>
-                                <v> There is no more information than the parent provides</v>
                                 <v>DefaultArraySize</v>
                                 <v>500</v>
+                                <v>''NORMAL__COMMENT</v>
+                                <v> There is no more information than the parent provides</v>
                               </d>
                               <v n="ConvDone">true</v>
                             </o>
@@ -10993,6 +10993,8 @@
                         <o n="TypeNodeAttributes" t="TypeNodeAttributes2">
                           <v n="AttrFlags">81920UL</v>
                           <d n="TypeNodeAttributesData" t="CaseInsensitiveHashtable" ckt="String" cvt="String">
+                            <v>PolygonPoints</v>
+                            <v></v>
                             <v>DescriptionTextId</v>
                             <v>TL_ElementProperties.Desc_StaticLinePos</v>
                             <v>DisplayTextId</v>
@@ -11009,8 +11011,6 @@
                             <v>visu_elemdev</v>
                             <v>Storable</v>
                             <v>True</v>
-                            <v>PolygonPoints</v>
-                            <v></v>
                           </d>
                           <v n="ConvDone">true</v>
                         </o>
@@ -11280,7 +11280,7 @@
                 <v n="VisualElementIdentifier">"GenElemInst_59"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="InputBoxInputAction[]">
                   <v>OnMouseClick</v>
                   <a cet="InputBoxInputAction">
                     <o>
@@ -11291,7 +11291,7 @@
                       <v n="InputBoxDialogTitle">""</v>
                       <v n="Password">false</v>
                       <v n="UseTextOutputVariable">true</v>
-                      <v n="TextOutputVariableInitialized">false</v>
+                      <v n="TextOutputVariableInitialized">true</v>
                       <v n="OtherVarConversion">""</v>
                       <v n="Format">""</v>
                       <v n="DialogPosition" t="DialogPositionSetting">UseGlobalSetting</v>
@@ -11631,7 +11631,7 @@
                 <v n="VisualElementIdentifier">"GenElemInst_63"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="InputBoxInputAction[]">
                   <v>OnMouseClick</v>
                   <a cet="InputBoxInputAction">
                     <o>
@@ -11642,7 +11642,7 @@
                       <v n="InputBoxDialogTitle">""</v>
                       <v n="Password">false</v>
                       <v n="UseTextOutputVariable">true</v>
-                      <v n="TextOutputVariableInitialized">false</v>
+                      <v n="TextOutputVariableInitialized">true</v>
                       <v n="OtherVarConversion">""</v>
                       <v n="Format">""</v>
                       <v n="DialogPosition" t="DialogPositionSetting">UseGlobalSetting</v>
@@ -12322,10 +12322,10 @@
                                 <v>TL_ElementProperties.Points</v>
                                 <v>DescriptionUseFromParent</v>
                                 <v></v>
-                                <v>''NORMAL__COMMENT</v>
-                                <v> There is no more information than the parent provides</v>
                                 <v>DefaultArraySize</v>
                                 <v>500</v>
+                                <v>''NORMAL__COMMENT</v>
+                                <v> There is no more information than the parent provides</v>
                               </d>
                               <v n="ConvDone">true</v>
                             </o>
@@ -12378,6 +12378,8 @@
                         <o n="TypeNodeAttributes" t="TypeNodeAttributes2">
                           <v n="AttrFlags">81920UL</v>
                           <d n="TypeNodeAttributesData" t="CaseInsensitiveHashtable" ckt="String" cvt="String">
+                            <v>PolygonPoints</v>
+                            <v></v>
                             <v>DescriptionTextId</v>
                             <v>TL_ElementProperties.Desc_StaticLinePos</v>
                             <v>DisplayTextId</v>
@@ -12394,8 +12396,6 @@
                             <v>visu_elemdev</v>
                             <v>Storable</v>
                             <v>True</v>
-                            <v>PolygonPoints</v>
-                            <v></v>
                           </d>
                           <v n="ConvDone">true</v>
                         </o>
@@ -13005,10 +13005,10 @@
                                 <v>TL_ElementProperties.Points</v>
                                 <v>DescriptionUseFromParent</v>
                                 <v></v>
-                                <v>''NORMAL__COMMENT</v>
-                                <v> There is no more information than the parent provides</v>
                                 <v>DefaultArraySize</v>
                                 <v>500</v>
+                                <v>''NORMAL__COMMENT</v>
+                                <v> There is no more information than the parent provides</v>
                               </d>
                               <v n="ConvDone">true</v>
                             </o>
@@ -13061,6 +13061,8 @@
                         <o n="TypeNodeAttributes" t="TypeNodeAttributes2">
                           <v n="AttrFlags">81920UL</v>
                           <d n="TypeNodeAttributesData" t="CaseInsensitiveHashtable" ckt="String" cvt="String">
+                            <v>PolygonPoints</v>
+                            <v></v>
                             <v>DescriptionTextId</v>
                             <v>TL_ElementProperties.Desc_StaticLinePos</v>
                             <v>DisplayTextId</v>
@@ -13077,8 +13079,6 @@
                             <v>visu_elemdev</v>
                             <v>Storable</v>
                             <v>True</v>
-                            <v>PolygonPoints</v>
-                            <v></v>
                           </d>
                           <v n="ConvDone">true</v>
                         </o>
@@ -13688,10 +13688,10 @@
                                 <v>TL_ElementProperties.Points</v>
                                 <v>DescriptionUseFromParent</v>
                                 <v></v>
-                                <v>DefaultArraySize</v>
-                                <v>500</v>
                                 <v>''NORMAL__COMMENT</v>
                                 <v> There is no more information than the parent provides</v>
+                                <v>DefaultArraySize</v>
+                                <v>500</v>
                               </d>
                               <v n="ConvDone">true</v>
                             </o>
@@ -13744,8 +13744,6 @@
                         <o n="TypeNodeAttributes" t="TypeNodeAttributes2">
                           <v n="AttrFlags">81920UL</v>
                           <d n="TypeNodeAttributesData" t="CaseInsensitiveHashtable" ckt="String" cvt="String">
-                            <v>PolygonPoints</v>
-                            <v></v>
                             <v>DescriptionTextId</v>
                             <v>TL_ElementProperties.Desc_StaticLinePos</v>
                             <v>DisplayTextId</v>
@@ -13762,6 +13760,8 @@
                             <v>visu_elemdev</v>
                             <v>Storable</v>
                             <v>True</v>
+                            <v>PolygonPoints</v>
+                            <v></v>
                           </d>
                           <v n="ConvDone">true</v>
                         </o>
@@ -14684,12 +14684,19 @@
                 <v n="VisualElementIdentifier">"GenElemInst_88"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="ToggleVarInputAction[]">
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
                   <v>OnMouseClick</v>
-                  <a cet="ToggleVarInputAction">
-                    <o>
-                      <v n="ToggleVariable">"GVL_P_CONTROL.P_loop_type"</v>
+                  <a et="IInputAction">
+                    <o t="ToggleVarInputAction">
+                      <v n="ToggleVariable">"GVL_HANDLER.GUI_vars[P_loop]"</v>
                       <n n="Error" />
+                    </o>
+                    <o t="STSnippetInputAction">
+                      <v n="STSnippet">"IF GVL_GUI.P_OL_sel_button = 0 THEN
+	GVL_GUI.P_OL_sel_button:= 1;
+ELSE
+	GVL_GUI.P_OL_sel_button:= 0;
+END_IF"</v>
                     </o>
                   </a>
                 </d>
@@ -14856,12 +14863,19 @@
                 <v n="VisualElementIdentifier">"GenElemInst_90"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="ToggleVarInputAction[]">
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
                   <v>OnMouseClick</v>
-                  <a cet="ToggleVarInputAction">
-                    <o>
-                      <v n="ToggleVariable">"GVL_P_CONTROL.P_invert"</v>
+                  <a et="IInputAction">
+                    <o t="ToggleVarInputAction">
+                      <v n="ToggleVariable">"GVL_HANDLER.GUI_vars[P_invert]"</v>
                       <n n="Error" />
+                    </o>
+                    <o t="STSnippetInputAction">
+                      <v n="STSnippet">"IF GVL_GUI.P_invert_button = 0 THEN
+	GVL_GUI.P_invert_button:= 1;
+ELSE
+	GVL_GUI.P_invert_button:= 0;
+END_IF"</v>
                     </o>
                   </a>
                 </d>
@@ -15300,10 +15314,10 @@
               <d n="FbMethods" t="CaseInsensitiveHashtable_1" ckt="String" cvt="Guid">
                 <v>FB_Init</v>
                 <v>11eb2d51-a87a-409f-830d-9bb5069082d4</v>
-                <v>FB_Exit</v>
-                <v>02c123e9-b260-4446-94b0-b98d12936908</v>
                 <v>FB_Reinit</v>
                 <v>4ec8ba36-c6e5-4ac7-aeb6-39b2c2e34943</v>
+                <v>FB_Exit</v>
+                <v>02c123e9-b260-4446-94b0-b98d12936908</v>
               </d>
               <v n="FbName">"NotImportant"</v>
               <v n="FbGuid">{9b13a63e-4d2c-442f-92d9-4acc687a6712}</v>
@@ -15415,6 +15429,7 @@
         <Type n="Guid">System.Guid</Type>
         <Type n="Hashtable">System.Collections.Hashtable</Type>
         <Type n="HotkeyConfiguration">{6b108d46-58af-4e41-a3f4-174d8f160cc4}</Type>
+        <Type n="IInputAction">{69265815-ba9d-4bec-bfcb-427fb9172844}</Type>
         <Type n="IInputAction[]">_3S.CoDeSys.VisualElem.IInputAction[], VisualElem, Version=3.5.13.0, Culture=neutral, PublicKeyToken=null</Type>
         <Type n="InputBoxInputAction">{e8e7e747-f76f-4dee-ab1c-b9637e41ac26}</Type>
         <Type n="InputBoxInputAction[]">_3S.CoDeSys.VisualElem.InputBoxInputAction[], VisualElem.plugin, Version=3.5.13.32, Culture=neutral, PublicKeyToken=null</Type>
@@ -15425,10 +15440,10 @@
         <Type n="NamedStyleFont">{9e842eb2-1463-4af2-b605-4fbb17044f94}</Type>
         <Type n="String">System.String</Type>
         <Type n="StructuredTypeNode">{503c5b2e-e80e-4ee7-ae00-c5b93a62b1aa}</Type>
+        <Type n="STSnippetInputAction">{6302d3fe-6ea5-4c42-819a-a9734a133b3d}</Type>
         <Type n="TextDocument">{f3878285-8e4f-490b-bb1b-9acbb7eb04db}</Type>
         <Type n="TextLine">{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}</Type>
         <Type n="ToggleVarInputAction">{9dcc475d-e53e-4dd3-abd9-995bf52d466f}</Type>
-        <Type n="ToggleVarInputAction[]">_3S.CoDeSys.VisualElem.ToggleVarInputAction[], VisualElem.plugin, Version=3.5.13.32, Culture=neutral, PublicKeyToken=null</Type>
         <Type n="TypeClass">{16f7aa24-038f-444e-9d81-b001bc091d35}</Type>
         <Type n="TypeNodeAttributes2">{c1464dbe-c10d-4717-be8f-63efe8638434}</Type>
         <Type n="TypeNodeType">{b12a9636-e818-4598-ae0d-fb6a2446102c}</Type>
