@@ -42,7 +42,7 @@ Id;Default
 309;P_invert
 310;P_safety
 500;Q_loop
-501;Q_refence
+501;Q_reference
 502;Q_feedback
 503;Q_output
 504;Q_kp

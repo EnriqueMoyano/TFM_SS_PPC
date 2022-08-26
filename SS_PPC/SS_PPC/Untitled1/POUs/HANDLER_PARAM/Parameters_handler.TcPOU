@@ -297,9 +297,9 @@ Param_handler(
 	
 // MB_address 40502. Q reference 
 Param_handler(
-	Number_variable:= Q_refence, 
-	GUI_var:= GVL_HANDLER.GUI_vars[Q_refence], 
-	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Q_refence], 
+	Number_variable:= Q_reference, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Q_reference], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Q_reference], 
 	Internal_logic_var:= GVL_Q_CONTROL.Q_reference, 
 	RO_RW:= R_W, 
 	Scale:= 0.01, 
@@ -309,8 +309,8 @@ Param_handler(
 	Vars_initialization:= GVL_HANDLER.Init_vars, 
 	Input_source:= GVL_HANDLER.Input_src, 
 	Logic_var_out=> GVL_Q_CONTROL.Q_reference, 
-	GUI_var_out=> GVL_HANDLER.GUI_vars[Q_refence], 
-	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Q_refence]);
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Q_reference], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Q_reference]);
 
 // MB_address 40503. Q feedback 
 Param_handler(

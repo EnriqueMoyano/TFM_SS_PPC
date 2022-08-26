@@ -1,4 +1,5 @@
 Id;Default
+408; invert PI
 612;%%.2f %
 848;%.2f %%
 238;%.3f
@@ -26,6 +27,7 @@ Id;Default
 887;P loop
 321;P measured
 64;P PI invert
+264;Phase P_min
 228;PI +Kp_min
 875;PI Kp
 479;PI Kp_min
@@ -34,8 +36,13 @@ Id;Default
 113;P_control
 992;P_measured
 312;P_reference
+538;Q control Open Loop
+961;Q control out
+61;Q invert PI
+836;Q measured
 220;Q_3ph
 276;Q_control
+346;Q_reference
 309;Sat max
 659;Sat min
 782;V_line avg

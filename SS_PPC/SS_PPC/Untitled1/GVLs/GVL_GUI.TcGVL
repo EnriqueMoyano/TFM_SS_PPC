@@ -15,6 +15,10 @@ VAR_GLOBAL
 	//P controller screen vars
 	P_OL_sel_button:			BOOL:= FALSE;
 	P_invert_button:			BOOL:= FALSE;
+	
+	//Q controller screen vars
+	Q_OL_sel_button:			BOOL:= FALSE;
+	Q_invert_button:			BOOL:= FALSE;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

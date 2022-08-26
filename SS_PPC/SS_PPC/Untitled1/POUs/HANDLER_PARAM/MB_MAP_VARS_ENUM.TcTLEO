@@ -46,7 +46,7 @@
 	P_invert:= 309,
 	P_safety:= 310,
 	Q_loop:= 500,
-	Q_refence:= 501,
+	Q_reference:= 501,
 	Q_feedback:= 502,
 	Q_output:= 503,
 	Q_kp:= 504,
@@ -336,7 +336,7 @@ END_TYPE]]></Declaration>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"Q_refence"</v>
+              <v n="TextID">"Q_reference"</v>
               <v n="TextDefault">"501"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>

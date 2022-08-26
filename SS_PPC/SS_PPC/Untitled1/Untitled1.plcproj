@@ -152,6 +152,9 @@
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
+    <Compile Include="VISUs\01_P_control\P_min_indicator.TcTLO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="VISUs\02_Q_control\Q_controller.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>

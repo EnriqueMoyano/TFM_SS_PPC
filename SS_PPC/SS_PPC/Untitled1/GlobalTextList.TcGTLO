@@ -6,6 +6,11 @@
         <o xml:space="preserve" t="GlobalTextListObject">
           <l n="TextList" t="ArrayList" cet="TextListRow">
             <o>
+              <v n="TextID">"408"</v>
+              <v n="TextDefault">" invert PI"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"612"</v>
               <v n="TextDefault">"%%.2f %"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -142,6 +147,11 @@ config"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"264"</v>
+              <v n="TextDefault">"Phase P_min"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"228"</v>
               <v n="TextDefault">"PI +Kp_min"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -182,6 +192,26 @@ config"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"538"</v>
+              <v n="TextDefault">"Q control Open Loop"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"961"</v>
+              <v n="TextDefault">"Q control out"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"61"</v>
+              <v n="TextDefault">"Q invert PI"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"836"</v>
+              <v n="TextDefault">"Q measured"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"220"</v>
               <v n="TextDefault">"Q_3ph"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -189,6 +219,11 @@ config"</v>
             <o>
               <v n="TextID">"276"</v>
               <v n="TextDefault">"Q_control"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"346"</v>
+              <v n="TextDefault">"Q_reference"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
