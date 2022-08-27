@@ -53,7 +53,7 @@ FOR I := 1 TO GVL_CONV_COMMS.NUMBER_CONVERTERS DO;
 			GVL_CONV_COMMS.Start_Command[I] := 0;
 		END_IF
 		
-		IF ((GVL_CONV_COMMS.Comms_Control_Word[I] AND 16#0004) > 0 ) THEN
+		IF ((GVL_CONV_COMMS.Comms_Control_Word[I] AND 16#0002) > 0 ) THEN
 			GVL_CONV_COMMS.Night_Mode_Active[I] := 1;
 		ELSE
 			GVL_CONV_COMMS.Night_Mode_Active[I] := 0;

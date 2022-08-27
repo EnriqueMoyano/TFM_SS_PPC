@@ -56,6 +56,11 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"239"</v>
+              <v n="TextDefault">"%s"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"148"</v>
               <v n="TextDefault">"+"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -66,6 +71,11 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"674"</v>
+              <v n="TextDefault">"192.168.254.32"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"920"</v>
               <v n="TextDefault">"Awindup max"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -73,6 +83,41 @@
             <o>
               <v n="TextID">"427"</v>
               <v n="TextDefault">"Awindup min"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"418"</v>
+              <v n="TextDefault">"Conv 0"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"84"</v>
+              <v n="TextDefault">"Conv 1"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"589"</v>
+              <v n="TextDefault">"Conv 2"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"856"</v>
+              <v n="TextDefault">"Conv 3"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"324"</v>
+              <v n="TextDefault">"Conv 4"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"432"</v>
+              <v n="TextDefault">"Conv 5"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"215"</v>
+              <v n="TextDefault">"Conv 6"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -114,6 +159,21 @@ config"</v>
             <o>
               <v n="TextID">"741"</v>
               <v n="TextDefault">"Meter config"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"175"</v>
+              <v n="TextDefault">"N mode"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"610"</v>
+              <v n="TextDefault">"On/off"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"826"</v>
+              <v n="TextDefault">"Online"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>

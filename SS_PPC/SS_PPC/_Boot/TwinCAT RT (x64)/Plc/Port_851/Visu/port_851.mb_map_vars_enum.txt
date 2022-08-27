@@ -41,6 +41,7 @@ Id;Default
 308;P_low
 309;P_invert
 310;P_safety
+311;P_min_charge
 500;Q_loop
 501;Q_reference
 502;Q_feedback

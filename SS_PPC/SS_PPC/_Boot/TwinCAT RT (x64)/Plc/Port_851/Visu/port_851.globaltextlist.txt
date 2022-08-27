@@ -9,6 +9,7 @@ Id;Default
 637;%d kVArh
 393;%d kWh
 101;%f.3
+239;%s
 148;+
 901;-
 920;Awindup max

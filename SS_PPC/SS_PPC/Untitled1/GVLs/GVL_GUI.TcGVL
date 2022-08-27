@@ -19,6 +19,11 @@ VAR_GLOBAL
 	//Q controller screen vars
 	Q_OL_sel_button:			BOOL:= FALSE;
 	Q_invert_button:			BOOL:= FALSE;
+	
+	//Converters screen
+	Conv_online_button:			ARRAY [1..25] OF BOOL;
+	Conv_on_off_button:			ARRAY [1..25] OF BOOL;
+	Conv_n_mode_button:			ARRAY [1..25] OF BOOL;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
