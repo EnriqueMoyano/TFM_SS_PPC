@@ -16,6 +16,26 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"37"</v>
+              <v n="TextDefault">"%.1f"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"225"</v>
+              <v n="TextDefault">"%.1f kVAr"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"297"</v>
+              <v n="TextDefault">"%.1f kW"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"250"</v>
+              <v n="TextDefault">"%.1fkVAr"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"848"</v>
               <v n="TextDefault">"%.2f %%"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -191,6 +211,11 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"110"</v>
+              <v n="TextDefault">"Measures"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"227"</v>
               <v n="TextDefault">"Meter
 config"</v>
@@ -204,6 +229,11 @@ config"</v>
             <o>
               <v n="TextID">"741"</v>
               <v n="TextDefault">"Meter config"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"792"</v>
+              <v n="TextDefault">"N mod"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
