@@ -12,8 +12,23 @@ Id;Default
 239;%s
 148;+
 901;-
+674;192.168.254.32
 920;Awindup max
 427;Awindup min
+418;Conv 0
+84;Conv 1
+333;Conv 10
+797;Conv 11
+773;Conv 12
+174;Conv 13
+589;Conv 2
+856;Conv 3
+324;Conv 4
+432;Conv 5
+215;Conv 6
+172;Conv 7
+569;Conv 8
+394;Conv 9
 135;Converters
 565;Energy_act
 171;Er_act_tot
@@ -22,6 +37,9 @@ Id;Default
 227;Meter$R$Nconfig
 539;Meter cfg
 741;Meter config
+175;N mode
+610;On/off
+826;Online
 420;P control Open Loop
 224;P control out
 851;P invert PI
