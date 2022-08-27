@@ -45,6 +45,7 @@
 	P_low:= 308,
 	P_invert:= 309,
 	P_safety:= 310,
+	P_min_charge:= 311,
 	Q_loop:= 500,
 	Q_reference:= 501,
 	Q_feedback:= 502,
@@ -328,6 +329,11 @@ END_TYPE]]></Declaration>
             <o>
               <v n="TextID">"P_safety"</v>
               <v n="TextDefault">"310"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_min_charge"</v>
+              <v n="TextDefault">"311"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>

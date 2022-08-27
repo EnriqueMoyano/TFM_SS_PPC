@@ -278,6 +278,23 @@ Param_handler(
 	GUI_var_out=> GVL_HANDLER.GUI_vars[P_safety], 
 	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[P_safety]);
 
+// MB_address 40312. P_min indicator
+Param_handler(
+	Number_variable:= P_min_charge, 
+	GUI_var:= GVL_HANDLER.GUI_vars[P_min_charge], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[P_min_charge], 
+	Internal_logic_var:= GVL_POWERMETER.P_min_indicator, 
+	RO_RW:= R_O, 
+	Scale:= 1, 
+	Min_val:= 0, 
+	Max_val:= 2, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[P_min_charge], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[P_min_charge]);	
+	
 // MB_address 40501. Q loop type selection
 Param_handler(
 	Number_variable:= Q_loop, 
@@ -727,7 +744,10 @@ Param_handler(
       <LineId Id="207" Count="32" />
       <LineId Id="172" Count="0" />
       <LineId Id="240" Count="15" />
+      <LineId Id="1014" Count="0" />
+      <LineId Id="1016" Count="14" />
       <LineId Id="298" Count="0" />
+      <LineId Id="1015" Count="0" />
       <LineId Id="673" Count="85" />
       <LineId Id="860" Count="13" />
       <LineId Id="773" Count="85" />
