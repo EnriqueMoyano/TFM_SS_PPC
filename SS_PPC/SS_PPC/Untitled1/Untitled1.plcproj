@@ -31,6 +31,13 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
+    <Compile Include="FUNC\BYTE_UNION.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\GVL_HANDLER.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="GVLs\GVL_POWERMETER.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -82,6 +89,18 @@
     <Compile Include="POUs\EXTERNAL_COMMS\Modbus_map.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\HANDLER_PARAM\Data_transforming.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\HANDLER_PARAM\MB_MAP_VARS_ENUM.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\HANDLER_PARAM\Parameters_handler.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\HANDLER_PARAM\ReadWrite_Enum.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -119,6 +138,7 @@
     <Folder Include="FUNC" />
     <Folder Include="POUs\CONVERTERS" />
     <Folder Include="POUs\CONTROL" />
+    <Folder Include="POUs\HANDLER_PARAM" />
     <Folder Include="POUs\METERING" />
     <Folder Include="POUs\EXTERNAL_COMMS" />
     <Folder Include="POUs\Q CONTROL" />
