@@ -115,7 +115,14 @@ TYPE MB_MAP_VARS_ENUM :
 	React_er_tot_kVArh:= 1120,
 	Energies_reset:= 1121,
 	Meter_status:= 1130,
-	Lost_comms_enable:= 1131
+	Lost_comms_enable:= 1131,
+	V_ratio_RS:= 1200,
+	V_ratio_ST:= 1202,
+	V_ratio_TR:= 1204,
+	I_ratio_R:=	1206,
+	I_ratio_S:=	1208,
+	I_ratio_T:=	1210
+
 );
 END_TYPE]]></Declaration>
     <XmlArchive>
@@ -680,6 +687,36 @@ END_TYPE]]></Declaration>
             <o>
               <v n="TextID">"Lost_comms_enable"</v>
               <v n="TextDefault">"1131"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"V_ratio_RS"</v>
+              <v n="TextDefault">"1200"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"V_ratio_ST"</v>
+              <v n="TextDefault">"1202"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"V_ratio_TR"</v>
+              <v n="TextDefault">"1204"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"I_ratio_R"</v>
+              <v n="TextDefault">"1206"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"I_ratio_S"</v>
+              <v n="TextDefault">"1208"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"I_ratio_T"</v>
+              <v n="TextDefault">"1210"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
