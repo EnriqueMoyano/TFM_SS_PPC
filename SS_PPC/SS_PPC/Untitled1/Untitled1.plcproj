@@ -27,6 +27,10 @@
     <Compile Include="FUNC\AVG_3.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\GVL_PM_CONFIG.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="GVLs\GVL_POWERMETER.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -60,6 +64,9 @@
     <Compile Include="PlcTask_1.TcTTO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\BYTE_UNION.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\CONTROL\PI_BLOCK.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -82,6 +89,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\METERING\FB_EL3453_handling.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\METERING\METER_BOARD_CFG.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\METERING\METER_EL3453_CFG.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\P CONTROL\Min_P_calculation.TcPOU">
@@ -114,9 +127,17 @@
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderReference Include="Tc2_EtherCAT">
+      <DefaultResolution>Tc2_EtherCAT, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_EtherCAT</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_ModbusSrv">
       <DefaultResolution>Tc2_ModbusSrv, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_ModbusSrv</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_Standard">
+      <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Standard</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc2_System">
       <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>

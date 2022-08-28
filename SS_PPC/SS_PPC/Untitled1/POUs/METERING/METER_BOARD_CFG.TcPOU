@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="METER_BOARD_CFG" Id="{1d1ab7c1-200e-4de4-a66e-23668bfc434a}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM METER_BOARD_CFG
+VAR
+	
+	Device_Type_Index : UINT:= 0;
+	Device_Type : STRING;
+	
+	EL3XXX_Conf : METER_EL3453_CFG;
+	Error_Selection: BOOL;
+	Error_Nom_voltage : BOOL;
+	Error_Nominal_Frequency : BOOL;				// Error read/writing nominal frequency
+	Error_Measurement_freq_range : BOOL;		// Error read/writing frequency range working
+	Error_Current_trafo_rat_L1 : BOOL;			// Error read/writing Current transformer ratio L1
+	Error_Current_trafo_rat_L2 : BOOL;			// Error read/writing Current transformer ratio L2
+	Error_Current_trafo_rat_L3 : BOOL;			// Error read/writing Current transformer ratio L3
+	Error_Voltage_trafo_rat_L1 : BOOL;			// Error read/writing Voltage transformer ratio L1
+	Error_Voltage_trafo_rat_L2 : BOOL;			// Error read/writing Voltage transformer ratio L2
+	Error_Voltage_trafo_rat_L3 : BOOL;			// Error read/writing Voltage transformer ratio L3
+	Error_Current_trafo_dly_L1 : BOOL;			// Error read/writing Current transformer delay L1	
+	Error_Current_trafo_dly_L2 : BOOL;			// Error read/writing Current transformer delay L2
+	Error_Current_trafo_dly_L3 : BOOL;			// Error read/writing Current transformer delay L3
+	Error_Current_trafo_range_L1 : BOOL;		// Error read/writing Current transformer delay L1	
+	Error_Current_trafo_range_L2 : BOOL;		// Error read/writing Current transformer delay L2
+	Error_Current_trafo_range_L3 : BOOL;		// Error read/writing Current transformer delay L3
+	Error_Voltage_Guard_Min_Error_L1: BOOL;		// Error read/writing Voltage min error L1
+	Error_Voltage_Guard_Min_Error_L2: BOOL;		// Error read/writing Voltage min error L2
+	Error_Voltage_Guard_Min_Error_L3: BOOL;		// Error read/writing Voltage min error L3
+	Error_Voltage_Guard_Min_Warning_L1: BOOL;	// Error read/writing Voltage min warning L1
+	Error_Voltage_Guard_Min_Warning_L2: BOOL;	// Error read/writing Voltage min warning L2
+	Error_Voltage_Guard_Min_Warning_L3: BOOL;	// Error read/writing Voltage min warning L3
+	Error_Voltage_Guard_Max_Warning_L1: BOOL;	// Error read/writing Voltage max warning L1
+	Error_Voltage_Guard_Max_Warning_L2: BOOL;	// Error read/writing Voltage max warning L2
+	Error_Voltage_Guard_Max_Warning_L3: BOOL;	// Error read/writing Voltage max warning L3
+	Error_Voltage_Guard_Max_Error_L1: BOOL;		// Error read/writing Voltage max error L1
+	Error_Voltage_Guard_Max_Error_L2: BOOL;		// Error read/writing Voltage max error L2
+	Error_Voltage_Guard_Max_Error_L3: BOOL;		// Error read/writing Voltage max error L3
+
+	dummy: int;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Case to indicate to the CoE boards FB wich analyzer is selected
+CASE GVL_PM_CONFIG.Device_Type_Index OF
+	
+	0: Device_Type:= 'EL3453';
+	
+	1: Device_Type:= 'EL3443';
+	
+	2: Device_Type:= 'EL3783';
+	
+END_CASE
+
+EL3XXX_Conf(
+	NetId_global_assign:= GVL_PM_CONFIG.NetID_EL3XXX, 
+	Slave_Add_global_assign:= GVL_PM_CONFIG.SlaveID_EL3XXX,
+	NetId_global_assign_2:= GVL_PM_CONFIG.NetID_EL3XXX_2, 
+	Slave_Add_global_assign_2:= GVL_PM_CONFIG.SlaveID_EL3XXX_2, 
+	EL3_Selection:= Device_Type, 
+	Error_selection=> Error_selection, 
+	(******************************************************)
+	(********************** OUTPUT ************************)
+	//Voltage
+	Error_Nom_voltage=> Error_Nom_voltage,
+	//Frequency
+	Error_Nominal_Frequency=> Error_Nominal_Frequency,
+	Error_Measurement_freq_range=> Error_Measurement_freq_range,
+	//Current trafo
+	Error_Current_trafo_rat_L1=> Error_Current_trafo_rat_L1,		
+	Error_Current_trafo_rat_L2=> Error_Current_trafo_rat_L2,
+	Error_Current_trafo_rat_L3=> Error_Current_trafo_rat_L3,
+	//Voltage trafo
+	Error_Voltage_trafo_rat_L1=> Error_Voltage_trafo_rat_L1,
+	Error_Voltage_trafo_rat_L2=> Error_Voltage_trafo_rat_L2,
+	Error_Voltage_trafo_rat_L3=> Error_Voltage_trafo_rat_L3,
+	//Current trafo delay
+	Error_Current_trafo_dly_L1=> Error_Current_trafo_dly_L1,	
+	Error_Current_trafo_dly_L2=> Error_Current_trafo_dly_L2,
+	Error_Current_trafo_dly_L3=> Error_Current_trafo_dly_L3,
+	//Current trafo for EL3453
+	Error_Current_trafo_range_L1=> Error_Current_trafo_range_L1,	
+	Error_Current_trafo_range_L2=> Error_Current_trafo_range_L2,
+	Error_Current_trafo_range_L3=> Error_Current_trafo_range_L3,
+	//Voltage Guard Min Error
+	Error_Voltage_Guard_Min_Error_L1=> Error_Voltage_Guard_Min_Error_L1,
+	Error_Voltage_Guard_Min_Error_L2=> Error_Voltage_Guard_Min_Error_L2,
+	Error_Voltage_Guard_Min_Error_L3=> Error_Voltage_Guard_Min_Error_L3,
+	//Voltage Guard Min Warning
+	Error_Voltage_Guard_Min_Warning_L1=> Error_Voltage_Guard_Min_Warning_L1,
+	Error_Voltage_Guard_Min_Warning_L2=> Error_Voltage_Guard_Min_Warning_L2,
+	Error_Voltage_Guard_Min_Warning_L3=> Error_Voltage_Guard_Min_Warning_L3,
+	//Voltage Guard Max Warning
+	Error_Voltage_Guard_Max_Warning_L1=> Error_Voltage_Guard_Max_Warning_L1,
+	Error_Voltage_Guard_Max_Warning_L2=> Error_Voltage_Guard_Max_Warning_L2,
+	Error_Voltage_Guard_Max_Warning_L3=> Error_Voltage_Guard_Max_Warning_L3,
+	//Voltage Guard Max Error
+	Error_Voltage_Guard_Max_Error_L1=> Error_Voltage_Guard_Max_Error_L1,
+	Error_Voltage_Guard_Max_Error_L2=> Error_Voltage_Guard_Max_Error_L2,
+	Error_Voltage_Guard_Max_Error_L3=> Error_Voltage_Guard_Max_Error_L3,
+	(* EL3783 *)
+	//Current Range
+	Error_Current_Range=> Error_Current_Range,
+	(**********************************************************)
+	(********************* SETTINGS INPUTS ********************)
+	//Nominal Voltage
+	Nominal_Voltage					:= GVL_PM_CONFIG.Nominal_Voltage,
+	//Nominal frequency 
+	Nominal_Frequency				:= GVL_PM_CONFIG.Nominal_Frequency, 
+	Measurement_freq_range			:= GVL_PM_CONFIG.Measurement_freq_range,
+	//Current transformers ratio 
+	Current_trafo_rat_L1			:= GVL_PM_CONFIG.Current_trafo_rat_L1, 
+	Current_trafo_rat_L2			:= GVL_PM_CONFIG.Current_trafo_rat_L2, 
+	Current_trafo_rat_L3			:= GVL_PM_CONFIG.Current_trafo_rat_L3,
+	//Voltage transformers ratio 
+	Voltage_trafo_rat_L1			:= GVL_PM_CONFIG.Voltage_trafo_rat_L1, 
+	Voltage_trafo_rat_L2			:= GVL_PM_CONFIG.Voltage_trafo_rat_L2, 
+	Voltage_trafo_rat_L3			:= GVL_PM_CONFIG.Voltage_trafo_rat_L3,
+	//Current transformers delay 
+	Current_trafo_dly_L1			:= GVL_PM_CONFIG.Current_trafo_dly_L1, 
+	Current_trafo_dly_L2			:= GVL_PM_CONFIG.Current_trafo_dly_L2, 
+	Current_trafo_dly_L3			:= GVL_PM_CONFIG.Current_trafo_dly_L3,
+	//Voltage Guard Min Error 
+	Voltage_Guard_Min_Error_L1		:= GVL_PM_CONFIG.Voltage_Guard_Min_Error_L1, 
+	Voltage_Guard_Min_Error_L2		:= GVL_PM_CONFIG.Voltage_Guard_Min_Error_L2, 
+	Voltage_Guard_Min_Error_L3		:= GVL_PM_CONFIG.Voltage_Guard_Min_Error_L3,
+	//Voltage Guard Min Warning 
+	Voltage_Guard_Min_Warning_L1	:= GVL_PM_CONFIG.Voltage_Guard_Min_Warning_L1, 
+	Voltage_Guard_Min_Warning_L2	:= GVL_PM_CONFIG.Voltage_Guard_Min_Warning_L2, 
+	Voltage_Guard_Min_Warning_L3	:= GVL_PM_CONFIG.Voltage_Guard_Min_Warning_L3,
+	//Voltage Guard Max Warning 
+	Voltage_Guard_Max_Warning_L1	:= GVL_PM_CONFIG.Voltage_Guard_Max_Warning_L1, 
+	Voltage_Guard_Max_Warning_L2	:= GVL_PM_CONFIG.Voltage_Guard_Max_Warning_L2, 
+	Voltage_Guard_Max_Warning_L3	:= GVL_PM_CONFIG.Voltage_Guard_Max_Warning_L3,
+	//Voltage Guard Max Error 
+	Voltage_Guard_Max_Error_L1		:= GVL_PM_CONFIG.Voltage_Guard_Max_Error_L1, 
+	Voltage_Guard_Max_Error_L2		:= GVL_PM_CONFIG.Voltage_Guard_Max_Error_L2, 
+	Voltage_Guard_Max_Error_L3		:= GVL_PM_CONFIG.Voltage_Guard_Max_Error_L3,
+	(************************* EL3443 *************************)
+	//Current transformers ratio for EL3453
+	Current_trafo_range_L1			:= GVL_PM_CONFIG.Current_trafo_range_L1, 
+	Current_trafo_range_L2			:= GVL_PM_CONFIG.Current_trafo_range_L2, 
+	Current_trafo_range_L3			:= GVL_PM_CONFIG.Current_trafo_range_L3,
+	(************************* EL3783 *************************)
+	//Current Range for EL3783
+	Current_Range:= dummy);
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="METER_BOARD_CFG">
+      <LineId Id="71" Count="98" />
+      <LineId Id="176" Count="2" />
+      <LineId Id="170" Count="0" />
+      <LineId Id="174" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
