@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="GUI_logic" Id="{268f483e-8f52-47db-a3dd-9461ababddf0}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM GUI_logic
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+//Main screen GUI buttons
+IF GVL_GUI.main_button_logic THEN
+	GVL_GUI.conv_button_logic:= 0;
+	GVL_GUI.pcontrol_button_logic:= 0;
+	GVL_GUI.qcontrol_button_logic:= 0;
+	GVL_GUI.meter_cfg_button_logic:= 0;
+ELSIF GVL_GUI.pcontrol_button_logic THEN
+	GVL_GUI.main_button_logic:= 0;
+	GVL_GUI.conv_button_logic:= 0;
+	GVL_GUI.qcontrol_button_logic:= 0;
+	GVL_GUI.meter_cfg_button_logic:= 0;
+ELSE
+	GVL_GUI.main_button_logic:= 0;
+	GVL_GUI.conv_button_logic:= 0;
+	GVL_GUI.pcontrol_button_logic:= 0;
+	GVL_GUI.qcontrol_button_logic:= 0;
+	GVL_GUI.meter_cfg_button_logic:= 0;
+END_IF
+*)]]></ST>
+    </Implementation>
+    <LineIds Name="GUI_logic">
+      <LineId Id="25" Count="0" />
+      <LineId Id="5" Count="2" />
+      <LineId Id="9" Count="3" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="26" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

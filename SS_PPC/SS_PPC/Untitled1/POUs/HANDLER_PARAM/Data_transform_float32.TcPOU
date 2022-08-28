@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Data_transform_float32" Id="{c641e02d-60af-48b5-8b78-89127d1f8d24}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Data_transform_float32
+VAR_INPUT
+	Number_variable: 				INT;
+	Internal_logic_var: 			REAL;
+	GUI_var: 						REAL;
+	Modbus_var: 					POINTER TO BYTE;
+	RO_RW: 							INT;
+	Min_val: 						REAL;
+	Max_val: 						REAL;
+	Def_val: 						REAL;
+	Vars_initialization:			BOOL;
+	Input_source:					BOOL; //TRUE -> Modbus, FALSE -> Web GUI
+END_VAR
+
+VAR_OUTPUT
+	Logic_var_out: 					REAL;
+	GUI_var_out: 					REAL;
+END_VAR
+
+VAR
+	Pt_REAL: 						POINTER TO REAL;
+	Aux_REAL:						REAL; 
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// First of all, it is necessary to know if the variable is read or write
+IF RO_RW = R_W THEN
+	// Check if the control is by Web GUI or by Modbus (in this case webserver)
+	IF NOT Input_source THEN
+		
+	// Compare if the web variable is different than the process variable
+		IF GUI_var <> Internal_logic_var THEN
+			// Checking if the new value is within the range.
+			IF 	GUI_var > Min_val AND GUI_var < Max_val THEN
+				Internal_logic_var := GUI_var;
+			ELSE
+				GUI_var := Internal_logic_var;
+			END_IF
+		END_IF
+	ELSE
+		// Obtaining the real
+		Pt_REAL:= Modbus_var;
+		Aux_REAL:= Pt_REAL^;
+		
+		// Compare if the Modbus variable is different than the logic variable
+		IF Aux_REAL <> Internal_logic_var THEN
+			// Checking if the new value is within the range.
+			IF 	Aux_REAL > Min_val AND Aux_REAL < Max_val THEN
+				Internal_logic_var := Aux_REAL;
+			ELSE
+				Aux_REAL := Internal_logic_var;
+			END_IF
+		END_IF
+	END_IF
+ELSE
+	Aux_REAL := Internal_logic_var;
+	GUI_var := Internal_logic_var;
+END_IF
+
+Logic_var_out:= Internal_logic_var;
+GUI_var_out := Internal_logic_var;
+MEMMOVE(destAddr:= Modbus_var, srcAddr:= ADR(Internal_logic_var), n:= SIZEOF(Internal_logic_var));
+	
+// When the user do a initialization, all variables take default value
+IF Vars_initialization THEN
+	Logic_var_out := Def_val;
+	GUI_var_out := Def_val;
+	MEMMOVE(destAddr:= Modbus_var, srcAddr:= ADR(Def_val), n:= SIZEOF(Def_val));
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="Data_transform_float32">
+      <LineId Id="432" Count="1" />
+      <LineId Id="435" Count="12" />
+      <LineId Id="450" Count="5" />
+      <LineId Id="457" Count="5" />
+      <LineId Id="464" Count="0" />
+      <LineId Id="466" Count="1" />
+      <LineId Id="469" Count="1" />
+      <LineId Id="472" Count="0" />
+      <LineId Id="486" Count="0" />
+      <LineId Id="476" Count="3" />
+      <LineId Id="481" Count="4" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="487" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

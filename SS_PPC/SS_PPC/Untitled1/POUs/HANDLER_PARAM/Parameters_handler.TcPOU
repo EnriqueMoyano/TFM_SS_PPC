@@ -4,11 +4,43 @@
     <Declaration><![CDATA[PROGRAM Parameters_handler
 VAR
 	Param_handler:					Data_transforming;
+	Handler_floats:					Data_transform_float32;
+	Handler_int64:					Data_transform_int64;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-// MB_address 40004. PoC nominal frequency
+// MB_address 40003. PoC nominal Power kVA
+Handler_floats(
+	Number_variable:= Plant_S_nom, 
+	Internal_logic_var:= GVL_PLANT_DEF.Plant_capacity_nom, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Plant_S_nom], 
+	Modbus_var:= ADR(GVL_HANDLER.Modbus_srv_vars[Plant_S_nom]), 
+	RO_RW:= R_O, 
+	Min_val:= 0, 
+	Max_val:= 3.402823E+38, 
+	Def_val:= 8000, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src,  
+	Logic_var_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Plant_S_nom]);
+
+// MB_address 40003. PoC nominal voltage
+Handler_floats(
+	Number_variable:= Plant_V_nom, 
+	Internal_logic_var:= GVL_PLANT_DEF.PoC_Voltage_nom, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Plant_V_nom], 
+	Modbus_var:= ADR(GVL_HANDLER.Modbus_srv_vars[Plant_V_nom]), 
+	RO_RW:= R_O, 
+	Min_val:= 0, 
+	Max_val:= 3.402823E+38, 
+	Def_val:= 20000, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src,  
+	Logic_var_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Plant_V_nom]);
+
+// MB_address 40005. PoC nominal frequency
 Param_handler(
 	Number_variable:= Plant_f_nom, 
 	GUI_var:= GVL_HANDLER.GUI_vars[Plant_f_nom], 
@@ -78,9 +110,9 @@ Param_handler(
 	
 // MB_address 40302. P reference 
 Param_handler(
-	Number_variable:= P_refence, 
-	GUI_var:= GVL_HANDLER.GUI_vars[P_refence], 
-	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[P_refence], 
+	Number_variable:= P_reference, 
+	GUI_var:= GVL_HANDLER.GUI_vars[P_reference], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[P_reference], 
 	Internal_logic_var:= GVL_P_CONTROL.P_reference, 
 	RO_RW:= R_W, 
 	Scale:= 0.01, 
@@ -90,8 +122,8 @@ Param_handler(
 	Vars_initialization:= GVL_HANDLER.Init_vars, 
 	Input_source:= GVL_HANDLER.Input_src, 
 	Logic_var_out=> GVL_P_CONTROL.P_reference, 
-	GUI_var_out=> GVL_HANDLER.GUI_vars[P_refence], 
-	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[P_refence]);
+	GUI_var_out=> GVL_HANDLER.GUI_vars[P_reference], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[P_reference]);
 
 // MB_address 40303. P feedback 
 Param_handler(
@@ -282,9 +314,9 @@ Param_handler(
 	
 // MB_address 40502. Q reference 
 Param_handler(
-	Number_variable:= Q_refence, 
-	GUI_var:= GVL_HANDLER.GUI_vars[Q_refence], 
-	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Q_refence], 
+	Number_variable:= Q_reference, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Q_reference], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Q_reference], 
 	Internal_logic_var:= GVL_Q_CONTROL.Q_reference, 
 	RO_RW:= R_W, 
 	Scale:= 0.01, 
@@ -294,8 +326,8 @@ Param_handler(
 	Vars_initialization:= GVL_HANDLER.Init_vars, 
 	Input_source:= GVL_HANDLER.Input_src, 
 	Logic_var_out=> GVL_Q_CONTROL.Q_reference, 
-	GUI_var_out=> GVL_HANDLER.GUI_vars[Q_refence], 
-	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Q_refence]);
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Q_reference], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Q_reference]);
 
 // MB_address 40503. Q feedback 
 Param_handler(
@@ -534,8 +566,98 @@ Param_handler(
 	Logic_var_out_wd=> GVL_Q_CONTROL.Ramp_units,
 	GUI_var_out=> GVL_HANDLER.GUI_vars[R_units], 
 	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[R_units]);
+	
+// MB_address 41201. Active positive energy in kWh
+Handler_int64(
+	Number_variable:= Active_er_pos_kWh, 
+	Internal_logic_var:= GVL_POWERMETER.Active_er_pos_kWh, 
+	GUI_var:= REAL_TO_LINT(GVL_HANDLER.GUI_vars[Active_er_pos_kWh]), 
+	MB_variable:= ADR(GVL_HANDLER.Modbus_srv_vars[Active_er_pos_kWh]), 
+	RO_RW:= R_O, 
+	Min_val:= -9223372036854775808, 
+	Max_val:= 9223372036854775807, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src,  
+	Logic_var_int64_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Active_er_pos_kWh]);
+	
+// MB_address 41205. Active negative energy in kWh
+Handler_int64(
+	Number_variable:= Active_er_neg_kWh, 
+	Internal_logic_var:= GVL_POWERMETER.Active_er_neg_kWh, 
+	GUI_var:= REAL_TO_LINT(GVL_HANDLER.GUI_vars[Active_er_neg_kWh]), 
+	MB_variable:= ADR(GVL_HANDLER.Modbus_srv_vars[Active_er_neg_kWh]), 
+	RO_RW:= R_O, 
+	Min_val:= -9223372036854775808, 
+	Max_val:= 9223372036854775807, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src,  
+	Logic_var_int64_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Active_er_neg_kWh]);
+	
+// MB_address 41209. Active energy total in kWh
+Handler_int64(
+	Number_variable:= Active_er_tot_kWh, 
+	Internal_logic_var:= GVL_POWERMETER.Active_er_tot_kWh, 
+	GUI_var:= REAL_TO_LINT(GVL_HANDLER.GUI_vars[Active_er_tot_kWh]), 
+	MB_variable:= ADR(GVL_HANDLER.Modbus_srv_vars[Active_er_tot_kWh]), 
+	RO_RW:= R_O, 
+	Min_val:= -9223372036854775808, 
+	Max_val:= 9223372036854775807, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src,  
+	Logic_var_int64_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Active_er_tot_kWh]);
 
-// MB_address 41122. Energies counter reset
+// MB_address 41213. Rective positive energy in kVArh
+Handler_int64(
+	Number_variable:= React_er_pos_kVArh, 
+	Internal_logic_var:= GVL_POWERMETER.React_er_pos_kVArh, 
+	GUI_var:= REAL_TO_LINT(GVL_HANDLER.GUI_vars[React_er_pos_kVArh]), 
+	MB_variable:= ADR(GVL_HANDLER.Modbus_srv_vars[React_er_pos_kVArh]), 
+	RO_RW:= R_O, 
+	Min_val:= -9223372036854775808, 
+	Max_val:= 9223372036854775807, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src,  
+	Logic_var_int64_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[React_er_pos_kVArh]);
+
+// MB_address 41213. Rective negative energy in kVArh
+Handler_int64(
+	Number_variable:= React_er_neg_kVArh, 
+	Internal_logic_var:= GVL_POWERMETER.React_er_neg_kVArh, 
+	GUI_var:= REAL_TO_LINT(GVL_HANDLER.GUI_vars[React_er_neg_kVArh]), 
+	MB_variable:= ADR(GVL_HANDLER.Modbus_srv_vars[React_er_neg_kVArh]), 
+	RO_RW:= R_O, 
+	Min_val:= -9223372036854775808, 
+	Max_val:= 9223372036854775807, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src,  
+	Logic_var_int64_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[React_er_neg_kVArh]);
+
+// MB_address 41213. Rective energy total in kVArh
+Handler_int64(
+	Number_variable:= React_er_tot_kVArh, 
+	Internal_logic_var:= GVL_POWERMETER.React_er_tot_kVArh, 
+	GUI_var:= REAL_TO_LINT(GVL_HANDLER.GUI_vars[React_er_tot_kVArh]), 
+	MB_variable:= ADR(GVL_HANDLER.Modbus_srv_vars[React_er_tot_kVArh]), 
+	RO_RW:= R_O, 
+	Min_val:= -9223372036854775808, 
+	Max_val:= 9223372036854775807, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src,  
+	Logic_var_int64_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[React_er_tot_kVArh]);
+	
+// MB_address 41225. Energies counter reset
 Param_handler(
 	Number_variable:= Energies_reset, 
 	GUI_var:= GVL_HANDLER.GUI_vars[Energies_reset], 
@@ -588,6 +710,14 @@ Param_handler(
 ]]></ST>
     </Implementation>
     <LineIds Name="Parameters_handler">
+      <LineId Id="1031" Count="0" />
+      <LineId Id="1033" Count="13" />
+      <LineId Id="1029" Count="0" />
+      <LineId Id="1015" Count="0" />
+      <LineId Id="1017" Count="9" />
+      <LineId Id="1030" Count="0" />
+      <LineId Id="1028" Count="0" />
+      <LineId Id="1016" Count="0" />
       <LineId Id="30" Count="0" />
       <LineId Id="10" Count="3" />
       <LineId Id="31" Count="0" />
@@ -628,7 +758,17 @@ Param_handler(
       <LineId Id="908" Count="0" />
       <LineId Id="910" Count="15" />
       <LineId Id="206" Count="0" />
-      <LineId Id="926" Count="33" />
+      <LineId Id="926" Count="32" />
+      <LineId Id="1079" Count="0" />
+      <LineId Id="1064" Count="13" />
+      <LineId Id="1058" Count="0" />
+      <LineId Id="1080" Count="13" />
+      <LineId Id="1059" Count="0" />
+      <LineId Id="1094" Count="14" />
+      <LineId Id="1110" Count="28" />
+      <LineId Id="1109" Count="0" />
+      <LineId Id="1139" Count="13" />
+      <LineId Id="1063" Count="0" />
       <LineId Id="961" Count="15" />
       <LineId Id="909" Count="0" />
       <LineId Id="977" Count="32" />
