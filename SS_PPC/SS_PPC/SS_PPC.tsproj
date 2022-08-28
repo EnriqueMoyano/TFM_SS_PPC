@@ -194,7 +194,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{68A350B9-11BA-4732-8896-90A741CD2BA4}" Name="Untitled1" PrjFilePath="Untitled1\Untitled1.plcproj" TmcFilePath="Untitled1\Untitled1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Untitled1\Untitled1.tmc" TmcHash="{4D83F3C9-843A-8D9E-9EE0-9BFB1E2225A3}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Untitled1\Untitled1.tmc" TmcHash="{FB5B293D-364F-00B8-9A44-F5192C48DA2D}">
 					<Name>Untitled1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1" ContextId="1" AreaNo="16">
@@ -323,12 +323,12 @@ Single-phase data]]></Comment>
 					<Vars VarGrpType="1" ContextId="2" AreaNo="32">
 						<Name>PlcTask_1 Inputs</Name>
 						<Var>
-							<Name>GVL_PM_CONFIG.NetID_EL3XXX</Name>
-							<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
-						</Var>
-						<Var>
 							<Name>GVL_PM_CONFIG.SlaveID_EL3XXX</Name>
 							<Type>WORD</Type>
+						</Var>
+						<Var>
+							<Name>GVL_PM_CONFIG.NetID_EL3XXX</Name>
+							<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
 						</Var>
 						<Var>
 							<Name>GVL_PM_CONFIG.NetID_EL3XXX_2</Name>

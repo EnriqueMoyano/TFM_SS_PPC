@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
-  <POU Name="BYTE_UNION" Id="{e7db25c2-e50c-4e4a-a487-8cf86f9ae307}" SpecialFunc="None">
+  <POU Name="BYTE_UNION" Id="{25455c5f-befe-4f02-84c5-95e1161be66a}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK BYTE_UNION
 
 VAR_INPUT

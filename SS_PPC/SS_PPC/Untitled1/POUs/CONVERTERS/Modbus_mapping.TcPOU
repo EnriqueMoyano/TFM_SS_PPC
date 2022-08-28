@@ -4,8 +4,7 @@
     <Declaration><![CDATA[PROGRAM Modbus_mapping
 VAR
 	I: WORD;//loop  variable
-	
-	WORD_FUSION:	BYTE_UNION;
+
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -33,10 +32,7 @@ FOR I:=1 TO GVL_CONV_COMMS.NUMBER_CONVERTERS DO;
 	GVL_CONV_COMMS.Status_Byte[I]:= WORD_TO_BYTE(GVL_CONV_COMMS.Current_Status[I]);
 	GVL_CONV_COMMS.Control_Byte[I]:= WORD_TO_BYTE(GVL_CONV_COMMS.Comms_Control_Word[I]);
 	
-	WORD_FUSION(Upper_Byte:= GVL_CONV_COMMS.Status_Byte[I],
-				Lower_Byte:= GVL_CONV_COMMS.Control_Byte[I],
-				United_Word=> GVL_CONV_COMMS.Comms_Control_Word[I]);
-	
+	GVL_CONV_COMMS.Comms_Control_Word[I]:= SHL(GVL_CONV_COMMS.Status_Byte[I], 7) + GVL_CONV_COMMS.Control_Byte[I];
 END_FOR
 ]]></ST>
     </Implementation>
@@ -46,7 +42,8 @@ END_FOR
       <LineId Id="118" Count="0" />
       <LineId Id="92" Count="2" />
       <LineId Id="96" Count="5" />
-      <LineId Id="107" Count="5" />
+      <LineId Id="125" Count="1" />
+      <LineId Id="111" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

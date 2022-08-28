@@ -9,12 +9,6 @@ VAR_GLOBAL
 	Nominal_Voltage 				: REAL;
 	Nominal_Frequency 				: REAL;
 	Measurement_freq_range			: REAL;
-	Current_trafo_rat_L1 			: REAL;			// Set variable for Current transformer ratio L1
-	Current_trafo_rat_L2 			: REAL;			// Set variable for Current transformer ratio L2
-	Current_trafo_rat_L3 			: REAL;			// Set variable for Current transformer ratio L3
-	Voltage_trafo_rat_L1 			: REAL;			// Set variable for Voltage transformer ratio L1
-	Voltage_trafo_rat_L2 			: REAL;			// Set variable for Voltage transformer ratio L2
-	Voltage_trafo_rat_L3 			: REAL;			// Set variable for Voltage transformer ratio L3
 	Current_trafo_dly_L1 			: REAL;			// Set variable for Current transformer delay L1	
 	Current_trafo_dly_L2 			: REAL;			// Set variable for Current transformer delay L2
 	Current_trafo_dly_L3 			: REAL;			// Set variable for Current transformer delay L3
@@ -39,6 +33,15 @@ VAR_GLOBAL
 	 	
 	NetID_EL3XXX_2 		AT %I*	: AMSNETID ;
 	SlaveID_EL3XXX_2 	AT %I*	: WORD ;
+END_VAR
+
+VAR_GLOBAL PERSISTENT
+	Current_trafo_rat_L1 			: REAL;			// Set variable for Current transformer ratio L1
+	Current_trafo_rat_L2 			: REAL;			// Set variable for Current transformer ratio L2
+	Current_trafo_rat_L3 			: REAL;			// Set variable for Current transformer ratio L3
+	Voltage_trafo_rat_L1 			: REAL;			// Set variable for Voltage transformer ratio L1
+	Voltage_trafo_rat_L2 			: REAL;			// Set variable for Voltage transformer ratio L2
+	Voltage_trafo_rat_L3 			: REAL;			// Set variable for Voltage transformer ratio L3
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
