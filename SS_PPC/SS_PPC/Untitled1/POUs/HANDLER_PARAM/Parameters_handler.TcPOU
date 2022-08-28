@@ -1,0 +1,638 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Parameters_handler" Id="{534ea6aa-3a5f-483e-96e7-20d75e1a8e86}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Parameters_handler
+VAR
+	Param_handler:					Data_transforming;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+// MB_address 40004. PoC nominal frequency
+Param_handler(
+	Number_variable:= Plant_f_nom, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Plant_f_nom], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Plant_f_nom], 
+	Internal_logic_var:= GVL_PLANT_DEF.PoC_freq_nom, 
+	RO_RW:= R_W, 
+	Scale:= 1, 
+	Min_val:= 50, 
+	Max_val:= 60, 
+	Def_val:= 50, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> GVL_PLANT_DEF.PoC_freq_nom, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Plant_f_nom], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Plant_f_nom]);
+	
+// MB_address 40021. N of total converters installed
+Param_handler(
+	Number_variable:= N_converters, 
+	GUI_var:= GVL_HANDLER.GUI_vars[N_converters], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[N_converters], 
+	Internal_logic_var:= WORD_TO_REAL(GVL_CONV_COMMS.NUMBER_CONVERTERS), 
+	RO_RW:= R_W, 
+	Scale:= 1, 
+	Min_val:= 1, 
+	Max_val:= 25, 
+	Def_val:= 1, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out_wd=> GVL_CONV_COMMS.NUMBER_CONVERTERS,
+	GUI_var_out=> GVL_HANDLER.GUI_vars[N_converters], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[N_converters]);
+	
+// MB_address 40022. nN coefficient. Operative converters over total
+Param_handler(
+	Number_variable:= nN_converters, 
+	GUI_var:= GVL_HANDLER.GUI_vars[nN_converters], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[nN_converters], 
+	Internal_logic_var:= GVL_PLANT_DEF.PoC_freq_nom, 
+	RO_RW:= R_O, 
+	Scale:= 0.0001, 
+	Min_val:= 0, 
+	Max_val:= 1, 
+	Def_val:= 1, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[nN_converters], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[nN_converters]);
+
+// MB_address 40301. P loop type selection
+Param_handler(
+	Number_variable:= P_loop, 
+	GUI_var:= GVL_HANDLER.GUI_vars[P_loop], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[P_loop], 
+	Internal_logic_var:= BOOL_TO_REAL(GVL_P_CONTROL.P_loop_type), 
+	RO_RW:= R_W, 
+	Scale:= 1, 
+	Min_val:= 0, 
+	Max_val:= 1, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out_bl=> GVL_P_CONTROL.P_loop_type, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[P_loop], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[P_loop]);
+	
+// MB_address 40302. P reference 
+Param_handler(
+	Number_variable:= P_refence, 
+	GUI_var:= GVL_HANDLER.GUI_vars[P_refence], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[P_refence], 
+	Internal_logic_var:= GVL_P_CONTROL.P_reference, 
+	RO_RW:= R_W, 
+	Scale:= 0.01, 
+	Min_val:= -100, 
+	Max_val:= 100, 
+	Def_val:= 1.5, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> GVL_P_CONTROL.P_reference, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[P_refence], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[P_refence]);
+
+// MB_address 40303. P feedback 
+Param_handler(
+	Number_variable:= P_feedback, 
+	GUI_var:= GVL_HANDLER.GUI_vars[P_feedback], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[P_feedback], 
+	Internal_logic_var:= GVL_P_CONTROL.P_feedback, 
+	RO_RW:= R_O, 
+	Scale:= 0.01, 
+	Min_val:= -100, 
+	Max_val:= 100, 
+	Def_val:= 100, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[P_feedback], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[P_feedback]);
+
+// MB_address 40304. P output 
+Param_handler(
+	Number_variable:= P_output, 
+	GUI_var:= GVL_HANDLER.GUI_vars[P_output], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[P_output], 
+	Internal_logic_var:= GVL_P_CONTROL.P_output, 
+	RO_RW:= R_O, 
+	Scale:= 0.01, 
+	Min_val:= -100, 
+	Max_val:= 100, 
+	Def_val:= 100, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[P_output], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[P_output]);
+
+// MB_address 40305. P kp 
+Param_handler(
+	Number_variable:= P_kp, 
+	GUI_var:= GVL_HANDLER.GUI_vars[P_kp], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[P_kp], 
+	Internal_logic_var:= GVL_P_CONTROL.P_kp, 
+	RO_RW:= R_W, 
+	Scale:= 0.001, 
+	Min_val:= 0.001, 
+	Max_val:= 10, 
+	Def_val:= 0.02, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> GVL_P_CONTROL.P_kp, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[P_kp], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[P_kp]);
+
+// MB_address 40306. P kp_min 
+Param_handler(
+	Number_variable:= P_kp_min, 
+	GUI_var:= GVL_HANDLER.GUI_vars[P_kp_min], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[P_kp_min], 
+	Internal_logic_var:= GVL_P_CONTROL.P_kp_min, 
+	RO_RW:= R_W, 
+	Scale:= 0.001, 
+	Min_val:= 0.001, 
+	Max_val:= 10, 
+	Def_val:= 0.02, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> GVL_P_CONTROL.P_kp_min, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[P_kp_min], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[P_kp_min]);
+
+// MB_address 40307. P It 
+Param_handler(
+	Number_variable:= P_ti, 
+	GUI_var:= GVL_HANDLER.GUI_vars[P_ti], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[P_ti], 
+	Internal_logic_var:= GVL_P_CONTROL.P_ti, 
+	RO_RW:= R_W, 
+	Scale:= 0.001, 
+	Min_val:= 0.001, 
+	Max_val:= 10, 
+	Def_val:= 1, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> GVL_P_CONTROL.P_ti, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[P_ti], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[P_ti]);
+
+// MB_address 40308. P high anti-windup limit
+Param_handler(
+	Number_variable:= P_high, 
+	GUI_var:= GVL_HANDLER.GUI_vars[P_high], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[P_high], 
+	Internal_logic_var:= GVL_P_CONTROL.P_high_act, 
+	RO_RW:= R_W, 
+	Scale:= 0.01, 
+	Min_val:= 0, 
+	Max_val:= 100, 
+	Def_val:= 100, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> GVL_P_CONTROL.P_high_act, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[P_high], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[P_high]);
+
+// MB_address 40309. P low anti-windup limit
+Param_handler(
+	Number_variable:= P_low, 
+	GUI_var:= GVL_HANDLER.GUI_vars[P_low], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[P_low], 
+	Internal_logic_var:= GVL_P_CONTROL.P_low_act, 
+	RO_RW:= R_W, 
+	Scale:= 0.01, 
+	Min_val:= -100, 
+	Max_val:= 0, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> GVL_P_CONTROL.P_low_act, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[P_low], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[P_low]);
+
+// MB_address 40310. P PI inversion command
+Param_handler(
+	Number_variable:= P_invert, 
+	GUI_var:= GVL_HANDLER.GUI_vars[P_invert], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[P_invert], 
+	Internal_logic_var:= BOOL_TO_REAL(GVL_P_CONTROL.P_invert), 
+	RO_RW:= R_W, 
+	Scale:= 1, 
+	Min_val:= 0, 
+	Max_val:= 1, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out_bl=> GVL_P_CONTROL.P_invert, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[P_invert], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[P_invert]);
+	
+// MB_address 40311. P to inverters safety position
+Param_handler(
+	Number_variable:= P_safety, 
+	GUI_var:= GVL_HANDLER.GUI_vars[P_safety], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[P_safety], 
+	Internal_logic_var:= GVL_P_CONTROL.P_safety, 
+	RO_RW:= R_W, 
+	Scale:= 0.01, 
+	Min_val:= 0, 
+	Max_val:= 100, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> GVL_P_CONTROL.P_safety, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[P_safety], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[P_safety]);
+
+// MB_address 40312. P_min indicator
+Param_handler(
+	Number_variable:= P_min_charge, 
+	GUI_var:= GVL_HANDLER.GUI_vars[P_min_charge], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[P_min_charge], 
+	Internal_logic_var:= GVL_POWERMETER.P_min_indicator, 
+	RO_RW:= R_O, 
+	Scale:= 1, 
+	Min_val:= 0, 
+	Max_val:= 2, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[P_min_charge], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[P_min_charge]);	
+	
+// MB_address 40501. Q loop type selection
+Param_handler(
+	Number_variable:= Q_loop, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Q_loop], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Q_loop], 
+	Internal_logic_var:= BOOL_TO_REAL(GVL_Q_CONTROL.Q_loop_type), 
+	RO_RW:= R_W, 
+	Scale:= 1, 
+	Min_val:= 0, 
+	Max_val:= 1, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out_bl=> GVL_Q_CONTROL.Q_loop_type, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Q_loop], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Q_loop]);
+	
+// MB_address 40502. Q reference 
+Param_handler(
+	Number_variable:= Q_refence, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Q_refence], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Q_refence], 
+	Internal_logic_var:= GVL_Q_CONTROL.Q_reference, 
+	RO_RW:= R_W, 
+	Scale:= 0.01, 
+	Min_val:= -100, 
+	Max_val:= 100, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> GVL_Q_CONTROL.Q_reference, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Q_refence], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Q_refence]);
+
+// MB_address 40503. Q feedback 
+Param_handler(
+	Number_variable:= Q_feedback, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Q_feedback], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Q_feedback], 
+	Internal_logic_var:= GVL_Q_CONTROL.Q_feedback, 
+	RO_RW:= R_O, 
+	Scale:= 0.01, 
+	Min_val:= -100, 
+	Max_val:= 100, 
+	Def_val:= 100, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Q_feedback], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Q_feedback]);
+
+// MB_address 40504. Q output 
+Param_handler(
+	Number_variable:= Q_output, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Q_output], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Q_output], 
+	Internal_logic_var:= GVL_Q_CONTROL.Q_output, 
+	RO_RW:= R_O, 
+	Scale:= 0.01, 
+	Min_val:= -100, 
+	Max_val:= 100, 
+	Def_val:= 100, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Q_output], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Q_output]);
+
+// MB_address 40505. Q kQ 
+Param_handler(
+	Number_variable:= Q_kp, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Q_kp], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Q_kp], 
+	Internal_logic_var:= GVL_Q_CONTROL.Q_kp, 
+	RO_RW:= R_W, 
+	Scale:= 0.001, 
+	Min_val:= 0.001, 
+	Max_val:= 10, 
+	Def_val:= 0.02, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> GVL_Q_CONTROL.Q_kp, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Q_kp], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Q_kp]);
+
+// MB_address 40506. Q kp_min 
+Param_handler(
+	Number_variable:= Q_kp_min, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Q_kp_min], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Q_kp_min], 
+	Internal_logic_var:= GVL_Q_CONTROL.Q_kp_min, 
+	RO_RW:= R_W, 
+	Scale:= 0.001, 
+	Min_val:= 0.001, 
+	Max_val:= 10, 
+	Def_val:= 0.005, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> GVL_Q_CONTROL.Q_kp_min, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Q_kp_min], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Q_kp_min]);
+
+// MB_address 40507. Q It 
+Param_handler(
+	Number_variable:= Q_ti, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Q_ti], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Q_ti], 
+	Internal_logic_var:= GVL_Q_CONTROL.Q_ti, 
+	RO_RW:= R_W, 
+	Scale:= 0.001, 
+	Min_val:= 0.001, 
+	Max_val:= 10, 
+	Def_val:= 1, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> GVL_Q_CONTROL.Q_ti, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Q_ti], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Q_ti]);
+
+// MB_address 40508. Q high anti-winduQ limit
+Param_handler(
+	Number_variable:= Q_high, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Q_high], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Q_high], 
+	Internal_logic_var:= GVL_Q_CONTROL.Q_high_act, 
+	RO_RW:= R_W, 
+	Scale:= 0.01, 
+	Min_val:= 0, 
+	Max_val:= 100, 
+	Def_val:= 100, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> GVL_Q_CONTROL.Q_high_act, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Q_high], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Q_high]);
+
+// MB_address 40509. Q low anti-winduQ limit
+Param_handler(
+	Number_variable:= Q_low, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Q_low], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Q_low], 
+	Internal_logic_var:= GVL_Q_CONTROL.Q_low_act, 
+	RO_RW:= R_W, 
+	Scale:= 0.01, 
+	Min_val:= -100, 
+	Max_val:= 0, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> GVL_Q_CONTROL.Q_low_act, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Q_low], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Q_low]);
+
+// MB_address 40510. Q PI inversion command
+Param_handler(
+	Number_variable:= Q_invert, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Q_invert], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Q_invert], 
+	Internal_logic_var:= BOOL_TO_REAL(GVL_Q_CONTROL.Q_invert), 
+	RO_RW:= R_W, 
+	Scale:= 1, 
+	Min_val:= 0, 
+	Max_val:= 1, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out_bl=> GVL_Q_CONTROL.Q_invert, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Q_invert], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Q_invert]);
+	
+// MB_address 40511. Q to inverters safety position
+Param_handler(
+	Number_variable:= Q_safety, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Q_safety], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Q_safety], 
+	Internal_logic_var:= GVL_Q_CONTROL.Q_safety, 
+	RO_RW:= R_W, 
+	Scale:= 0.01, 
+	Min_val:= 0, 
+	Max_val:= 100, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> GVL_Q_CONTROL.Q_safety, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Q_safety], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Q_safety]);
+
+// MB_address 40512. Q ramps enable
+Param_handler(
+	Number_variable:= Ramp_enable, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Ramp_enable], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Ramp_enable], 
+	Internal_logic_var:= BOOL_TO_REAL(GVL_Q_CONTROL.Ramp_enable), 
+	RO_RW:= R_W, 
+	Scale:= 1, 
+	Min_val:= 0, 
+	Max_val:= 1, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out_bl=> GVL_Q_CONTROL.Ramp_enable, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Ramp_enable], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Ramp_enable]);
+	
+// MB_address 40513. Q ramps time elapsed ramping 
+Param_handler(
+	Number_variable:= Time_span, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Time_span], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Time_span], 
+	Internal_logic_var:= GVL_Q_CONTROL.Time_span, 
+	RO_RW:= R_O, 
+	Scale:= 1, 
+	Min_val:= 1, 
+	Max_val:= 1, 
+	Def_val:= 3600, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Time_span], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Time_span]);
+
+// MB_address 40514. Q increasing ramp value
+Param_handler(
+	Number_variable:= R_up_value, 
+	GUI_var:= GVL_HANDLER.GUI_vars[R_up_value], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[R_up_value], 
+	Internal_logic_var:= GVL_Q_CONTROL.Ramp_up_value, 
+	RO_RW:= R_W, 
+	Scale:= 0.01, 
+	Min_val:= 0, 
+	Max_val:= 655.35, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> GVL_Q_CONTROL.Ramp_up_value, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[R_up_value], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[R_up_value]);
+
+// MB_address 40515. Q decreasing ramp value
+Param_handler(
+	Number_variable:= R_down_value, 
+	GUI_var:= GVL_HANDLER.GUI_vars[R_down_value], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[R_down_value], 
+	Internal_logic_var:= GVL_Q_CONTROL.Ramp_down_value, 
+	RO_RW:= R_W, 
+	Scale:= 0.01, 
+	Min_val:= 0, 
+	Max_val:= 655.35, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out=> GVL_Q_CONTROL.Ramp_down_value, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[R_down_value], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[R_down_value]);
+
+// MB_address 40516. Q ramps units enumeration
+Param_handler(
+	Number_variable:= R_units, 
+	GUI_var:= GVL_HANDLER.GUI_vars[R_units], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[R_units], 
+	Internal_logic_var:= WORD_TO_REAL(GVL_Q_CONTROL.Ramp_units), 
+	RO_RW:= R_W, 
+	Scale:= 1, 
+	Min_val:= 1, 
+	Max_val:= 25, 
+	Def_val:= 1, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out_wd=> GVL_Q_CONTROL.Ramp_units,
+	GUI_var_out=> GVL_HANDLER.GUI_vars[R_units], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[R_units]);
+
+// MB_address 41122. Energies counter reset
+Param_handler(
+	Number_variable:= Energies_reset, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Energies_reset], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Energies_reset], 
+	Internal_logic_var:= BOOL_TO_REAL(GVL_POWERMETER.Energies_reset), 
+	RO_RW:= R_W, 
+	Scale:= 1, 
+	Min_val:= 0, 
+	Max_val:= 1, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out_bl=> GVL_POWERMETER.Energies_reset, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Energies_reset], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Energies_reset]);
+	
+// MB_address 41131. Meter board status
+Param_handler(
+	Number_variable:= Meter_status, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Meter_status], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Meter_status], 
+	Internal_logic_var:= BOOL_TO_REAL(GVL_POWERMETER.Meter_comms_status), 
+	RO_RW:= R_O, 
+	Scale:= 1, 
+	Min_val:= 1, 
+	Max_val:= 25, 
+	Def_val:= 1, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out_bl=> ,
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Meter_status], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Meter_status]);
+
+// MB_address 41132. Meter lost comms algorithm enable
+Param_handler(
+	Number_variable:= Lost_comms_enable, 
+	GUI_var:= GVL_HANDLER.GUI_vars[Lost_comms_enable], 
+	Modbus_variable:= GVL_HANDLER.Modbus_srv_vars[Lost_comms_enable], 
+	Internal_logic_var:= BOOL_TO_REAL(GVL_POWERMETER.Alg_lost_comms_enable), 
+	RO_RW:= R_W, 
+	Scale:= 1, 
+	Min_val:= 0, 
+	Max_val:= 1, 
+	Def_val:= 0, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src, 
+	Logic_var_out_bl=> GVL_POWERMETER.Alg_lost_comms_enable, 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[Lost_comms_enable], 
+	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Lost_comms_enable]);
+]]></ST>
+    </Implementation>
+    <LineIds Name="Parameters_handler">
+      <LineId Id="30" Count="0" />
+      <LineId Id="10" Count="3" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="16" Count="4" />
+      <LineId Id="22" Count="2" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="35" Count="13" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="50" Count="1" />
+      <LineId Id="53" Count="14" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="71" Count="16" />
+      <LineId Id="89" Count="14" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="104" Count="67" />
+      <LineId Id="173" Count="15" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="189" Count="16" />
+      <LineId Id="207" Count="32" />
+      <LineId Id="172" Count="0" />
+      <LineId Id="240" Count="15" />
+      <LineId Id="1014" Count="0" />
+      <LineId Id="1016" Count="14" />
+      <LineId Id="298" Count="0" />
+      <LineId Id="1015" Count="0" />
+      <LineId Id="673" Count="85" />
+      <LineId Id="860" Count="13" />
+      <LineId Id="773" Count="85" />
+      <LineId Id="890" Count="0" />
+      <LineId Id="892" Count="15" />
+      <LineId Id="891" Count="0" />
+      <LineId Id="874" Count="15" />
+      <LineId Id="908" Count="0" />
+      <LineId Id="910" Count="15" />
+      <LineId Id="206" Count="0" />
+      <LineId Id="926" Count="33" />
+      <LineId Id="961" Count="15" />
+      <LineId Id="909" Count="0" />
+      <LineId Id="977" Count="32" />
+      <LineId Id="960" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
