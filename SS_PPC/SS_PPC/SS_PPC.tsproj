@@ -180,6 +180,7 @@
 	</ImageDatas>
 	<Project ProjectGUID="{27BCA835-7918-4574-A267-8BBE3E663FD5}" Target64Bit="true" ShowHideConfigurations="#x106">
 		<System>
+			<Settings DontCheckTarget="192.168.222.1.1.1"/>
 			<Licenses>
 				<Target>
 					<ManualSelect>{7AFD0713-1333-4A3B-938C-7B9BD0418C8D}</ManualSelect>
@@ -206,7 +207,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{68A350B9-11BA-4732-8896-90A741CD2BA4}" Name="Untitled1" PrjFilePath="Untitled1\Untitled1.plcproj" TmcFilePath="Untitled1\Untitled1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Untitled1\Untitled1.tmc" TmcHash="{99C4586B-4D0A-9DD2-1CA4-975BDCC94385}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Untitled1\Untitled1.tmc" TmcHash="{02E7C204-812A-0F45-0EB7-0F4AF326A6C2}">
 					<Name>Untitled1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1" ContextId="1" AreaNo="16">
@@ -326,13 +327,8 @@ Single-phase data]]></Comment>
 							<Name>GVL_POWERMETER.M_board_V_L1L3_angle</Name>
 							<Type>REAL</Type>
 						</Var>
-						<Var>
-							<Name>GVL_POWERMETER.M_board_Meter_status</Name>
-							<Comment><![CDATA[Rest of data								]]></Comment>
-							<Type>WORD</Type>
-						</Var>
 					</Vars>
-					<Vars VarGrpType="1" ContextId="2" AreaNo="32">
+					<Vars VarGrpType="1" ContextId="3" AreaNo="48">
 						<Name>PlcTask_1 Inputs</Name>
 						<Var>
 							<Name>GVL_PM_CONFIG.SlaveID_EL3XXX</Name>
@@ -350,9 +346,6 @@ Single-phase data]]></Comment>
 							<Name>GVL_PM_CONFIG.SlaveID_EL3XXX_2</Name>
 							<Type>WORD</Type>
 						</Var>
-					</Vars>
-					<Vars VarGrpType="1" ContextId="3" AreaNo="48">
-						<Name>PlcTask_1 Inputs</Name>
 						<Var>
 							<Name>GVL_POWERMETER.M_board_Meter_status</Name>
 							<Comment><![CDATA[Rest of data								]]></Comment>
@@ -429,7 +422,7 @@ Single-phase data]]></Comment>
 				<Image Id="1" AddrType="9" ImageType="3">
 					<Name>Image</Name>
 				</Image>
-				<Box Id="1" BoxType="9099">
+				<Box Id="1" Disabled="true" BoxType="9099">
 					<Name>Term 1 (EK1200)</Name>
 					<ImageId>1000</ImageId>
 					<EtherCAT PdiType="#x0100" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x04b02c52" RevisionNo="#x00001b58" InfoDataState="false" PortPhys="49" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1200-7000 EtherCAT Power supply (1,5A E-Bus)" Desc="EK1200" PortABoxInfo="#x00ffffff"/>

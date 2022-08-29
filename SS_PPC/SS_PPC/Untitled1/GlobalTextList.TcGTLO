@@ -36,8 +36,18 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"143"</v>
+              <v n="TextDefault">"%.2f"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"848"</v>
               <v n="TextDefault">"%.2f %%"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"459"</v>
+              <v n="TextDefault">"%.2f kW"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -166,6 +176,16 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"433"</v>
+              <v n="TextDefault">"Board Stat"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"563"</v>
+              <v n="TextDefault">"Board Status"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"418"</v>
               <v n="TextDefault">"Conv 0"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -251,6 +271,16 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"253"</v>
+              <v n="TextDefault">"Converters gen"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"765"</v>
+              <v n="TextDefault">"Converters generation"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"565"</v>
               <v n="TextDefault">"Energy_act"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -268,6 +298,16 @@
             <o>
               <v n="TextID">"521"</v>
               <v n="TextDefault">"I ratio R"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"290"</v>
+              <v n="TextDefault">"Loads total"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"221"</v>
+              <v n="TextDefault">"Lost comms on / off"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -342,8 +382,18 @@ config"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"206"</v>
+              <v n="TextDefault">"P net"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"64"</v>
               <v n="TextDefault">"P PI invert"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"899"</v>
+              <v n="TextDefault">"P safety"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -369,6 +419,11 @@ config"</v>
             <o>
               <v n="TextID">"257"</v>
               <v n="TextDefault">"PI TI"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"43"</v>
+              <v n="TextDefault">"PoC net"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -409,6 +464,11 @@ config"</v>
             <o>
               <v n="TextID">"836"</v>
               <v n="TextDefault">"Q measured"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"625"</v>
+              <v n="TextDefault">"Q safety"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>

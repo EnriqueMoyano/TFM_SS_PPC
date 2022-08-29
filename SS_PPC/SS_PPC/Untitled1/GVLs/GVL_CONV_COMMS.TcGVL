@@ -4,23 +4,23 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 	// Variables written to converters
-	Setpoint_P:			ARRAY [1..25] OF WORD; //P setpoint to converters in percentage
-	Setpoint_Q:			ARRAY [1..25] OF INT; //Q setpoint to converters in percentage
-	Start_Command:		ARRAY [1..25] OF BOOL; //Command to start (1) / stop (0) converters
-	Night_Mode_Active: 	ARRAY [1..25] OF BOOL; //Command to activate (1) / deactivate (0) converter's night mode
+	Setpoint_P:			ARRAY [1..15] OF WORD; //P setpoint to converters in percentage
+	Setpoint_Q:			ARRAY [1..15] OF INT; //Q setpoint to converters in percentage
+	Start_Command:		ARRAY [1..15] OF BOOL; //Command to start (1) / stop (0) converters
+	Night_Mode_Active: 	ARRAY [1..15] OF BOOL; //Command to activate (1) / deactivate (0) converter's night mode
 	Watchdog_PPC: 		WORD := 1;			// Watchdog of PPC to warn comms
 	
 	// Variables read from converters
-	P_Measured:			ARRAY [1..25] OF WORD; //P measured from converters in kW
-	Q_Measured:			ARRAY [1..25] OF WORD; //Q measured from converters in kVAR
-	S_Measured:			ARRAY [1..25] OF WORD; //S measured from converters in kVA
-	cosphi_Measured:	ARRAY [1..25] OF WORD;
-	Current_Status:		ARRAY [1..25] OF WORD; //Status told by the converter. Check converter's main FSM
+	P_Measured:			ARRAY [1..15] OF WORD; //P measured from converters in kW
+	Q_Measured:			ARRAY [1..15] OF WORD; //Q measured from converters in kVAR
+	S_Measured:			ARRAY [1..15] OF WORD; //S measured from converters in kVA
+	cosphi_Measured:	ARRAY [1..15] OF WORD;
+	Current_Status:		ARRAY [1..15] OF WORD; //Status told by the converter. Check converter's main FSM
 	
 	// Comms variables
-	Error_task:			ARRAY [1..25] OF WORD; //converter under comms error (offline)
-	Control_Byte: 		ARRAY [1..25] OF BYTE;
-	Status_Byte: 		ARRAY [1..25] OF BYTE;
+	Error_task:			ARRAY [1..15] OF WORD; //converter under comms error (offline)
+	Control_Byte: 		ARRAY [1..15] OF BYTE;
+	Status_Byte: 		ARRAY [1..15] OF BYTE;
 	
 	//Rest of variables
 	converters_nN_coeff:	REAL:= 1; //Coefficient that expresses amount of converters running over total
@@ -29,10 +29,10 @@ END_VAR
 VAR_GLOBAL PERSISTENT
 	//Converters definitions
 	NUMBER_CONVERTERS: 	WORD:= 1; //Amount of conveters to control
-	CONVERTERS:			ARRAY [1..25] OF CONVERTER;
+	CONVERTERS:			ARRAY [1..15] OF CONVERTER;
 
 	//Variables written to converters
-	Comms_Control_Word:	ARRAY [1..25] OF WORD; //Word to summarize bitwisely commands to converters
+	Comms_Control_Word:	ARRAY [1..15] OF WORD; //Word to summarize bitwisely commands to converters
 END_VAR ]]></Declaration>
   </GVL>
 </TcPlcObject>

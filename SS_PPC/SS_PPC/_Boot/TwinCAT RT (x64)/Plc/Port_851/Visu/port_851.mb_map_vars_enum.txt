@@ -111,4 +111,10 @@ Id;Default
 1224;Energies_reset
 1130;Meter_status
 1131;Lost_comms_enable
+1200;V_ratio_RS
+1202;V_ratio_ST
+1204;V_ratio_TR
+1206;I_ratio_R
+1208;I_ratio_S
+1210;I_ratio_T
 ;

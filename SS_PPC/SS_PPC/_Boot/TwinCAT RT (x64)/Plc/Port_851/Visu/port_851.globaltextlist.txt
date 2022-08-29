@@ -1,6 +1,11 @@
 Id;Default
 408; invert PI
 612;%%.2f %
+37;%.1f
+225;%.1f kVAr
+297;%.1f kW
+250;%.1fkVAr
+143;%.2f
 848;%.2f %%
 238;%.3f
 824;%.3f kVAr
@@ -12,15 +17,31 @@ Id;Default
 239;%s
 148;+
 901;-
+955;0°
+4316;120°
+1928;150°
+2469;180°
 674;192.168.254.32
+1336;210°
+1219;240°
+4647;270°
+1299;300°
+3128;30°
+3271;330°
+1371;60°
+2194;90°
 920;Awindup max
 427;Awindup min
+433;Board Stat
+563;Board Status
 418;Conv 0
 84;Conv 1
 333;Conv 10
 797;Conv 11
 773;Conv 12
 174;Conv 13
+24;Conv 14
+818;Conv 15
 589;Conv 2
 856;Conv 3
 324;Conv 4
@@ -33,10 +54,14 @@ Id;Default
 565;Energy_act
 171;Er_act_tot
 966;Er_reac_tot
+521;I ratio R
+221;Lost comms on / off
 948;Main
+110;Measures
 227;Meter$R$Nconfig
 539;Meter cfg
 741;Meter config
+792;N mod
 175;N mode
 610;On/off
 826;Online
@@ -46,6 +71,7 @@ Id;Default
 887;P loop
 321;P measured
 64;P PI invert
+899;P safety
 264;Phase P_min
 228;PI +Kp_min
 875;PI Kp
@@ -59,11 +85,15 @@ Id;Default
 961;Q control out
 61;Q invert PI
 836;Q measured
+625;Q safety
 220;Q_3ph
 276;Q_control
 346;Q_reference
 309;Sat max
 659;Sat min
+784;V ratio RS
+616;V ratio ST
+833;V ratio TR
 782;V_line avg
 530;V_phase avg
 472;_3ph

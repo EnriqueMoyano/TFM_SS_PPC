@@ -7,6 +7,10 @@ VAR
 	
 	S_nom_facility_inv:			REAL; //Inverse of Snom [1/kVA]
 	V_nom_facility_inv:			REAL; //Inverse of Snom [1/V]
+	
+	P_inverters:				REAL:= 0; //Sum of Pread from all inverters
+	Q_inverters:				REAL:= 0; //Sum of Qread from all inverters
+	i:							WORD:= 1;
 END_VAR
 
 VAR CONSTANT
@@ -45,15 +49,23 @@ GVL_POWERMETER.S_pu:= GVL_POWERMETER.Power_analyzer.S_kVA * S_nom_facility_inv;
 GVL_POWERMETER.V_line_avg_pu:= GVL_POWERMETER.V_line_avg_Volt * V_nom_facility_inv;
 GVL_POWERMETER.V_phase_avg_pu:= GVL_POWERMETER.V_phase_avg_Volt * V_nom_facility_inv;
 
-GVL_POWERMETER.V_L1N_pu:= GVL_POWERMETER.Power_analyzer.V_L1N_Volt / GVL_POWERMETER.V_phase_avg_pu;
-GVL_POWERMETER.V_L2N_pu:= GVL_POWERMETER.Power_analyzer.V_L2N_Volt / GVL_POWERMETER.V_phase_avg_pu;
-GVL_POWERMETER.V_L3N_pu:= GVL_POWERMETER.Power_analyzer.V_L3N_Volt / GVL_POWERMETER.V_phase_avg_pu;
-
+IF GVL_POWERMETER.V_phase_avg_pu <> 0 THEN
+	GVL_POWERMETER.V_L1N_pu:= GVL_POWERMETER.Power_analyzer.V_L1N_Volt / GVL_POWERMETER.V_phase_avg_pu;
+	GVL_POWERMETER.V_L2N_pu:= GVL_POWERMETER.Power_analyzer.V_L2N_Volt / GVL_POWERMETER.V_phase_avg_pu;
+	GVL_POWERMETER.V_L3N_pu:= GVL_POWERMETER.Power_analyzer.V_L3N_Volt / GVL_POWERMETER.V_phase_avg_pu;
+END_IF
+	
 //Per unit currents obtention
-GVL_POWERMETER.I_L1_pu:= GVL_POWERMETER.P_L1_pu / (GVL_POWERMETER.V_L1N_pu * GVL_POWERMETER.Power_analyzer.cos_phi_L1);
-GVL_POWERMETER.I_L2_pu:= GVL_POWERMETER.P_L2_pu / (GVL_POWERMETER.V_L2N_pu * GVL_POWERMETER.Power_analyzer.cos_phi_L2);
-GVL_POWERMETER.I_L3_pu:= GVL_POWERMETER.P_L3_pu / (GVL_POWERMETER.V_L3N_pu * GVL_POWERMETER.Power_analyzer.cos_phi_L3);
-
+IF (GVL_POWERMETER.V_L1N_pu <> 0) AND (GVL_POWERMETER.Power_analyzer.cos_phi_L1 <> 0) THEN
+	GVL_POWERMETER.I_L1_pu:= GVL_POWERMETER.P_L1_pu / (GVL_POWERMETER.V_L1N_pu * GVL_POWERMETER.Power_analyzer.cos_phi_L1);
+END_IF
+IF (GVL_POWERMETER.V_L2N_pu <> 0) AND (GVL_POWERMETER.Power_analyzer.cos_phi_L2 <> 0) THEN
+	GVL_POWERMETER.I_L2_pu:= GVL_POWERMETER.P_L2_pu / (GVL_POWERMETER.V_L2N_pu * GVL_POWERMETER.Power_analyzer.cos_phi_L2);
+END_IF
+IF (GVL_POWERMETER.V_L3N_pu <> 0) AND (GVL_POWERMETER.Power_analyzer.cos_phi_L3 <> 0) THEN
+	GVL_POWERMETER.I_L3_pu:= GVL_POWERMETER.P_L3_pu / (GVL_POWERMETER.V_L3N_pu * GVL_POWERMETER.Power_analyzer.cos_phi_L3);
+END_IF
+	
 //Active energies calculation. It is an infinitesimal addition (an integration of P_measured)
 GVL_POWERMETER.Active_er_tot_kWh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.P_kW * tick_hourly) + 
 												GVL_POWERMETER.Active_er_tot_kWh;
@@ -91,8 +103,19 @@ END_IF
 //Powermeter variables publishing via Modbus
 MEMCPY(destAddr:= ADR(GVL_HANDLER.Modbus_srv_vars[P_L1_kW]), srcAddr:= ADR(GVL_POWERMETER.Power_analyzer), n:= SIZEOF(GVL_POWERMETER.Power_analyzer));
 		
+//Config calling
+METER_BOARD_CFG();
 
-]]></ST>
+//Addition of P and Q from inverters
+FOR i:=1 TO GVL_CONV_COMMS.NUMBER_CONVERTERS DO;
+	P_inverters:= P_inverters + GVL_CONV_COMMS.P_Measured[i];
+	Q_inverters:= Q_inverters + GVL_CONV_COMMS.Q_Measured[i];
+END_FOR
+
+GVL_POWERMETER.P_converters_tot:= P_inverters;
+GVL_POWERMETER.Q_converters_tot:= Q_inverters;
+P_inverters:= 0;
+Q_inverters:= 0;]]></ST>
     </Implementation>
     <LineIds Name="Analyzers">
       <LineId Id="16" Count="0" />
@@ -111,10 +134,18 @@ MEMCPY(destAddr:= ADR(GVL_HANDLER.Modbus_srv_vars[P_L1_kW]), srcAddr:= ADR(GVL_P
       <LineId Id="41" Count="0" />
       <LineId Id="33" Count="0" />
       <LineId Id="40" Count="0" />
+      <LineId Id="200" Count="0" />
       <LineId Id="182" Count="1" />
       <LineId Id="185" Count="1" />
-      <LineId Id="179" Count="2" />
-      <LineId Id="188" Count="1" />
+      <LineId Id="201" Count="0" />
+      <LineId Id="179" Count="1" />
+      <LineId Id="202" Count="0" />
+      <LineId Id="181" Count="0" />
+      <LineId Id="203" Count="1" />
+      <LineId Id="188" Count="0" />
+      <LineId Id="206" Count="1" />
+      <LineId Id="189" Count="0" />
+      <LineId Id="208" Count="0" />
       <LineId Id="45" Count="0" />
       <LineId Id="131" Count="20" />
       <LineId Id="62" Count="2" />
@@ -124,8 +155,19 @@ MEMCPY(destAddr:= ADR(GVL_HANDLER.Modbus_srv_vars[P_L1_kW]), srcAddr:= ADR(GVL_P
       <LineId Id="152" Count="1" />
       <LineId Id="156" Count="0" />
       <LineId Id="155" Count="0" />
-      <LineId Id="154" Count="0" />
       <LineId Id="17" Count="0" />
+      <LineId Id="209" Count="0" />
+      <LineId Id="214" Count="0" />
+      <LineId Id="213" Count="0" />
+      <LineId Id="215" Count="0" />
+      <LineId Id="217" Count="0" />
+      <LineId Id="219" Count="0" />
+      <LineId Id="218" Count="0" />
+      <LineId Id="237" Count="0" />
+      <LineId Id="221" Count="0" />
+      <LineId Id="238" Count="0" />
+      <LineId Id="220" Count="0" />
+      <LineId Id="222" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

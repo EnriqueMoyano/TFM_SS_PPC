@@ -176,6 +176,9 @@
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
+    <Compile Include="VISUs\04_Powermeter\M_board_status.TcTLO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="VISUs\04_Powermeter\PM_config.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>

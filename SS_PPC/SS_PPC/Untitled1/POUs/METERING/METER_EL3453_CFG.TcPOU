@@ -314,10 +314,6 @@ How must the function be used?
 	Dummy variables.
 - 	The output variables could be not called
 - 	The selection of EL3XXX board can be, EL3443, EL3453 or EL3783. Other declaration reports error
-
-Version				Developer				Changes
-1.0					David Dobon				Initial version
-2.0					Héctor Ortega			More EL3443/3453 parameters and EL3783 Added
 *************************************************************************************************)
 
 (* First of all, it is necessary convert the NetId (AMSNETID) to STRING*)
@@ -2291,7 +2287,8 @@ IF EL3_Selection <> 'EL3783' AND EL3_Selection <> 'EL3443' AND EL3_Selection <> 
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="METER_EL3453_CFG">
-      <LineId Id="326" Count="1999" />
+      <LineId Id="326" Count="25" />
+      <LineId Id="356" Count="1969" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>
