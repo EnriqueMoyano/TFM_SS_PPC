@@ -20813,7 +20813,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kW"</v>
+                      <v n="Value">"%d kW"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -20837,7 +20837,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"297"</v>
+                      <v n="Value">"422"</v>
                     </o>
                   </l>
                 </o>
@@ -20990,7 +20990,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kVAr"</v>
+                      <v n="Value">"%d kVAr"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -21014,7 +21014,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"225"</v>
+                      <v n="Value">"942"</v>
                     </o>
                   </l>
                 </o>
@@ -21167,7 +21167,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kW"</v>
+                      <v n="Value">"%d kW"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -21191,7 +21191,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"297"</v>
+                      <v n="Value">"422"</v>
                     </o>
                   </l>
                 </o>
@@ -21344,7 +21344,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kVAr"</v>
+                      <v n="Value">"%d kVAr"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -21368,7 +21368,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"225"</v>
+                      <v n="Value">"942"</v>
                     </o>
                   </l>
                 </o>
@@ -21521,7 +21521,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kW"</v>
+                      <v n="Value">"%d kW"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -21545,7 +21545,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"297"</v>
+                      <v n="Value">"422"</v>
                     </o>
                   </l>
                 </o>
@@ -21698,7 +21698,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kVAr"</v>
+                      <v n="Value">"%d kVAr"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -21722,7 +21722,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"225"</v>
+                      <v n="Value">"942"</v>
                     </o>
                   </l>
                 </o>
@@ -21875,7 +21875,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kW"</v>
+                      <v n="Value">"%d kW"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -21899,7 +21899,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"297"</v>
+                      <v n="Value">"422"</v>
                     </o>
                   </l>
                 </o>
@@ -22052,7 +22052,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kVAr"</v>
+                      <v n="Value">"%d kVAr"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -22076,7 +22076,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"225"</v>
+                      <v n="Value">"942"</v>
                     </o>
                   </l>
                 </o>
@@ -22229,7 +22229,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kW"</v>
+                      <v n="Value">"%d kW"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -22253,7 +22253,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"297"</v>
+                      <v n="Value">"422"</v>
                     </o>
                   </l>
                 </o>
@@ -22406,7 +22406,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kVAr"</v>
+                      <v n="Value">"%d kVAr"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -22430,7 +22430,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"225"</v>
+                      <v n="Value">"942"</v>
                     </o>
                   </l>
                 </o>
@@ -22583,7 +22583,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kW"</v>
+                      <v n="Value">"%d kW"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -22607,7 +22607,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"297"</v>
+                      <v n="Value">"422"</v>
                     </o>
                   </l>
                 </o>
@@ -22760,7 +22760,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kVAr"</v>
+                      <v n="Value">"%d kVAr"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -22784,7 +22784,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"225"</v>
+                      <v n="Value">"942"</v>
                     </o>
                   </l>
                 </o>
@@ -22937,7 +22937,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kW"</v>
+                      <v n="Value">"%d kW"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -22961,7 +22961,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"297"</v>
+                      <v n="Value">"422"</v>
                     </o>
                   </l>
                 </o>
@@ -23114,7 +23114,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kVAr"</v>
+                      <v n="Value">"%d kVAr"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -23138,7 +23138,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"225"</v>
+                      <v n="Value">"942"</v>
                     </o>
                   </l>
                 </o>
@@ -23291,7 +23291,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kW"</v>
+                      <v n="Value">"%d kW"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -23315,7 +23315,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"297"</v>
+                      <v n="Value">"422"</v>
                     </o>
                   </l>
                 </o>
@@ -23468,7 +23468,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kVAr"</v>
+                      <v n="Value">"%d kVAr"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -23492,7 +23492,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"225"</v>
+                      <v n="Value">"942"</v>
                     </o>
                   </l>
                 </o>
@@ -23645,7 +23645,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kW"</v>
+                      <v n="Value">"%d kW"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -23669,7 +23669,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"297"</v>
+                      <v n="Value">"422"</v>
                     </o>
                   </l>
                 </o>
@@ -23822,7 +23822,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kVAr"</v>
+                      <v n="Value">"%d kVAr"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -23846,7 +23846,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"225"</v>
+                      <v n="Value">"942"</v>
                     </o>
                   </l>
                 </o>
@@ -23999,7 +23999,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kW"</v>
+                      <v n="Value">"%d kW"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -24023,7 +24023,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"297"</v>
+                      <v n="Value">"422"</v>
                     </o>
                   </l>
                 </o>
@@ -24176,7 +24176,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kVAr"</v>
+                      <v n="Value">"%d kVAr"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -24200,7 +24200,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"225"</v>
+                      <v n="Value">"942"</v>
                     </o>
                   </l>
                 </o>
@@ -24353,7 +24353,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kW"</v>
+                      <v n="Value">"%d kW"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -24377,7 +24377,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"297"</v>
+                      <v n="Value">"422"</v>
                     </o>
                   </l>
                 </o>
@@ -24530,7 +24530,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kVAr"</v>
+                      <v n="Value">"%d kVAr"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -24554,7 +24554,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"225"</v>
+                      <v n="Value">"942"</v>
                     </o>
                   </l>
                 </o>
@@ -24707,7 +24707,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kW"</v>
+                      <v n="Value">"%d kW"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -24731,7 +24731,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"297"</v>
+                      <v n="Value">"422"</v>
                     </o>
                   </l>
                 </o>
@@ -24884,7 +24884,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kVAr"</v>
+                      <v n="Value">"%d kVAr"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -24908,7 +24908,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"225"</v>
+                      <v n="Value">"942"</v>
                     </o>
                   </l>
                 </o>
@@ -25061,7 +25061,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kW"</v>
+                      <v n="Value">"%d kW"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -25085,7 +25085,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"297"</v>
+                      <v n="Value">"422"</v>
                     </o>
                   </l>
                 </o>
@@ -25238,7 +25238,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kVAr"</v>
+                      <v n="Value">"%d kVAr"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -25262,7 +25262,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"225"</v>
+                      <v n="Value">"942"</v>
                     </o>
                   </l>
                 </o>
@@ -25415,7 +25415,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kW"</v>
+                      <v n="Value">"%d kW"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -25439,7 +25439,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"297"</v>
+                      <v n="Value">"422"</v>
                     </o>
                   </l>
                 </o>
@@ -25592,7 +25592,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kVAr"</v>
+                      <v n="Value">"%d kVAr"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -25616,7 +25616,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"225"</v>
+                      <v n="Value">"942"</v>
                     </o>
                   </l>
                 </o>
@@ -25769,7 +25769,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kW"</v>
+                      <v n="Value">"%d kW"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -25793,7 +25793,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"297"</v>
+                      <v n="Value">"422"</v>
                     </o>
                   </l>
                 </o>
@@ -25946,7 +25946,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%.1f kVAr"</v>
+                      <v n="Value">"%d kVAr"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -25970,7 +25970,7 @@ END_IF"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"225"</v>
+                      <v n="Value">"942"</v>
                     </o>
                   </l>
                 </o>
@@ -26090,10 +26090,10 @@ END_IF"</v>
               <d n="FbMethods" t="CaseInsensitiveHashtable" ckt="String" cvt="Guid">
                 <v>FB_Init</v>
                 <v>431dc1d6-8f57-460a-9559-f882e3a5acda</v>
-                <v>FB_Exit</v>
-                <v>dfbb684d-78bb-497b-b234-90729578fa6a</v>
                 <v>FB_Reinit</v>
                 <v>891db3ac-f2f8-434a-83dd-6285b285b6ff</v>
+                <v>FB_Exit</v>
+                <v>dfbb684d-78bb-497b-b234-90729578fa6a</v>
               </d>
               <v n="FbName">"NotImportant"</v>
               <v n="FbGuid">{1bfc9824-200f-4442-b721-4c72901af2c1}</v>

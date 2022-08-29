@@ -37,7 +37,8 @@ VAR
 	Error_Voltage_Guard_Max_Error_L2: BOOL;		// Error read/writing Voltage max error L2
 	Error_Voltage_Guard_Max_Error_L3: BOOL;		// Error read/writing Voltage max error L3
 
-	dummy: int;
+	dummy: INT;
+	dummy_bool: bool;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -100,7 +101,7 @@ EL3XXX_Conf(
 	Error_Voltage_Guard_Max_Error_L3=> Error_Voltage_Guard_Max_Error_L3,
 	(* EL3783 *)
 	//Current Range
-	Error_Current_Range=> Error_Current_Range,
+	Error_Current_Range=> dummy_bool,
 	(**********************************************************)
 	(********************* SETTINGS INPUTS ********************)
 	//Nominal Voltage

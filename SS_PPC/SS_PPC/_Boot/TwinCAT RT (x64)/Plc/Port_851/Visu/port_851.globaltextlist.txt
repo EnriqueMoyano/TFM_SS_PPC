@@ -1,17 +1,22 @@
 Id;Default
 408; invert PI
+481;%%.1f kW%
 612;%%.2f %
 37;%.1f
 225;%.1f kVAr
 297;%.1f kW
+75;%.1f kW%
 250;%.1fkVAr
 143;%.2f
 848;%.2f %%
+459;%.2f kW
 238;%.3f
 824;%.3f kVAr
 667;%.3f kW
 633;%.3f V
+942;%d kVAr
 637;%d kVArh
+422;%d kW
 393;%d kWh
 101;%f.3
 239;%s
@@ -51,10 +56,15 @@ Id;Default
 569;Conv 8
 394;Conv 9
 135;Converters
+253;Converters gen
+765;Converters generation
 565;Energy_act
 171;Er_act_tot
 966;Er_reac_tot
 521;I ratio R
+770;I ratio S
+867;I ratio T
+290;Loads total
 221;Lost comms on / off
 948;Main
 110;Measures
@@ -70,6 +80,7 @@ Id;Default
 851;P invert PI
 887;P loop
 321;P measured
+206;P net
 64;P PI invert
 899;P safety
 264;Phase P_min
@@ -77,6 +88,7 @@ Id;Default
 875;PI Kp
 479;PI Kp_min
 257;PI TI
+43;PoC net
 392;P_3ph
 113;P_control
 992;P_measured
