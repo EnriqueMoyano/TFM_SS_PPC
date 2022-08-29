@@ -91,8 +91,68 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"955"</v>
+              <v n="TextDefault">"0°"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"4316"</v>
+              <v n="TextDefault">"120°"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1928"</v>
+              <v n="TextDefault">"150°"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"2469"</v>
+              <v n="TextDefault">"180°"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"674"</v>
               <v n="TextDefault">"192.168.254.32"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1336"</v>
+              <v n="TextDefault">"210°"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1219"</v>
+              <v n="TextDefault">"240°"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"4647"</v>
+              <v n="TextDefault">"270°"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1299"</v>
+              <v n="TextDefault">"300°"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"3128"</v>
+              <v n="TextDefault">"30°"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"3271"</v>
+              <v n="TextDefault">"330°"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1371"</v>
+              <v n="TextDefault">"60°"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"2194"</v>
+              <v n="TextDefault">"90°"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -203,6 +263,11 @@
             <o>
               <v n="TextID">"966"</v>
               <v n="TextDefault">"Er_reac_tot"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"521"</v>
+              <v n="TextDefault">"I ratio R"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -369,6 +434,21 @@ config"</v>
             <o>
               <v n="TextID">"659"</v>
               <v n="TextDefault">"Sat min"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"784"</v>
+              <v n="TextDefault">"V ratio RS"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"616"</v>
+              <v n="TextDefault">"V ratio ST"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"833"</v>
+              <v n="TextDefault">"V ratio TR"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>

@@ -22,6 +22,12 @@ VAR_GLOBAL
 	S_L1_pu:					REAL;
 	S_L2_pu:					REAL;
 	S_L3_pu:					REAL;
+	V_L1N_pu:					REAL;
+	V_L2N_pu:					REAL;
+	V_L3N_pu:					REAL;
+	I_L1_pu:					REAL;
+	I_L2_pu:					REAL;
+	I_L3_pu:					REAL;
 		//Three-phase electrical parameters in p.u.
 	P_pu:						REAL;
 	Q_pu:						REAL;

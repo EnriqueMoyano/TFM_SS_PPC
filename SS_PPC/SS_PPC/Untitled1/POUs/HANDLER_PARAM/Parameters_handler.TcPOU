@@ -707,6 +707,96 @@ Param_handler(
 	Logic_var_out_bl=> GVL_POWERMETER.Alg_lost_comms_enable, 
 	GUI_var_out=> GVL_HANDLER.GUI_vars[Lost_comms_enable], 
 	Modbus_variable_out=> GVL_HANDLER.Modbus_srv_vars[Lost_comms_enable]);
+
+// MB_address 41201. V trfr measures RS
+Handler_floats(
+	Number_variable:= V_ratio_RS, 
+	Internal_logic_var:= GVL_PM_CONFIG.Voltage_trafo_rat_L1, 
+	GUI_var:= GVL_HANDLER.GUI_vars[V_ratio_RS], 
+	Modbus_var:= ADR(GVL_HANDLER.Modbus_srv_vars[V_ratio_RS]), 
+	RO_RW:= R_W, 
+	Min_val:= -3.402823E+38, 
+	Max_val:= 3.402823E+38, 
+	Def_val:= 1, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src,  
+	Logic_var_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[V_ratio_RS]);
+	
+// MB_address 41203. V trfr measures ST
+Handler_floats(
+	Number_variable:= V_ratio_ST, 
+	Internal_logic_var:= GVL_PM_CONFIG.Voltage_trafo_rat_L2, 
+	GUI_var:= GVL_HANDLER.GUI_vars[V_ratio_ST], 
+	Modbus_var:= ADR(GVL_HANDLER.Modbus_srv_vars[V_ratio_ST]), 
+	RO_RW:= R_W, 
+	Min_val:= -3.402823E+38, 
+	Max_val:= 3.402823E+38, 
+	Def_val:= 1, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src,  
+	Logic_var_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[V_ratio_ST]);
+	
+// MB_address 41205. V trfr measures RS
+Handler_floats(
+	Number_variable:= V_ratio_TR, 
+	Internal_logic_var:= GVL_PM_CONFIG.Voltage_trafo_rat_L3, 
+	GUI_var:= GVL_HANDLER.GUI_vars[V_ratio_TR], 
+	Modbus_var:= ADR(GVL_HANDLER.Modbus_srv_vars[V_ratio_TR]), 
+	RO_RW:= R_W, 
+	Min_val:= -3.402823E+38, 
+	Max_val:= 3.402823E+38, 
+	Def_val:= 1, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src,  
+	Logic_var_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[V_ratio_TR]);
+
+// MB_address 41207. I trfr measures ratio R
+Handler_floats(
+	Number_variable:= I_ratio_R, 
+	Internal_logic_var:= GVL_PM_CONFIG.Current_trafo_rat_L1, 
+	GUI_var:= GVL_HANDLER.GUI_vars[I_ratio_R], 
+	Modbus_var:= ADR(GVL_HANDLER.Modbus_srv_vars[I_ratio_R]), 
+	RO_RW:= R_W, 
+	Min_val:= -3.402823E+38, 
+	Max_val:= 3.402823E+38, 
+	Def_val:= 1, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src,  
+	Logic_var_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[I_ratio_R]);
+
+// MB_address 41209. I trfr measures ratio S
+Handler_floats(
+	Number_variable:= I_ratio_S, 
+	Internal_logic_var:= GVL_PM_CONFIG.Current_trafo_rat_L2, 
+	GUI_var:= GVL_HANDLER.GUI_vars[I_ratio_S], 
+	Modbus_var:= ADR(GVL_HANDLER.Modbus_srv_vars[I_ratio_S]), 
+	RO_RW:= R_W, 
+	Min_val:= -3.402823E+38, 
+	Max_val:= 3.402823E+38, 
+	Def_val:= 1, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src,  
+	Logic_var_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[I_ratio_S]);
+
+// MB_address 41211. I trfr measures ratio T
+Handler_floats(
+	Number_variable:= I_ratio_T, 
+	Internal_logic_var:= GVL_PM_CONFIG.Current_trafo_rat_L3, 
+	GUI_var:= GVL_HANDLER.GUI_vars[I_ratio_T], 
+	Modbus_var:= ADR(GVL_HANDLER.Modbus_srv_vars[I_ratio_T]), 
+	RO_RW:= R_W, 
+	Min_val:= -3.402823E+38, 
+	Max_val:= 3.402823E+38, 
+	Def_val:= 1, 
+	Vars_initialization:= GVL_HANDLER.Init_vars, 
+	Input_source:= GVL_HANDLER.Input_src,  
+	Logic_var_out=> , 
+	GUI_var_out=> GVL_HANDLER.GUI_vars[I_ratio_T]);
 ]]></ST>
     </Implementation>
     <LineIds Name="Parameters_handler">
@@ -745,9 +835,11 @@ Param_handler(
       <LineId Id="172" Count="0" />
       <LineId Id="240" Count="15" />
       <LineId Id="1014" Count="0" />
-      <LineId Id="1016" Count="14" />
+      <LineId Id="1153" Count="10" />
+      <LineId Id="1027" Count="0" />
+      <LineId Id="1164" Count="2" />
       <LineId Id="298" Count="0" />
-      <LineId Id="1015" Count="0" />
+      <LineId Id="1167" Count="0" />
       <LineId Id="673" Count="85" />
       <LineId Id="860" Count="13" />
       <LineId Id="773" Count="85" />
@@ -772,7 +864,14 @@ Param_handler(
       <LineId Id="961" Count="15" />
       <LineId Id="909" Count="0" />
       <LineId Id="977" Count="32" />
+      <LineId Id="1174" Count="13" />
       <LineId Id="960" Count="0" />
+      <LineId Id="1188" Count="0" />
+      <LineId Id="1190" Count="12" />
+      <LineId Id="1189" Count="0" />
+      <LineId Id="1203" Count="0" />
+      <LineId Id="1205" Count="58" />
+      <LineId Id="1204" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

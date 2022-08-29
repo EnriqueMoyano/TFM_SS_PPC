@@ -45,6 +45,15 @@ GVL_POWERMETER.S_pu:= GVL_POWERMETER.Power_analyzer.S_kVA * S_nom_facility_inv;
 GVL_POWERMETER.V_line_avg_pu:= GVL_POWERMETER.V_line_avg_Volt * V_nom_facility_inv;
 GVL_POWERMETER.V_phase_avg_pu:= GVL_POWERMETER.V_phase_avg_Volt * V_nom_facility_inv;
 
+GVL_POWERMETER.V_L1N_pu:= GVL_POWERMETER.Power_analyzer.V_L1N_Volt / GVL_POWERMETER.V_phase_avg_pu;
+GVL_POWERMETER.V_L2N_pu:= GVL_POWERMETER.Power_analyzer.V_L2N_Volt / GVL_POWERMETER.V_phase_avg_pu;
+GVL_POWERMETER.V_L3N_pu:= GVL_POWERMETER.Power_analyzer.V_L3N_Volt / GVL_POWERMETER.V_phase_avg_pu;
+
+//Per unit currents obtention
+GVL_POWERMETER.I_L1_pu:= GVL_POWERMETER.P_L1_pu / (GVL_POWERMETER.V_L1N_pu * GVL_POWERMETER.Power_analyzer.cos_phi_L1);
+GVL_POWERMETER.I_L2_pu:= GVL_POWERMETER.P_L2_pu / (GVL_POWERMETER.V_L2N_pu * GVL_POWERMETER.Power_analyzer.cos_phi_L2);
+GVL_POWERMETER.I_L3_pu:= GVL_POWERMETER.P_L3_pu / (GVL_POWERMETER.V_L3N_pu * GVL_POWERMETER.Power_analyzer.cos_phi_L3);
+
 //Active energies calculation. It is an infinitesimal addition (an integration of P_measured)
 GVL_POWERMETER.Active_er_tot_kWh:= REAL_TO_LINT(GVL_POWERMETER.Power_analyzer.P_kW * tick_hourly) + 
 												GVL_POWERMETER.Active_er_tot_kWh;
@@ -102,6 +111,10 @@ MEMCPY(destAddr:= ADR(GVL_HANDLER.Modbus_srv_vars[P_L1_kW]), srcAddr:= ADR(GVL_P
       <LineId Id="41" Count="0" />
       <LineId Id="33" Count="0" />
       <LineId Id="40" Count="0" />
+      <LineId Id="182" Count="1" />
+      <LineId Id="185" Count="1" />
+      <LineId Id="179" Count="2" />
+      <LineId Id="188" Count="1" />
       <LineId Id="45" Count="0" />
       <LineId Id="131" Count="20" />
       <LineId Id="62" Count="2" />
