@@ -43,9 +43,14 @@ FOR I := 1 TO GVL_CONV_COMMS.NUMBER_CONVERTERS DO;
 		IF GVL_POWERMETER.M_board_Meter_status <> 8 THEN
 			GVL_CONV_COMMS.Setpoint_P[I] := REAL_TO_WORD(GVL_P_CONTROL.P_safety);
 			GVL_CONV_COMMS.Setpoint_Q[I] := REAL_TO_INT(GVL_Q_CONTROL.Q_safety);
-			GVL_POWERMETER.Meter_comms_status:= TRUE;
 		END_IF
 	END_IF
+	
+	CASE GVL_POWERMETER.M_board_Meter_status OF
+		8: GVL_POWERMETER.Meter_comms_status:= TRUE;
+		ELSE
+			GVL_POWERMETER.Meter_comms_status:= FALSE;
+	END_CASE
 	
 	IF ((GVL_CONV_COMMS.Comms_Control_Word[I] AND 16#0001) > 0 ) THEN
 			GVL_CONV_COMMS.Start_Command[I] := 1;
@@ -53,19 +58,12 @@ FOR I := 1 TO GVL_CONV_COMMS.NUMBER_CONVERTERS DO;
 			GVL_CONV_COMMS.Start_Command[I] := 0;
 		END_IF
 		
-		IF ((GVL_CONV_COMMS.Comms_Control_Word[I] AND 16#0004) > 0 ) THEN
+		IF ((GVL_CONV_COMMS.Comms_Control_Word[I] AND 16#0002) > 0 ) THEN
 			GVL_CONV_COMMS.Night_Mode_Active[I] := 1;
 		ELSE
 			GVL_CONV_COMMS.Night_Mode_Active[I] := 0;
 		END_IF
-
 END_FOR;
-
-
-//****************************************************************************************
-//							PLANT GLOBAL START / STOP
-//****************************************************************************************
-//Global_Start_Stop();
 
 //****************************************************************************************
 //                               n/N COEFFICIENT
@@ -80,7 +78,14 @@ nN_coeff_calculation();
 Modbus_mapping();]]></ST>
     </Implementation>
     <LineIds Name="CONVERTERS_COMMS">
-      <LineId Id="264" Count="69" />
+      <LineId Id="264" Count="35" />
+      <LineId Id="301" Count="1" />
+      <LineId Id="338" Count="2" />
+      <LineId Id="342" Count="1" />
+      <LineId Id="341" Count="0" />
+      <LineId Id="303" Count="11" />
+      <LineId Id="316" Count="0" />
+      <LineId Id="323" Count="10" />
       <LineId Id="184" Count="0" />
     </LineIds>
   </POU>

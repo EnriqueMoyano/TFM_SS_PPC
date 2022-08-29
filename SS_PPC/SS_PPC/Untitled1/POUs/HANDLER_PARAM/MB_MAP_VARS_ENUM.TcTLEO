@@ -1,0 +1,742 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <EnumerationTextList Name="MB_MAP_VARS_ENUM" Id="{7ec9e1d6-220f-422b-9ddc-4aed3e74df3f}">
+    <Declaration><![CDATA[TYPE MB_MAP_VARS_ENUM :
+(
+	Plant_S_nom:= 0,
+	Plant_V_nom:= 2,
+	Plant_f_nom:= 4,
+	N_converters:= 20,
+	nN_converters:= 21,
+	Control_conv_0:= 22,
+	Control_conv_1:= 23,
+	Control_conv_2:= 24,
+	Control_conv_3:= 25,
+	Control_conv_4:= 26,
+	Control_conv_5:= 27,
+	Control_conv_6:= 28,
+	Control_conv_7:= 29,
+	Control_conv_8:= 30,
+	Control_conv_9:= 31,
+	Control_conv_10:= 32,
+	Control_conv_11:= 33,
+	Control_conv_12:= 34,
+	Control_conv_13:= 35,
+	Control_conv_14:= 36,
+	Control_conv_15:= 37,
+	Control_conv_16:= 38,
+	Control_conv_17:= 39,
+	Control_conv_18:= 40,
+	Control_conv_19:= 41,
+	Control_conv_20:= 42,
+	Control_conv_21:= 43,
+	Control_conv_22:= 44,
+	Control_conv_23:= 45,
+	Control_conv_24:= 46,
+	Control_conv_25:= 47,
+	P_loop:= 300,
+	P_reference:= 301,
+	P_feedback:= 302,
+	P_output:= 303,
+	P_kp:= 304,
+	P_kp_min:= 305,
+	P_ti:= 306,
+	P_high:= 307,
+	P_low:= 308,
+	P_invert:= 309,
+	P_safety:= 310,
+	P_min_charge:= 311,
+	Q_loop:= 500,
+	Q_reference:= 501,
+	Q_feedback:= 502,
+	Q_output:= 503,
+	Q_kp:= 504,
+	Q_kp_min:= 505,
+	Q_ti:= 506,
+	Q_high:= 507,
+	Q_low:= 508,
+	Q_invert:= 509,
+	Q_safety:= 510,
+	Ramp_enable:= 511,
+	Time_span:= 512,
+	R_up_value:= 513,
+	R_down_value:= 514,
+	R_units:= 515,
+	P_L1_kW:= 1000,
+	P_L2_kW:= 1002,
+	P_L3_kW:= 1004,
+	Q_L1_kVAr:= 1006,
+	Q_L2_kVAr:= 1008,
+	Q_L3_kVAr:= 1010,
+	S_L1_kVA:= 1012,
+	S_L2_kVA:= 1014,
+	S_L3_kVA:= 1016,
+	cos_phi_L1:= 1018,
+	cos_phi_L2:= 1020,
+	cos_phi_L3:= 1022,
+	V_L1N_Volt:= 1024,
+	V_L2N_Volt:= 1026,
+	V_L3N_Volt:= 1028,
+	P_tot_kW:= 1030,
+	Q_tot_kVAr:= 1032,
+	S_tot_kVA:= 1034,
+	Freq_Hz:= 1036,
+	cos_phi:= 1038,
+	V_L1L2_Volt:= 1040,
+	V_L2L3_Volt:= 1042,
+	V_L3L1_Volt:= 1044,
+	I_L1_angle:= 1046,
+	I_L2_angle:= 1048,
+	I_L3_angle:= 1050,
+	V_L1L2_angle:= 1052,
+	V_L1L3_angle:= 1054,
+	V_phase_avg_Volt:= 1080,
+	V_line_avg_Volt:= 1082,
+	P_L1_pu:= 1084,
+	P_L2_pu:= 1086,
+	P_L3_pu:= 1088,
+	Q_L1_pu:= 1090,
+	Q_L2_pu:= 1092,
+	Q_L3_pu:= 1094,
+	S_L1_pu:= 1096,
+	S_L2_pu:= 1098,
+	S_L3_pu:= 1100,
+	P_tot_pu:= 1102,
+	Q_tot_pu:= 1104,
+	S_tot_pu:= 1106,
+	V_phase_avg_pu:= 1108,
+	V_line_avg_pu:= 1110,
+	Active_er_pos_kWh:= 1200,
+	Active_er_neg_kWh:= 1204,
+	Active_er_tot_kWh:= 1208,
+	React_er_pos_kVArh:= 1212,
+	React_er_neg_kVArh:= 1216,
+	React_er_tot_kVArh:= 1220,
+	Energies_reset:= 1224,
+	Meter_status:= 1130,
+	Lost_comms_enable:= 1131,
+	V_ratio_RS:= 1200,
+	V_ratio_ST:= 1202,
+	V_ratio_TR:= 1204,
+	I_ratio_R:=	1206,
+	I_ratio_S:=	1208,
+	I_ratio_T:=	1210
+
+);
+END_TYPE]]></Declaration>
+    <XmlArchive>
+      <Data>
+        <o xml:space="preserve" t="TextListEnumerationTextListObject">
+          <l n="TextList" t="ArrayList" cet="TextListRow">
+            <o>
+              <v n="TextID">"Plant_S_nom"</v>
+              <v n="TextDefault">"0"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Plant_V_nom"</v>
+              <v n="TextDefault">"2"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Plant_f_nom"</v>
+              <v n="TextDefault">"4"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"N_converters"</v>
+              <v n="TextDefault">"20"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"nN_converters"</v>
+              <v n="TextDefault">"21"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_0"</v>
+              <v n="TextDefault">"22"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_1"</v>
+              <v n="TextDefault">"23"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_2"</v>
+              <v n="TextDefault">"24"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_3"</v>
+              <v n="TextDefault">"25"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_4"</v>
+              <v n="TextDefault">"26"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_5"</v>
+              <v n="TextDefault">"27"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_6"</v>
+              <v n="TextDefault">"28"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_7"</v>
+              <v n="TextDefault">"29"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_8"</v>
+              <v n="TextDefault">"30"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_9"</v>
+              <v n="TextDefault">"31"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_10"</v>
+              <v n="TextDefault">"32"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_11"</v>
+              <v n="TextDefault">"33"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_12"</v>
+              <v n="TextDefault">"34"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_13"</v>
+              <v n="TextDefault">"35"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_14"</v>
+              <v n="TextDefault">"36"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_15"</v>
+              <v n="TextDefault">"37"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_16"</v>
+              <v n="TextDefault">"38"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_17"</v>
+              <v n="TextDefault">"39"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_18"</v>
+              <v n="TextDefault">"40"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_19"</v>
+              <v n="TextDefault">"41"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_20"</v>
+              <v n="TextDefault">"42"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_21"</v>
+              <v n="TextDefault">"43"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_22"</v>
+              <v n="TextDefault">"44"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_23"</v>
+              <v n="TextDefault">"45"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_24"</v>
+              <v n="TextDefault">"46"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Control_conv_25"</v>
+              <v n="TextDefault">"47"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_loop"</v>
+              <v n="TextDefault">"300"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_reference"</v>
+              <v n="TextDefault">"301"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_feedback"</v>
+              <v n="TextDefault">"302"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_output"</v>
+              <v n="TextDefault">"303"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_kp"</v>
+              <v n="TextDefault">"304"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_kp_min"</v>
+              <v n="TextDefault">"305"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_ti"</v>
+              <v n="TextDefault">"306"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_high"</v>
+              <v n="TextDefault">"307"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_low"</v>
+              <v n="TextDefault">"308"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_invert"</v>
+              <v n="TextDefault">"309"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_safety"</v>
+              <v n="TextDefault">"310"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_min_charge"</v>
+              <v n="TextDefault">"311"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_loop"</v>
+              <v n="TextDefault">"500"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_reference"</v>
+              <v n="TextDefault">"501"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_feedback"</v>
+              <v n="TextDefault">"502"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_output"</v>
+              <v n="TextDefault">"503"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_kp"</v>
+              <v n="TextDefault">"504"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_kp_min"</v>
+              <v n="TextDefault">"505"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_ti"</v>
+              <v n="TextDefault">"506"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_high"</v>
+              <v n="TextDefault">"507"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_low"</v>
+              <v n="TextDefault">"508"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_invert"</v>
+              <v n="TextDefault">"509"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_safety"</v>
+              <v n="TextDefault">"510"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Ramp_enable"</v>
+              <v n="TextDefault">"511"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Time_span"</v>
+              <v n="TextDefault">"512"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"R_up_value"</v>
+              <v n="TextDefault">"513"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"R_down_value"</v>
+              <v n="TextDefault">"514"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"R_units"</v>
+              <v n="TextDefault">"515"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_L1_kW"</v>
+              <v n="TextDefault">"1000"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_L2_kW"</v>
+              <v n="TextDefault">"1002"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_L3_kW"</v>
+              <v n="TextDefault">"1004"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_L1_kVAr"</v>
+              <v n="TextDefault">"1006"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_L2_kVAr"</v>
+              <v n="TextDefault">"1008"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_L3_kVAr"</v>
+              <v n="TextDefault">"1010"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"S_L1_kVA"</v>
+              <v n="TextDefault">"1012"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"S_L2_kVA"</v>
+              <v n="TextDefault">"1014"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"S_L3_kVA"</v>
+              <v n="TextDefault">"1016"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"cos_phi_L1"</v>
+              <v n="TextDefault">"1018"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"cos_phi_L2"</v>
+              <v n="TextDefault">"1020"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"cos_phi_L3"</v>
+              <v n="TextDefault">"1022"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"V_L1N_Volt"</v>
+              <v n="TextDefault">"1024"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"V_L2N_Volt"</v>
+              <v n="TextDefault">"1026"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"V_L3N_Volt"</v>
+              <v n="TextDefault">"1028"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_tot_kW"</v>
+              <v n="TextDefault">"1030"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_tot_kVAr"</v>
+              <v n="TextDefault">"1032"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"S_tot_kVA"</v>
+              <v n="TextDefault">"1034"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Freq_Hz"</v>
+              <v n="TextDefault">"1036"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"cos_phi"</v>
+              <v n="TextDefault">"1038"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"V_L1L2_Volt"</v>
+              <v n="TextDefault">"1040"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"V_L2L3_Volt"</v>
+              <v n="TextDefault">"1042"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"V_L3L1_Volt"</v>
+              <v n="TextDefault">"1044"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"I_L1_angle"</v>
+              <v n="TextDefault">"1046"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"I_L2_angle"</v>
+              <v n="TextDefault">"1048"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"I_L3_angle"</v>
+              <v n="TextDefault">"1050"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"V_L1L2_angle"</v>
+              <v n="TextDefault">"1052"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"V_L1L3_angle"</v>
+              <v n="TextDefault">"1054"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"V_phase_avg_Volt"</v>
+              <v n="TextDefault">"1080"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"V_line_avg_Volt"</v>
+              <v n="TextDefault">"1082"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_L1_pu"</v>
+              <v n="TextDefault">"1084"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_L2_pu"</v>
+              <v n="TextDefault">"1086"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_L3_pu"</v>
+              <v n="TextDefault">"1088"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_L1_pu"</v>
+              <v n="TextDefault">"1090"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_L2_pu"</v>
+              <v n="TextDefault">"1092"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_L3_pu"</v>
+              <v n="TextDefault">"1094"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"S_L1_pu"</v>
+              <v n="TextDefault">"1096"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"S_L2_pu"</v>
+              <v n="TextDefault">"1098"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"S_L3_pu"</v>
+              <v n="TextDefault">"1100"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"P_tot_pu"</v>
+              <v n="TextDefault">"1102"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Q_tot_pu"</v>
+              <v n="TextDefault">"1104"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"S_tot_pu"</v>
+              <v n="TextDefault">"1106"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"V_phase_avg_pu"</v>
+              <v n="TextDefault">"1108"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"V_line_avg_pu"</v>
+              <v n="TextDefault">"1110"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Active_er_pos_kWh"</v>
+              <v n="TextDefault">"1200"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Active_er_neg_kWh"</v>
+              <v n="TextDefault">"1204"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Active_er_tot_kWh"</v>
+              <v n="TextDefault">"1208"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"React_er_pos_kVArh"</v>
+              <v n="TextDefault">"1212"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"React_er_neg_kVArh"</v>
+              <v n="TextDefault">"1216"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"React_er_tot_kVArh"</v>
+              <v n="TextDefault">"1220"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Energies_reset"</v>
+              <v n="TextDefault">"1224"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Meter_status"</v>
+              <v n="TextDefault">"1130"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Lost_comms_enable"</v>
+              <v n="TextDefault">"1131"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"V_ratio_RS"</v>
+              <v n="TextDefault">"1200"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"V_ratio_ST"</v>
+              <v n="TextDefault">"1202"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"V_ratio_TR"</v>
+              <v n="TextDefault">"1204"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"I_ratio_R"</v>
+              <v n="TextDefault">"1206"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"I_ratio_S"</v>
+              <v n="TextDefault">"1208"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"I_ratio_T"</v>
+              <v n="TextDefault">"1210"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">""</v>
+              <v n="TextDefault">""</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+          </l>
+          <l n="Languages" t="ArrayList" />
+          <v n="GuidInit">{e3af6b82-04e2-4ae3-8a21-d486f5069997}</v>
+          <v n="GuidReInit">{9b58da82-cced-4fea-8f61-695387554c76}</v>
+          <v n="GuidExitX">{279c8889-c474-4fc7-96d7-96435a96d714}</v>
+        </o>
+      </Data>
+      <TypeList>
+        <Type n="ArrayList">System.Collections.ArrayList</Type>
+        <Type n="Guid">System.Guid</Type>
+        <Type n="String">System.String</Type>
+        <Type n="TextListEnumerationTextListObject">{4b60233c-f940-4beb-b331-82133b520151}</Type>
+        <Type n="TextListRow">{53da1be7-ad25-47c3-b0e8-e26286dad2e0}</Type>
+      </TypeList>
+    </XmlArchive>
+  </EnumerationTextList>
+</TcPlcObject>

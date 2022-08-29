@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <Task Name="GUI_task" Id="{82af72f2-6039-42dc-9296-940fde365bb5}">
+    <!--CycleTime in micro seconds.-->
+    <CycleTime>200000</CycleTime>
+    <Priority>10</Priority>
+    <PouCall>
+      <Name>GUI_logic</Name>
+    </PouCall>
+    <TaskFBGuid>{3a3deea4-83ff-45f6-92d2-ada07e43d092}</TaskFBGuid>
+    <Fb_init>{8a34e983-3e2a-47b7-a7ad-2b7b70fa0d1f}</Fb_init>
+    <Fb_exit>{60ffde2b-cd47-4575-b0c2-492fcd1b1a96}</Fb_exit>
+    <CycleUpdate>{9d8f6e52-08a4-4114-831e-7372048295cb}</CycleUpdate>
+    <PostCycleUpdate>{1ff4dc2f-c2ca-4c7c-8411-01b06f699736}</PostCycleUpdate>
+  </Task>
+</TcPlcObject>

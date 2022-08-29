@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Data_transforming" Id="{4f23abf8-42c1-445e-a248-63ce2fa2e3d3}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Data_transforming
+VAR_INPUT
+	Number_variable: 			INT;
+	GUI_var: 					REAL;
+	Modbus_variable: 			WORD;
+	Internal_logic_var:			REAL;
+	RO_RW: 						INT;
+	Scale: 						REAL;
+	Min_val: 					REAL;
+	Max_val: 					REAL;
+	Def_val: 					REAL;
+	Vars_initialization:		BOOL;
+	Input_source:				BOOL; //TRUE -> Modbus, FALSE -> Web GUI
+END_VAR
+
+VAR_OUTPUT
+	Logic_var_out: 				REAL;
+	Logic_var_out_wd: 			WORD;
+	Logic_var_out_bl: 			BOOL;
+	
+	GUI_var_out: 				REAL;
+	Modbus_variable_out: 		WORD;
+END_VAR	
+
+VAR
+	Modbus_var_internal : 		REAL;
+	
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+***************************************************************************************************
+
+Function to control the process variable from WEBSERVER or MODBUS. Also applies scales for the MB
+
+*****************************************************************************************************
+*)
+
+// First of all, it is necessary to know if the variable is read or write
+IF RO_RW = R_W THEN
+	
+		// Check if the control is by webserver or by Modbus (in this case webserver)
+		IF NOT Input_source THEN
+			
+			// Compare if the web variable is different than the process variable
+			IF GUI_var <> Internal_logic_var THEN
+				// Checking if the new value is within the range.
+				IF 	GUI_var >= Min_val AND GUI_var <= Max_val THEN
+					Internal_logic_var := GUI_var;
+				ELSE
+					GUI_var := Internal_logic_var;
+				END_IF
+			END_IF
+		ELSE
+			// When the control is by Modbus apply scaling for decimal figures
+			Modbus_var_internal := (WORD_TO_INT(Modbus_variable)) * Scale;
+			// Compare if the Modbus variable is different than the process variable
+			IF Modbus_var_internal <> Internal_logic_var THEN
+				// Checking if the new value is within the range
+				IF 	Modbus_var_internal > Min_val AND Modbus_var_internal < Max_val THEN
+					Internal_logic_var := Modbus_var_internal;
+				ELSE
+					Modbus_var_internal := Internal_logic_var;
+				END_IF
+			
+			END_IF
+			
+		END_IF
+	ELSE
+	
+		Modbus_var_internal := Internal_logic_var;
+		GUI_var := Internal_logic_var;
+	
+END_IF
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+(*
+IF R_W_mode = R_W_STATUS THEN
+	
+	Proces_Variable_Word:= REAL_TO_WORD(Internal_logic_var);
+
+	Byte_Web_Variable:= REAL_TO_BYTE(GUI_var);
+	Byte_Modbus_Variable:= REAL_TO_BYTE(Modbus_variable);
+	
+	BYTE_EXTRACTION_1(	Divisible_Word:= Proces_Variable_Word,
+						Upper:= FALSE,
+						Selected_Byte=> Control_Byte,
+					 );
+	
+	BYTE_EXTRACTION_2(	Divisible_Word:= Proces_Variable_Word,
+						Upper:= TRUE,
+						Selected_Byte=> Status_Byte,
+					 );	
+
+					
+	
+	IF Data_Handling.Init_Data_Handling = FALSE THEN
+	
+		// Check if the control is by webserver or by Modbus (in this case webserver)
+		IF COMMS_VAR.Control_COMMS = 0 THEN
+			
+			// Compare if the web variable is different than the process variable
+			IF Byte_Web_variable <> Control_Byte THEN
+				
+				// Registering of the parameter that is going to be modified
+				//Data_Handling_VAR.Parameter_recording[USER] := ;
+				Data_Handling_VAR.Parameter_recording[PARAMETER_NUMBER] := Number_variable;
+				Data_Handling_VAR.Parameter_recording[OLD_VALUE] := BYTE_TO_REAL (Control_Byte);
+				Data_Handling_VAR.Parameter_recording_String := Description;
+			
+				// Checking if the new value is withing the range. Is adding +/- scale because the decimal 
+				IF 	Byte_Web_Variable >= Min_val AND Byte_Web_Variable <= Max_val THEN
+					Control_Byte := Byte_Web_Variable;
+				ELSE
+					Byte_Web_Variable := Control_Byte;
+				END_IF
+				
+				// Record the new value modified
+				Data_Handling_VAR.Parameter_recording[NEW_VALUE] := BYTE_TO_REAL(Byte_Web_Variable);
+			
+			END_IF
+			
+		ELSE
+		
+			// When the control is by Modbus, first of all, it is necessary scale the Modbus Variable
+			Modbus_Byte := Byte_Modbus_Variable;
+			
+			// Compare if the Modbus variable is different than the process variable
+			IF Modbus_Byte <> Control_Byte THEN
+				
+				// Registering of the parameter that is going to be modified
+				//Data_Handling_VAR.Parameter_recording[USER] := ;
+				Data_Handling_VAR.Parameter_recording[PARAMETER_NUMBER] := Number_variable;
+				Data_Handling_VAR.Parameter_recording[OLD_VALUE] := BYTE_TO_REAL(Control_Byte);
+				Data_Handling_VAR.Parameter_recording_String := Description;
+			
+				// Checking if the new value is withing the range. Is adding +/- scale because the decimal 
+				IF 	Modbus_Byte >= Min_val AND Modbus_Byte <= Max_val THEN
+					Control_Byte := Modbus_Byte;
+				ELSE
+					Modbus_Byte := Control_Byte;
+				END_IF
+				
+				// Record the new value modified
+				Data_Handling_VAR.Parameter_recording[NEW_VALUE] := BYTE_TO_REAL(Control_Byte);
+			
+			END_IF
+			
+		END_IF
+	ELSE
+	
+		Modbus_var_internal := Internal_logic_var;
+		GUI_var := Internal_logic_var;
+		
+		
+		
+	END_IF
+	
+	BYTE_UNION_1(	Upper_Byte:= Status_Byte,
+					Lower_Byte:= Control_Byte,
+					United_Word=> Proces_Variable_Word);
+
+	Internal_logic_var:= WORD_TO_REAL(Proces_Variable_Word);
+	
+	
+END_IF
+*)
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// Finally, either Read or Read/Write, and not Read/Write Word, logic variable is written in the Modbus and GUI
+	Logic_var_out:= Internal_logic_var;
+	Logic_var_out_wd:= REAL_TO_WORD(Internal_logic_var);
+	Logic_var_out_bl:= REAL_TO_BOOL(Internal_logic_var);
+	
+	GUI_var_out := Internal_logic_var;
+	Modbus_variable_out := REAL_TO_WORD(Internal_logic_var / scale);
+	
+// When the user do a initialization, all variables takes the default value
+IF Vars_initialization THEN
+	Logic_var_out := Def_val;
+	Logic_var_out_wd:= REAL_TO_WORD(Def_val);
+	Logic_var_out_bl:= REAL_TO_BOOL(Def_val);
+	
+	GUI_var_out := Def_val;
+	Modbus_variable_out := REAL_TO_WORD(Def_val / Scale);
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="Data_transforming">
+      <LineId Id="2419" Count="142" />
+      <LineId Id="2574" Count="0" />
+      <LineId Id="2578" Count="1" />
+      <LineId Id="2562" Count="2" />
+      <LineId Id="2566" Count="2" />
+      <LineId Id="2575" Count="0" />
+      <LineId Id="2580" Count="0" />
+      <LineId Id="2576" Count="0" />
+      <LineId Id="2569" Count="2" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

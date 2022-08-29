@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="GVL_PM_CONFIG" Id="{449f18fa-2214-44e6-9486-ef8e5687d484}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	//Variables needed to be in the data handling for the CoE analyzers boards configuration
+	Device_Type_Index				: INT;
+	Nominal_Voltage 				: REAL;
+	Nominal_Frequency 				: REAL;
+	Measurement_freq_range			: REAL;
+	Current_trafo_dly_L1 			: REAL;			// Set variable for Current transformer delay L1	
+	Current_trafo_dly_L2 			: REAL;			// Set variable for Current transformer delay L2
+	Current_trafo_dly_L3 			: REAL;			// Set variable for Current transformer delay L3
+	Current_trafo_range_L1 			: UDINT;		// Set variable for Current transformer range L1
+	Current_trafo_range_L2 			: UDINT;		// Set variable for Current transformer range L2
+	Current_trafo_range_L3 			: UDINT;		// Set variable for Current transformer range L3
+	Voltage_Guard_Min_Error_L1		: REAL;			// Set variable for Voltage min error L1
+	Voltage_Guard_Min_Error_L2		: REAL;			// Set variable for Voltage min error L2
+	Voltage_Guard_Min_Error_L3		: REAL;			// Set variable for Voltage min error L3
+	Voltage_Guard_Min_Warning_L1	: REAL;			// Set variable for Voltage min warning L1
+	Voltage_Guard_Min_Warning_L2	: REAL;			// Set variable for Voltage min warning L2
+	Voltage_Guard_Min_Warning_L3	: REAL;			// Set variable for Voltage min warning L3
+	Voltage_Guard_Max_Warning_L1	: REAL;			// Set variable for Voltage max warning L1
+	Voltage_Guard_Max_Warning_L2	: REAL;			// Set variable for Voltage max warning L2
+	Voltage_Guard_Max_Warning_L3	: REAL;			// Set variable for Voltage max warning L3
+	Voltage_Guard_Max_Error_L1		: REAL;			// Set variable for Voltage max error L1
+	Voltage_Guard_Max_Error_L2		: REAL;			// Set variable for Voltage max error L2
+	Voltage_Guard_Max_Error_L3		: REAL;			// Set variable for Voltage max error L3
+
+	NetID_EL3XXX 		AT %I*	: AMSNETID ;
+	SlaveID_EL3XXX 		AT %I*	: WORD ;
+	 	
+	NetID_EL3XXX_2 		AT %I*	: AMSNETID ;
+	SlaveID_EL3XXX_2 	AT %I*	: WORD ;
+END_VAR
+
+VAR_GLOBAL PERSISTENT
+	Current_trafo_rat_L1 			: REAL;			// Set variable for Current transformer ratio L1
+	Current_trafo_rat_L2 			: REAL;			// Set variable for Current transformer ratio L2
+	Current_trafo_rat_L3 			: REAL;			// Set variable for Current transformer ratio L3
+	Voltage_trafo_rat_L1 			: REAL;			// Set variable for Voltage transformer ratio L1
+	Voltage_trafo_rat_L2 			: REAL;			// Set variable for Voltage transformer ratio L2
+	Voltage_trafo_rat_L3 			: REAL;			// Set variable for Voltage transformer ratio L3
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

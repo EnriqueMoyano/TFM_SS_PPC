@@ -15,7 +15,7 @@ END_VAR
     <Implementation>
       <ST><![CDATA[//Control variables assignment
 Q_setpoint:= GVL_Q_CONTROL.Q_reference;
-Q_feedback:= GVL_POWERMETER.Power_analyzer.Q_pu;
+Q_feedback:= GVL_POWERMETER.Q_pu;
 
 IF GVL_Q_CONTROL.Ramp_enable THEN
 

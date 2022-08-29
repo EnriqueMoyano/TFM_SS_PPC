@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Data_transform_int64" Id="{09c51ee1-f3be-4d5c-b78f-0cde1ab6a831}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Data_transform_int64
+VAR_INPUT
+	Number_variable: 				INT;
+	Internal_logic_var: 			LINT;
+	GUI_var: 						LINT;
+	MB_variable: 					POINTER TO BYTE;
+	RO_RW: 							INT;
+	Min_val: 						LINT;
+	Max_val: 						LINT;
+	Def_val: 						LINT;
+	Vars_initialization:			BOOL;
+	Input_source:					BOOL; //TRUE -> Modbus, FALSE -> Web GUI
+
+END_VAR
+
+VAR_OUTPUT
+	Logic_var_int64_out: 			LINT;
+	GUI_var_out: 					REAL;
+END_VAR
+
+VAR
+	Pt_LINT: 						POINTER TO LINT;
+	Aux_LINT:						LINT; 
+	
+	R_W_Mode_String: 				STRING;
+	
+	Debug_Scale: 					INT:= 1;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF RO_RW = R_W THEN
+	IF NOT Input_source THEN
+		// Compare if the web variable is different than the process variable
+		IF GUI_var <> Internal_logic_var THEN
+			// Checking if the new value is withing the range. Is adding +/- scale because the decimal 
+			IF 	GUI_var > Min_val AND GUI_var < Max_val THEN
+				Internal_logic_var := GUI_var;
+			ELSE
+				GUI_var := Internal_logic_var;
+			END_IF
+		END_IF
+	ELSE
+		Pt_LINT:= MB_variable;
+		Aux_LINT:= Pt_LINT^;		
+		// Compare if the modbus variable is different
+		IF Aux_LINT <> Internal_logic_var THEN		
+			// Checking if the new value is withing the range.  
+			IF 	Aux_LINT > Min_val AND Aux_LINT < Max_val THEN
+				Internal_logic_var := Aux_LINT;
+			ELSE
+				Aux_LINT := Internal_logic_var;
+			END_IF
+		END_IF
+	END_IF
+ELSE
+	Aux_LINT := Internal_logic_var;
+	GUI_var := Internal_logic_var;
+END_IF
+
+// Finally, either Read or Read/Write, and not Read/Write Word, the logic variable is written in the Modbus and Web GUI
+Logic_var_int64_out:= Internal_logic_var;
+GUI_var_out := LINT_TO_REAL(Internal_logic_var);
+MEMCPY(destAddr:= MB_variable, srcAddr:= ADR(Internal_logic_var), n:= SIZEOF(Internal_logic_var));
+	
+// If initialization is done, all variables take def value
+IF Vars_initialization THEN
+	Logic_var_int64_out := Def_val;
+	GUI_var_out := LINT_TO_REAL(Def_val);
+	MEMCPY(destAddr:= MB_variable, srcAddr:= ADR(Def_val), n:= SIZEOF(Def_val));	
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="Data_transform_int64">
+      <LineId Id="1141" Count="39" />
+      <LineId Id="948" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

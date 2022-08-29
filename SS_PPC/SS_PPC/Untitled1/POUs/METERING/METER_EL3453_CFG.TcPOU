@@ -1,0 +1,2295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="METER_EL3453_CFG" Id="{184712ce-74ba-4ebe-a03d-4ce089ba8c68}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK METER_EL3453_CFG
+
+VAR_INPUT
+	NetId_global_assign : AMSNETID;					// Net Id assignament from the EL3XXX board
+	Slave_Add_global_assign : WORD;					// Slave ID address
+	NetId_global_assign_2 : AMSNETID;					// Net Id assignament from the EL3XXX board
+	Slave_Add_global_assign_2 : WORD;					// Slave ID address
+	EL3_Selection : STRING; 						// Selection of power meassurement board: EL3443, EL 3453, EL 3783					
+END_VAR
+
+
+VAR_OUTPUT
+	Error_selection : BOOL := TRUE;				// Error in selection of board
+	Error_Nom_voltage: BOOL;					// Error read/writing Nominal Voltage
+	Error_Nominal_Frequency : BOOL;				// Error read/writing nominal frequency
+	Error_Measurement_freq_range : BOOL;		// Error read/writing frequency range working
+	Error_Current_trafo_rat_L1 : BOOL;			// Error read/writing Current transformer ratio L1
+	Error_Current_trafo_rat_L2 : BOOL;			// Error read/writing Current transformer ratio L2
+	Error_Current_trafo_rat_L3 : BOOL;			// Error read/writing Current transformer ratio L3
+	Error_Voltage_trafo_rat_L1 : BOOL;			// Error read/writing Voltage transformer ratio L1
+	Error_Voltage_trafo_rat_L2 : BOOL;			// Error read/writing Voltage transformer ratio L2
+	Error_Voltage_trafo_rat_L3 : BOOL;			// Error read/writing Voltage transformer ratio L3
+	Error_Current_trafo_dly_L1 : BOOL;			// Error read/writing Current transformer delay L1	
+	Error_Current_trafo_dly_L2 : BOOL;			// Error read/writing Current transformer delay L2
+	Error_Current_trafo_dly_L3 : BOOL;			// Error read/writing Current transformer delay L3
+	Error_Current_trafo_range_L1 : BOOL;		// Error read/writing Current transformer range L1
+	Error_Current_trafo_range_L2 : BOOL;		// Error read/writing Current transformer range L2
+	Error_Current_trafo_range_L3 : BOOL;		// Error read/writing Current transformer range L3
+	Error_Voltage_Guard_Min_Error_L1 : BOOL;	// Error read/writing Voltage Guard Min Error L1
+	Error_Voltage_Guard_Min_Error_L2 : BOOL;	// Error read/writing Voltage Guard Min Error L2
+	Error_Voltage_Guard_Min_Error_L3 : BOOL;	// Error read/writing Voltage Guard Min Error L3
+	Error_Voltage_Guard_Min_Warning_L1 : BOOL;	// Error read/writing Voltage Guard Min Warning L1
+	Error_Voltage_Guard_Min_Warning_L2 : BOOL;	// Error read/writing Voltage Guard Min Warning L2
+	Error_Voltage_Guard_Min_Warning_L3 : BOOL;	// Error read/writing Voltage Guard Min Warning L3
+	Error_Voltage_Guard_Max_Warning_L1 : BOOL;	// Error read/writing Voltage Guard Max Warning L1
+	Error_Voltage_Guard_Max_Warning_L2 : BOOL;	// Error read/writing Voltage Guard Max Warning L2
+	Error_Voltage_Guard_Max_Warning_L3 : BOOL;	// Error read/writing Voltage Guard Max Warning L3
+	Error_Voltage_Guard_Max_Error_L1 : BOOL;	// Error read/writing Voltage Guard Max Error L1
+	Error_Voltage_Guard_Max_Error_L2 : BOOL;	// Error read/writing Voltage Guard Max Error L2
+	Error_Voltage_Guard_Max_Error_L3 : BOOL;	// Error read/writing Voltage Guard Max Error L3
+	(* EL3783 *)
+	Error_Current_Range : BOOL;					// Error read/writing Current Range
+END_VAR
+
+VAR_IN_OUT
+	
+	Nominal_Voltage : REAL;					// Set variable for nominal voltage
+	Nominal_Frequency : REAL;				// Set variable for nominal frequency
+	Measurement_freq_range : REAL;			// Set variable for frequency range working
+	Current_trafo_rat_L1 : REAL;			// Set variable for Current transformer ratio L1
+	Current_trafo_rat_L2 : REAL;			// Set variable for Current transformer ratio L2
+	Current_trafo_rat_L3 : REAL;			// Set variable for Current transformer ratio L3
+	Voltage_trafo_rat_L1 : REAL;			// Set variable for Voltage transformer ratio L1
+	Voltage_trafo_rat_L2 : REAL;			// Set variable for Voltage transformer ratio L2
+	Voltage_trafo_rat_L3 : REAL;			// Set variable for Voltage transformer ratio L3
+	Current_trafo_dly_L1 : REAL;			// Set variable for Current transformer delay L1	
+	Current_trafo_dly_L2 : REAL;			// Set variable for Current transformer delay L2
+	Current_trafo_dly_L3 : REAL;			// Set variable for Current transformer delay L3
+	Current_trafo_range_L1 : UDINT;			// Set variable for Current transformer range L1
+	Current_trafo_range_L2 : UDINT;			// Set variable for Current transformer range L2
+	Current_trafo_range_L3 : UDINT;			// Set variable for Current transformer range L3
+	Voltage_Guard_Min_Error_L1: REAL;		// Set variable for Voltage min error L1
+	Voltage_Guard_Min_Error_L2: REAL;		// Set variable for Voltage min error L2
+	Voltage_Guard_Min_Error_L3: REAL;		// Set variable for Voltage min error L3
+	Voltage_Guard_Min_Warning_L1: REAL;		// Set variable for Voltage min warning L1
+	Voltage_Guard_Min_Warning_L2: REAL;		// Set variable for Voltage min warning L2
+	Voltage_Guard_Min_Warning_L3: REAL;		// Set variable for Voltage min warning L3
+	Voltage_Guard_Max_Warning_L1: REAL;		// Set variable for Voltage max warning L1
+	Voltage_Guard_Max_Warning_L2: REAL;		// Set variable for Voltage max warning L2
+	Voltage_Guard_Max_Warning_L3: REAL;		// Set variable for Voltage max warning L3
+	Voltage_Guard_Max_Error_L1: REAL;		// Set variable for Voltage max error L1
+	Voltage_Guard_Max_Error_L2: REAL;		// Set variable for Voltage max error L2
+	Voltage_Guard_Max_Error_L3: REAL;		// Set variable for Voltage max error L3
+	(* EL3783 *)
+	Current_Range : INT;					// Set variable for Current Range EL3783
+END_VAR
+
+
+VAR
+	INIT : BOOL := TRUE;					// Launching the initialization of readings	
+	INIT_SECOND : BOOL := FALSE;			// It needs to do in three times the init of variables otherwise, the ethercat returns fault
+	TRigger_Init_Second : BOOL := TRUE;		// Init to trigger the times
+	Delay_second_Init : TON;				// Timer for the second request
+	INIT_THIRD : BOOL := FALSE;				// It needs to do in three times the init of variables otherwise, the ethercat returns fault
+	TRigger_Init_Third : BOOL := FALSE;		// Init to trigger the times
+	Delay_third_Init : TON;					// Timer for the third request
+
+	netID_previous: AMSNETID := [0,0,0,0,0,0];		// Checking if the ID has changed	
+	netID_internal: STRING(255);						// Internal ID used for the functions
+	netID_previous_2: AMSNETID := [0,0,0,0,0,0];		// Checking if the ID has changed	
+	netID_internal_2: STRING(255);						// Internal ID used for the functions		
+	i: INT;												// Operand
+	
+	Exec_Nom_voltage: BOOL;								// Execute command for the writing
+	Exec_READ_Nom_voltage: BOOL;						// Execute command for the reading
+	Busy_Nom_voltage: BOOL;								// Bus busy will execute the action
+	Previous_Nom_voltage_val : REAL;					// Previous value
+	
+	Exec_Nom_frequency: BOOL;							// Execute command for the writing
+	Exec_READ_Nom_frequency: BOOL;						// Execute command for the reading
+	Busy_Nom_frequency: BOOL;							// Bus busy will execute the action
+	Previous_Nom_frequency_val : REAL;					// Previous value
+	
+	Exec_Measurement_freq_range: BOOL;					// Execute command for the writing
+	Exec_READ_Measurement_freq_range: BOOL;				// Execute command for the reading
+	Busy_Measurement_freq_range: BOOL;					// Bus busy will execute the action
+	Previous_Measurement_freq_range_val : REAL;			// Previous value
+	
+	Exec_Current_trafo_rat_L1: BOOL;					// Execute command for the writing
+	Exec_READ_Current_trafo_rat_L1: BOOL;				// Execute command for the reading
+	Busy_Current_trafo_rat_L1: BOOL;					// Bus busy will execute the action
+	Previous_Current_trafo_rat_L1_val : REAL;			// Previous value
+	
+	Exec_Current_trafo_rat_L2: BOOL;					// Execute command for the writing
+	Exec_READ_Current_trafo_rat_L2: BOOL;				// Execute command for the reading
+	Busy_Current_trafo_rat_L2: BOOL;					// Bus busy will execute the action
+	Previous_Current_trafo_rat_L2_val : REAL;			// Previous value
+	
+	Exec_Current_trafo_rat_L3: BOOL;					// Execute command for the writing
+	Exec_READ_Current_trafo_rat_L3: BOOL;				// Execute command for the reading
+	Busy_Current_trafo_rat_L3: BOOL;					// Bus busy will execute the action
+	Previous_Current_trafo_rat_L3_val : REAL;			// Previous value
+	
+	Exec_Voltage_trafo_rat_L1: BOOL;					// Execute command for the writing
+	Exec_READ_Voltage_trafo_rat_L1: BOOL;				// Execute command for the reading
+	Busy_Voltage_trafo_rat_L1: BOOL;					// Bus busy will execute the action
+	Previous_Voltage_trafo_rat_L1_val : REAL;			// Previous value
+	
+	Exec_Voltage_trafo_rat_L2: BOOL;					// Execute command for the writing
+	Exec_READ_Voltage_trafo_rat_L2: BOOL;				// Execute command for the reading
+	Busy_Voltage_trafo_rat_L2: BOOL;					// Bus busy will execute the action
+	Previous_Voltage_trafo_rat_L2_val : REAL;			// Previous value
+	
+	Exec_Voltage_trafo_rat_L3: BOOL;					// Execute command for the writing
+	Exec_READ_Voltage_trafo_rat_L3: BOOL;				// Execute command for the reading
+	Busy_Voltage_trafo_rat_L3: BOOL;					// Bus busy will execute the action
+	Previous_Voltage_trafo_rat_L3_val : REAL;			// Previous value
+	
+	Exec_Current_trafo_dly_L1: BOOL;					// Execute command for the writing
+	Exec_READ_Current_trafo_dly_L1: BOOL;				// Execute command for the reading
+	Busy_Current_trafo_dly_L1: BOOL;					// Bus busy will execute the action
+	Previous_Current_trafo_dly_L1_val : REAL;			// Previous value
+	
+	Exec_Current_trafo_dly_L2: BOOL;					// Execute command for the writing
+	Exec_READ_Current_trafo_dly_L2: BOOL;				// Execute command for the reading
+	Busy_Current_trafo_dly_L2: BOOL;					// Bus busy will execute the action
+	Previous_Current_trafo_dly_L2_val : REAL;			// Previous value
+	
+	Exec_Current_trafo_dly_L3: BOOL;					// Execute command for the writing
+	Exec_READ_Current_trafo_dly_L3: BOOL;				// Execute command for the reading
+	Busy_Current_trafo_dly_L3: BOOL;					// Bus busy will execute the action
+	Previous_Current_trafo_dly_L3_val : REAL;			// Previous value
+	
+	Exec_Current_trafo_range_L1: BOOL;					// Execute command for the writing
+	Exec_READ_Current_trafo_range_L1: BOOL;				// Execute command for the reading
+	Busy_Current_trafo_range_L1: BOOL;					// Bus busy will execute the action
+	Previous_Current_trafo_range_L1_val : UDINT;		// Previous value
+	
+	Exec_Current_trafo_range_L2: BOOL;					// Execute command for the writing
+	Exec_READ_Current_trafo_range_L2: BOOL;				// Execute command for the reading
+	Busy_Current_trafo_range_L2: BOOL;					// Bus busy will execute the action
+	Previous_Current_trafo_range_L2_val : UDINT;		// Previous value
+	
+	Exec_Current_trafo_range_L3: BOOL;					// Execute command for the writing
+	Exec_READ_Current_trafo_range_L3: BOOL;				// Execute command for the reading
+	Busy_Current_trafo_range_L3: BOOL;					// Bus busy will execute the action
+	Previous_Current_trafo_range_L3_val : UDINT;		// Previous value
+	
+	Exec_Voltage_Guard_Min_Error_L1: BOOL;				// Execute command for the writing
+	Exec_READ_Voltage_Guard_Min_Error_L1: BOOL;			// Execute command for the reading
+	Previous_Voltage_Guard_Min_Error_L1_val : REAL;		// Previous value
+	
+	Exec_Voltage_Guard_Min_Error_L2: BOOL;				// Execute command for the writing
+	Exec_READ_Voltage_Guard_Min_Error_L2: BOOL;			// Execute command for the reading
+	Previous_Voltage_Guard_Min_Error_L2_val: REAL;		// Previous value
+	
+	Exec_Voltage_Guard_Min_Error_L3: BOOL;				// Execute command for the writing
+	Exec_READ_Voltage_Guard_Min_Error_L3: BOOL;			// Execute command for the reading
+	Previous_Voltage_Guard_Min_Error_L3_val : REAL;		// Previous value
+	
+	Exec_Voltage_Guard_Min_Warning_L1: BOOL;			// Execute command for the writing
+	Exec_READ_Voltage_Guard_Min_Warning_L1: BOOL;		// Execute command for the reading
+	Previous_Voltage_Guard_Min_Warning_L1_val : REAL;	// Previous value
+	
+	Exec_Voltage_Guard_Min_Warning_L2: BOOL;			// Execute command for the writing
+	Exec_READ_Voltage_Guard_Min_Warning_L2: BOOL;		// Execute command for the reading
+	Previous_Voltage_Guard_Min_Warning_L2_val : REAL;	// Previous value
+	
+	Exec_Voltage_Guard_Min_Warning_L3: BOOL;			// Execute command for the writing
+	Exec_READ_Voltage_Guard_Min_Warning_L3: BOOL;		// Execute command for the reading
+	Previous_Voltage_Guard_Min_Warning_L3_val : REAL;	// Previous value
+	
+	Exec_Voltage_Guard_Max_Warning_L1: BOOL;			// Execute command for the writing
+	Exec_READ_Voltage_Guard_Max_Warning_L1: BOOL;		// Execute command for the reading
+	Previous_Voltage_Guard_Max_Warning_L1_val : REAL;	// Previous value
+	
+	Exec_Voltage_Guard_Max_Warning_L2: BOOL;			// Execute command for the writing
+	Exec_READ_Voltage_Guard_Max_Warning_L2: BOOL;		// Execute command for the reading
+	Previous_Voltage_Guard_Max_Warning_L2_val : REAL;	// Previous value
+	
+	Exec_Voltage_Guard_Max_Warning_L3: BOOL;			// Execute command for the writing
+	Exec_READ_Voltage_Guard_Max_Warning_L3: BOOL;		// Execute command for the reading
+	Previous_Voltage_Guard_Max_Warning_L3_val : REAL;	// Previous value
+	
+	Exec_Voltage_Guard_Max_Error_L1: BOOL;				// Execute command for the writing
+	Exec_READ_Voltage_Guard_Max_Error_L1: BOOL;			// Execute command for the reading
+	Previous_Voltage_Guard_Max_Error_L1_val : REAL;		// Previous value
+	
+	Exec_Voltage_Guard_Max_Error_L2: BOOL;				// Execute command for the writing
+	Exec_READ_Voltage_Guard_Max_Error_L2: BOOL;			// Execute command for the reading
+	Previous_Voltage_Guard_Max_Error_L2_val : REAL;		// Previous value
+	
+	Exec_Voltage_Guard_Max_Error_L3: BOOL;				// Execute command for the writing
+	Exec_READ_Voltage_Guard_Max_Error_L3: BOOL;			// Execute command for the reading
+	Previous_Voltage_Guard_Max_Error_L3_val : REAL;		// Previous value
+	
+	Exec_Current_Range: BOOL;							// Execute command for the writing
+	Exec_READ_Current_Range: BOOL;						// Execute command for the reading
+	Busy_Current_Range: BOOL;							// Bus busy will execute the action
+	Previous_Current_Range_val : INT;					// Previous value
+	
+	
+	Nom_voltage_WR : FB_EcCoESdoWrite;					// Funtion Block writting Nominal voltage 
+	Nom_frequency_WR : FB_EcCoESdoWrite;				// Funtion Block writting Nominal frequency 
+	Range_freq_WR : FB_EcCoESdoWrite;					// Funtion Block writting Range for frequency 
+	Current_trafo_ratio_L1_WR : FB_EcCoESdoWrite;		// Funtion Block writting Current trafo ratio in L1
+	Current_trafo_ratio_L2_WR : FB_EcCoESdoWrite;		// Funtion Block writting Current trafo ratio in L2
+	Current_trafo_ratio_L3_WR : FB_EcCoESdoWrite;		// Funtion Block writting Current trafo ratio in L3
+	Voltage_trafo_ratio_L1_WR : FB_EcCoESdoWrite;		// Funtion Block writting Voltage trafo ratio in L1
+	Voltage_trafo_ratio_L2_WR : FB_EcCoESdoWrite;		// Funtion Block writting Voltage trafo ratio in L2
+	Voltage_trafo_ratio_L3_WR : FB_EcCoESdoWrite;		// Funtion Block writting Voltage trafo ratio in L3
+	Current_trafo_DLY_L1_WR : FB_EcCoESdoWrite;			// Funtion Block writting Current trafo delay in L1
+	Current_trafo_DLY_L2_WR : FB_EcCoESdoWrite;			// Funtion Block writting Current trafo delay in L2
+	Current_trafo_DLY_L3_WR : FB_EcCoESdoWrite;			// Funtion Block writting Current trafo delay in L3
+	Current_trafo_range_L1_WR : FB_EcCoESdoWrite;		// Funtion Block writting Current trafo range in L1
+	Current_trafo_range_L2_WR : FB_EcCoESdoWrite;		// Funtion Block writting Current trafo range in L2
+	Current_trafo_range_L3_WR : FB_EcCoESdoWrite;		// Funtion Block writting Current trafo range in L3
+	Voltage_Guard_Min_Error_L1_WR : FB_EcCoESdoWrite;	// Funtion Block writting Voltage Guard Min Error in L1
+	Voltage_Guard_Min_Error_L2_WR : FB_EcCoESdoWrite;	// Funtion Block writting Voltage Guard Min Error in L2
+	Voltage_Guard_Min_Error_L3_WR : FB_EcCoESdoWrite;	// Funtion Block writting Voltage Guard Min Error in L3
+	Voltage_Guard_Min_Warning_L1_WR : FB_EcCoESdoWrite;	// Funtion Block writting Voltage Guard Min Warning in L1
+	Voltage_Guard_Min_Warning_L2_WR : FB_EcCoESdoWrite;	// Funtion Block writting Voltage Guard Min Warning in L2
+	Voltage_Guard_Min_Warning_L3_WR : FB_EcCoESdoWrite;	// Funtion Block writting Voltage Guard Min Warning in L3
+	Voltage_Guard_Max_Warning_L1_WR : FB_EcCoESdoWrite;	// Funtion Block writting Voltage Guard Max Warning in L1
+	Voltage_Guard_Max_Warning_L2_WR : FB_EcCoESdoWrite;	// Funtion Block writting Voltage Guard Max Warning in L2
+	Voltage_Guard_Max_Warning_L3_WR : FB_EcCoESdoWrite;	// Funtion Block writting Voltage Guard Max Warning in L3
+	Voltage_Guard_Max_Error_L1_WR : FB_EcCoESdoWrite;	// Funtion Block writting Voltage Guard Max Error in L1
+	Voltage_Guard_Max_Error_L2_WR : FB_EcCoESdoWrite;	// Funtion Block writting Voltage Guard Max Error in L2
+	Voltage_Guard_Max_Error_L3_WR : FB_EcCoESdoWrite;	// Funtion Block writting Voltage Guard Max Error in L3
+	Current_Range_WR : FB_EcCoESdoWrite;				// Funtion Block writting Current Range
+	
+	Nom_voltage_RD : FB_EcCoESdoRead;					// Funtion Block reading Nominal voltage 
+	Nom_frequency_RD : FB_EcCoESdoRead;					// Funtion Block reading Nominal frequency 
+	Range_freq_RD : FB_EcCoESdoRead;					// Funtion Block reading Range for frequency 
+	Current_trafo_ratio_L1_RD : FB_EcCoESdoRead;		// Funtion Block reading Current trafo ratio in L1
+	Current_trafo_ratio_L2_RD : FB_EcCoESdoRead;		// Funtion Block reading Current trafo ratio in L2
+	Current_trafo_ratio_L3_RD : FB_EcCoESdoRead;		// Funtion Block reading Current trafo ratio in L3
+	Voltage_trafo_ratio_L1_RD : FB_EcCoESdoRead;		// Funtion Block reading Voltage trafo ratio in L1
+	Voltage_trafo_ratio_L2_RD : FB_EcCoESdoRead;		// Funtion Block reading Voltage trafo ratio in L2
+	Voltage_trafo_ratio_L3_RD : FB_EcCoESdoRead;		// Funtion Block reading Voltage trafo ratio in L3
+	Current_trafo_DLY_L1_RD : FB_EcCoESdoRead;			// Funtion Block reading Current trafo delay in L1
+	Current_trafo_DLY_L2_RD : FB_EcCoESdoRead;			// Funtion Block reading Current trafo delay in L2
+	Current_trafo_DLY_L3_RD : FB_EcCoESdoRead;			// Funtion Block reading Current trafo delay in L3
+	Current_trafo_range_L1_RD : FB_EcCoESdoRead;		// Funtion Block reading Current trafo range in L1
+	Current_trafo_range_L2_RD : FB_EcCoESdoRead;		// Funtion Block reading Current trafo range in L2
+	Current_trafo_range_L3_RD : FB_EcCoESdoRead;		// Funtion Block reading Current trafo range in L3
+	Voltage_Guard_Min_Error_L1_RD : FB_EcCoESdoRead;	// Funtion Block reading Voltage Guard Min Error in L1
+	Voltage_Guard_Min_Error_L2_RD : FB_EcCoESdoRead;	// Funtion Block reading Voltage Guard Min Error in L2
+	Voltage_Guard_Min_Error_L3_RD : FB_EcCoESdoRead;	// Funtion Block reading Voltage Guard Min Error in L3
+	Voltage_Guard_Min_Warning_L1_RD : FB_EcCoESdoRead;	// Funtion Block reading Voltage Guard Min Warning in L1
+	Voltage_Guard_Min_Warning_L2_RD : FB_EcCoESdoRead;	// Funtion Block reading Voltage Guard Min Warning in L2
+	Voltage_Guard_Min_Warning_L3_RD : FB_EcCoESdoRead;	// Funtion Block reading Voltage Guard Min Warning in L3
+	Voltage_Guard_Max_Warning_L1_RD : FB_EcCoESdoRead;	// Funtion Block reading Voltage Guard Max Warning in L1
+	Voltage_Guard_Max_Warning_L2_RD : FB_EcCoESdoRead;	// Funtion Block reading Voltage Guard Max Warning in L2
+	Voltage_Guard_Max_Warning_L3_RD : FB_EcCoESdoRead;	// Funtion Block reading Voltage Guard Max Warning in L3
+	Voltage_Guard_Max_Error_L1_RD : FB_EcCoESdoRead;	// Funtion Block reading Voltage Guard Max Error in L1
+	Voltage_Guard_Max_Error_L2_RD : FB_EcCoESdoRead;	// Funtion Block reading Voltage Guard Max Error in L2
+	Voltage_Guard_Max_Error_L3_RD : FB_EcCoESdoRead;	// Funtion Block reading Voltage Guard Max Error in L3
+	Current_Range_RD: FB_EcCoESdoRead;					// Funtion Block reading Current Range EL3783
+	
+	
+	Counter_init: INT := 0;
+	Counter_init_2: INT := 0;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+(************************************************************************************************
+
+							EL3XXX CONFIGURATION FUNCTION BLOCK
+
+*************************************************************************************************
+
+This function block is used to set the parameters up in the EL3XXX power meassurement boards. Here
+is set up the following parameters:
+
+- 	Nominal Voltage
+- 	Nominal Frequency
+- 	Meassurement frequency range
+- 	Current transformer ratio L1, L2 and L3
+- 	Current delay transformer ratio L1, L2 and L3
+- 	Voltage transformer ratio L1, L2 and L3
+
+How must the function be used?
+
+- 	It must be declared 2 variables to be assigned to the AdsAddr of the metering board
+- 	The variable netId has format AMSNETID (especial type format for this address, ARRAY [0..5]
+- 	The variable port is the slave address and must be declared like a WORD
+- 	Each configuration variable is declared as INPUT/OUTPUT so the variables unused must be fulfilled with 
+	Dummy variables.
+- 	The output variables could be not called
+- 	The selection of EL3XXX board can be, EL3443, EL3453 or EL3783. Other declaration reports error
+*************************************************************************************************)
+
+(* First of all, it is necessary convert the NetId (AMSNETID) to STRING*)
+//IF netID_previous <> NetId_global_assign THEN
+	netID_internal := '';
+	
+	FOR i := 0 TO  5 DO
+		
+		netID_internal := CONCAT(netID_internal, BYTE_TO_STRING(NetId_global_assign[i]));
+			
+		IF i < 5 THEN
+			netID_internal := CONCAT(netID_internal, '.');
+		END_IF
+		
+	END_FOR
+	
+	netID_previous := NetId_global_assign;
+	
+//END_IF	
+	
+(********************************************* EL3783 ********************************************)
+
+netID_internal_2 := '';
+	
+	FOR i := 0 TO  5 DO
+		
+		netID_internal_2 := CONCAT(netID_internal_2, BYTE_TO_STRING(NetId_global_assign_2[i]));
+			
+		IF i < 5 THEN
+			netID_internal_2 := CONCAT(netID_internal_2, '.');
+		END_IF
+		
+	END_FOR
+	
+	netID_previous_2 := NetId_global_assign_2;	
+	
+
+(* It is necessary to know what is the power measurement boards that is going to be configured *)
+IF EL3_Selection = 'EL3443' OR EL3_Selection = 'EL3453' THEN
+	
+	(* In the first scan cycle, the function performs a reading to get the parameters from the board *)
+	(* It is necessary send the request in two times, otherwise the last frames reports error*)
+	
+	IF INIT_SECOND = TRUE THEN	
+		IF INIT AND Counter_Init <= 27 THEN
+			CASE Counter_init OF
+				//Nominal voltage
+				0: Exec_READ_Nom_voltage := TRUE;
+				//Frequency 
+				1: Exec_READ_Nom_frequency := TRUE;
+				2: Exec_READ_Measurement_freq_range := TRUE;
+				//Current tranformers retio
+				3: Exec_READ_Current_trafo_rat_L1 := TRUE;
+				4: Exec_READ_Current_trafo_rat_L2 := TRUE;
+				5: Exec_READ_Current_trafo_rat_L3 := TRUE;
+				//Voltage transformers ratio	
+				6: Exec_READ_Voltage_trafo_rat_L1 := TRUE;
+				7: Exec_READ_Voltage_trafo_rat_L2 := TRUE;
+				8: Exec_READ_Voltage_trafo_rat_L3 := TRUE;
+				//Current transformers delay
+				9: Exec_READ_Current_trafo_dly_L1 := TRUE;
+				10: Exec_READ_Current_trafo_dly_L2 := TRUE;
+				11: Exec_READ_Current_trafo_dly_L3 := TRUE;
+				//Voltage guard min error
+				12: Exec_READ_Voltage_Guard_Min_Error_L1 := TRUE;
+				13: Exec_READ_Voltage_Guard_Min_Error_L2 := TRUE;
+				14: Exec_READ_Voltage_Guard_Min_Error_L3 := TRUE;
+				//Voltage guard min warning
+				15: Exec_READ_Voltage_Guard_Min_Warning_L1 := TRUE;
+				16: Exec_READ_Voltage_Guard_Min_Warning_L2 := TRUE;
+				17: Exec_READ_Voltage_Guard_Min_Warning_L3 := TRUE;
+				//Voltage guard max warning
+				18: Exec_READ_Voltage_Guard_Max_Warning_L1 := TRUE;
+				19: Exec_READ_Voltage_Guard_Max_Warning_L2 := TRUE;
+				20: Exec_READ_Voltage_Guard_Max_Warning_L3 := TRUE;
+				//Voltage guard max error
+				21: Exec_READ_Voltage_Guard_Max_Error_L1 := TRUE;
+				22: Exec_READ_Voltage_Guard_Max_Error_L2 := TRUE;
+				23: Exec_READ_Voltage_Guard_Max_Error_L3 := TRUE;
+				(* EL3453 *)
+				//EL3453 current transformers ratios
+				24: IF EL3_Selection = 'EL3453' THEN Exec_READ_Current_trafo_range_L1 := TRUE; END_IF
+				25: IF EL3_Selection = 'EL3453' THEN Exec_READ_Current_trafo_range_L2 := TRUE; END_IF
+				26: IF EL3_Selection = 'EL3453' THEN Exec_READ_Current_trafo_range_L3 := TRUE; END_IF
+				
+			END_CASE
+			Counter_init := Counter_init + 1;
+		END_IF
+	END_IF
+
+	Delay_second_Init (IN := NOT(INIT_SECOND), PT := T#200MS, Q => INIT_SECOND, ET => );
+	
+	(* Reset the error selection *)
+	Error_selection := FALSE;
+	
+(***************************************** NOMINAL VOLTAGE *******************************************)
+	(* Execution of the writing reading of nominal voltage. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Nominal_Voltage <> Previous_Nom_voltage_val THEN
+		Exec_Nom_voltage := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Nom_voltage_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#11, 
+		nIndex:= 16#F801, 
+		pSrcBuf:= ADR(Nominal_Voltage), 
+		cbBufLen:= SIZEOF(Nominal_Voltage), 
+		bExecute:= Exec_Nom_voltage, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Nom_voltage_WR.bBusy THEN
+    	Exec_Nom_voltage := FALSE;
+		IF NOT Nom_voltage_WR.bError THEN 
+			(* write successful *)
+			Error_Nom_voltage := FALSE;
+			IF Previous_Nom_voltage_val <> Nominal_Voltage THEN
+				Previous_Nom_voltage_val := Nominal_Voltage;
+				Exec_READ_Nom_voltage := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Nom_voltage := Nom_voltage_WR.bError;
+			Nominal_Voltage := Previous_Nom_voltage_val;
+		END_IF
+	
+		Nom_voltage_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly *)
+	Nom_voltage_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#F801, 
+		nSubIndex := 16#11, 
+		pDstBuf:= ADR(Nominal_Voltage), 
+		cbBufLen:=SIZEOF(Nominal_Voltage),
+		bExecute:= Exec_READ_Nom_voltage);
+	
+	(* Logic to handle the errors in the reading *)	
+	IF NOT Nom_voltage_RD.bBusy AND NOT Nom_voltage_WR.bBusy THEN
+    	Exec_READ_Nom_voltage := FALSE;
+		IF NOT Nom_voltage_RD.bError THEN 
+			(* write successful *)
+			Error_Nom_voltage := FALSE;
+			Previous_Nom_voltage_val := Nominal_Voltage;
+		ELSE 
+			(* write failed *)
+			Error_Nom_voltage := Nom_voltage_WR.bError;
+    END_IF
+
+    Nom_voltage_RD(bExecute := FALSE);
+	
+	END_IF
+	
+(***************************************** NOMINAL VOLTAGE *******************************************)
+
+(***************************************** NOMINAL FREQUENCY *******************************************)
+	(* Execution of the writing reading of nominal voltage. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Nominal_Frequency <> Previous_Nom_frequency_val THEN
+		Exec_Nom_frequency := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Nom_frequency_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#12, 
+		nIndex:= 16#F801, 
+		pSrcBuf:= ADR(Nominal_Frequency), 
+		cbBufLen:= SIZEOF(Nominal_Frequency), 
+		bExecute:= Exec_Nom_frequency, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Nom_frequency_WR.bBusy THEN
+    	Exec_Nom_frequency := FALSE;
+		IF NOT Nom_frequency_WR.bError THEN 
+			(* write successful *)
+			Error_Nominal_Frequency := FALSE;
+			IF Previous_Nom_frequency_val <> Nominal_Frequency THEN
+				Previous_Nom_frequency_val := Nominal_Frequency;
+				Exec_READ_Nom_frequency := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Nominal_Frequency := Nom_frequency_WR.bError;
+			Nominal_Frequency := Previous_Nom_frequency_val;
+		END_IF
+	
+		Nom_frequency_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Nom_frequency_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#F801, 
+		nSubIndex := 16#12, 
+		pDstBuf:= ADR(Nominal_Frequency), 
+		cbBufLen:=SIZEOF(Nominal_Frequency),
+		bExecute:= Exec_READ_Nom_frequency);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Nom_frequency_RD.bBusy AND NOT Nom_frequency_WR.bBusy THEN
+    	Exec_READ_Nom_frequency := FALSE;
+		IF NOT Nom_frequency_RD.bError THEN 
+			(* write successful *)
+			Error_Nominal_Frequency := FALSE;
+			Previous_Nom_frequency_val := Nominal_Frequency;
+		ELSE 
+			(* write failed *)
+			Error_Nominal_Frequency := Nom_frequency_RD.bError;
+    END_IF
+
+    Nom_frequency_RD(bExecute := FALSE);
+	
+	END_IF
+	
+(***************************************** NOMINAL FREQUENCY *******************************************)
+
+(***************************************** FREQUENCY RANGE *******************************************)
+	(* Execution of the writing reading of nominal voltage. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Measurement_freq_range <> Previous_Measurement_freq_range_val THEN
+		Exec_Measurement_freq_range := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Range_freq_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#12, 
+		nIndex:= 16#F800, 
+		pSrcBuf:= ADR(Measurement_freq_range), 
+		cbBufLen:= SIZEOF(Measurement_freq_range), 
+		bExecute:= Exec_Measurement_freq_range, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Range_freq_WR.bBusy THEN
+    	Exec_Measurement_freq_range := FALSE;
+		IF NOT Range_freq_WR.bError THEN 
+			(* write successful *)
+			Error_Measurement_freq_range := FALSE;
+			IF Previous_Measurement_freq_range_val <> Measurement_freq_range THEN
+				Previous_Measurement_freq_range_val := Measurement_freq_range;
+				Exec_READ_Measurement_freq_range := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Measurement_freq_range := Range_freq_WR.bError;
+			Measurement_freq_range := Previous_Measurement_freq_range_val;
+		END_IF
+	
+		Range_freq_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Range_freq_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#F800, 
+		nSubIndex := 16#12, 
+		pDstBuf:= ADR(Measurement_freq_range), 
+		cbBufLen:=SIZEOF(Measurement_freq_range),
+		bExecute:= Exec_READ_Measurement_freq_range);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Range_freq_RD.bBusy AND NOT Range_freq_WR.bBusy THEN
+    	Exec_READ_Measurement_freq_range := FALSE;
+		IF NOT Range_freq_RD.bError THEN 
+			(* write successful *)
+			Error_Measurement_freq_range := FALSE;
+			Previous_Measurement_freq_range_val := Measurement_freq_range;
+		ELSE 
+			(* write failed *)
+			Error_Measurement_freq_range := Range_freq_RD.bError;
+    END_IF
+
+    Range_freq_RD(bExecute := FALSE);
+	
+	END_IF
+	
+(***************************************** FREQUENCY RANGE *******************************************)
+
+(********************************** CURRENT TRAFO RATIO L1 *******************************************)
+	(* Execution of the writing reading of nominal voltage. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Current_trafo_rat_L1 <> Previous_Current_trafo_rat_L1_val THEN
+		Exec_Current_trafo_rat_L1 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Current_trafo_ratio_L1_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#12, 
+		nIndex:= 16#8000, 
+		pSrcBuf:= ADR(Current_trafo_rat_L1), 
+		cbBufLen:= SIZEOF(Current_trafo_rat_L1), 
+		bExecute:= Exec_Current_trafo_rat_L1, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Current_trafo_ratio_L1_WR.bBusy THEN
+    	Exec_Current_trafo_rat_L1 := FALSE;
+		IF NOT Current_trafo_ratio_L1_WR.bError THEN 
+			(* write successful *)
+			Error_Current_trafo_rat_L1 := FALSE;
+			IF Previous_Current_trafo_rat_L1_val <> Current_trafo_rat_L1 THEN
+				Previous_Current_trafo_rat_L1_val := Current_trafo_rat_L1;
+				Exec_READ_Current_trafo_rat_L1 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Current_trafo_rat_L1 := Current_trafo_ratio_L1_WR.bError;
+			Current_trafo_rat_L1 := Previous_Current_trafo_rat_L1_val;
+		END_IF
+	
+		Current_trafo_ratio_L1_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Current_trafo_ratio_L1_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8000, 
+		nSubIndex := 16#12, 
+		pDstBuf:= ADR(Current_trafo_rat_L1), 
+		cbBufLen:=SIZEOF(Current_trafo_rat_L1),
+		bExecute:= Exec_READ_Current_trafo_rat_L1);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Current_trafo_ratio_L1_RD.bBusy AND NOT Current_trafo_ratio_L1_WR.bBusy THEN
+    	Exec_READ_Current_trafo_rat_L1 := FALSE;
+		IF NOT Current_trafo_ratio_L1_RD.bError THEN 
+			(* write successful *)
+			Error_Current_trafo_rat_L1 := FALSE;
+			Previous_Current_trafo_rat_L1_val := Current_trafo_rat_L1;
+		ELSE 
+			(* write failed *)
+			Error_Current_trafo_rat_L1 := Current_trafo_ratio_L1_RD.bError;
+    END_IF
+
+    Current_trafo_ratio_L1_RD(bExecute := FALSE);
+	
+	END_IF
+	
+(********************************** CURRENT TRAFO RATIO L1 *******************************************)
+	
+(********************************** CURRENT TRAFO RATIO L2 *******************************************)
+	(* Execution of the writing reading of nominal voltage. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Current_trafo_rat_L2 <> Previous_Current_trafo_rat_L2_val THEN
+		Exec_Current_trafo_rat_L2 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Current_trafo_ratio_L2_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#12, 
+		nIndex:= 16#8010, 
+		pSrcBuf:= ADR(Current_trafo_rat_L2), 
+		cbBufLen:= SIZEOF(Current_trafo_rat_L2), 
+		bExecute:= Exec_Current_trafo_rat_L2, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Current_trafo_ratio_L2_WR.bBusy THEN
+    	Exec_Current_trafo_rat_L2 := FALSE;
+		IF NOT Current_trafo_ratio_L2_WR.bError THEN 
+			(* write successful *)
+			Error_Current_trafo_rat_L2 := FALSE;
+			IF Previous_Current_trafo_rat_L2_val <> Current_trafo_rat_L2 THEN
+				Previous_Current_trafo_rat_L2_val := Current_trafo_rat_L2;
+				Exec_READ_Current_trafo_rat_L2 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Current_trafo_rat_L2 := Current_trafo_ratio_L2_WR.bError;
+			Current_trafo_rat_L2 := Previous_Current_trafo_rat_L2_val;
+		END_IF
+	
+		Current_trafo_ratio_L2_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Current_trafo_ratio_L2_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8010, 
+		nSubIndex := 16#12, 
+		pDstBuf:= ADR(Current_trafo_rat_L2), 
+		cbBufLen:=SIZEOF(Current_trafo_rat_L2),
+		bExecute:= Exec_READ_Current_trafo_rat_L2);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Current_trafo_ratio_L2_RD.bBusy AND NOT Current_trafo_ratio_L2_WR.bBusy THEN
+    	Exec_READ_Current_trafo_rat_L2 := FALSE;
+		IF NOT Current_trafo_ratio_L2_RD.bError THEN 
+			(* write successful *)
+			Error_Current_trafo_rat_L2 := FALSE;
+			Previous_Current_trafo_rat_L2_val := Current_trafo_rat_L2;
+		ELSE 
+			(* write failed *)
+			Error_Current_trafo_rat_L2 := Current_trafo_ratio_L2_RD.bError;
+    END_IF
+
+    Current_trafo_ratio_L2_RD(bExecute := FALSE);
+	
+	END_IF
+	
+(********************************** CURRENT TRAFO RATIO L2 *******************************************)
+
+(********************************** CURRENT TRAFO RATIO L3 *******************************************)
+	(* Execution of the writing reading of nominal voltage. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Current_trafo_rat_L3 <> Previous_Current_trafo_rat_L3_val THEN
+		Exec_Current_trafo_rat_L3 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Current_trafo_ratio_L3_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#12, 
+		nIndex:= 16#8020, 
+		pSrcBuf:= ADR(Current_trafo_rat_L3), 
+		cbBufLen:= SIZEOF(Current_trafo_rat_L3), 
+		bExecute:= Exec_Current_trafo_rat_L3, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Current_trafo_ratio_L3_WR.bBusy THEN
+    	Exec_Current_trafo_rat_L3 := FALSE;
+		IF NOT Current_trafo_ratio_L3_WR.bError THEN 
+			(* write successful *)
+			Error_Current_trafo_rat_L3 := FALSE;
+			IF Previous_Current_trafo_rat_L3_val <> Current_trafo_rat_L3 THEN
+				Previous_Current_trafo_rat_L3_val := Current_trafo_rat_L3;
+				Exec_READ_Current_trafo_rat_L3 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Current_trafo_rat_L3 := Current_trafo_ratio_L3_WR.bError;
+			Current_trafo_rat_L3 := Previous_Current_trafo_rat_L3_val;
+		END_IF
+	
+		Current_trafo_ratio_L3_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Current_trafo_ratio_L3_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8020, 
+		nSubIndex := 16#12, 
+		pDstBuf:= ADR(Current_trafo_rat_L3), 
+		cbBufLen:=SIZEOF(Current_trafo_rat_L3),
+		bExecute:= Exec_READ_Current_trafo_rat_L3);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Current_trafo_ratio_L3_RD.bBusy AND NOT Current_trafo_ratio_L3_WR.bBusy THEN
+    	Exec_READ_Current_trafo_rat_L3 := FALSE;
+		IF NOT Current_trafo_ratio_L3_RD.bError THEN 
+			(* write successful *)
+			Error_Current_trafo_rat_L3 := FALSE;
+			Previous_Current_trafo_rat_L3_val := Current_trafo_rat_L3;
+		ELSE 
+			(* write failed *)
+			Error_Current_trafo_rat_L3 := Current_trafo_ratio_L3_RD.bError;
+    END_IF
+
+    Current_trafo_ratio_L3_RD(bExecute := FALSE);
+	
+	END_IF
+	
+(********************************** CURRENT TRAFO RATIO L3 *******************************************)
+
+(********************************** VOLTAGE TRAFO RATIO L1 *******************************************)
+	(* Execution of the writing reading of nominal voltage. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Voltage_trafo_rat_L1 <> Previous_Voltage_trafo_rat_L1_val THEN
+		Exec_Voltage_trafo_rat_L1 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Voltage_trafo_ratio_L1_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#11, 
+		nIndex:= 16#8000, 
+		pSrcBuf:= ADR(Voltage_trafo_rat_L1), 
+		cbBufLen:= SIZEOF(Voltage_trafo_rat_L1), 
+		bExecute:= Exec_Voltage_trafo_rat_L1, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Voltage_trafo_ratio_L1_WR.bBusy THEN
+    	Exec_Voltage_trafo_rat_L1 := FALSE;
+		IF NOT Voltage_trafo_ratio_L1_WR.bError THEN 
+			(* write successful *)
+			Error_Voltage_trafo_rat_L1 := FALSE;
+			IF Previous_Voltage_trafo_rat_L1_val <> Voltage_trafo_rat_L1 THEN
+				Previous_Voltage_trafo_rat_L1_val := Voltage_trafo_rat_L1;
+				Exec_READ_Voltage_trafo_rat_L1 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Voltage_trafo_rat_L1 := Voltage_trafo_ratio_L1_WR.bError;
+			Voltage_trafo_rat_L1 := Previous_Voltage_trafo_rat_L1_val;
+		END_IF
+	
+		Voltage_trafo_ratio_L1_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Voltage_trafo_ratio_L1_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8000, 
+		nSubIndex := 16#11, 
+		pDstBuf:= ADR(Voltage_trafo_rat_L1), 
+		cbBufLen:=SIZEOF(Voltage_trafo_rat_L1),
+		bExecute:= Exec_READ_Voltage_trafo_rat_L1);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Voltage_trafo_ratio_L1_RD.bBusy AND NOT Voltage_trafo_ratio_L1_WR.bBusy THEN
+    	Exec_READ_Voltage_trafo_rat_L1 := FALSE;
+		IF NOT Voltage_trafo_ratio_L1_RD.bError THEN 
+			(* write successful *)
+			Error_Voltage_trafo_rat_L1 := FALSE;
+			Previous_Voltage_trafo_rat_L1_val := Voltage_trafo_rat_L1;
+		ELSE 
+			(* write failed *)
+			Error_Voltage_trafo_rat_L1 := Voltage_trafo_ratio_L1_RD.bError;
+    END_IF
+
+    Voltage_trafo_ratio_L1_RD(bExecute := FALSE);
+	
+	END_IF
+	
+(********************************** VOLTAGE TRAFO RATIO L1 *******************************************)
+
+(********************************** VOLTAGE TRAFO RATIO L2 *******************************************)
+	(* Execution of the writing reading of nominal voltage. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Voltage_trafo_rat_L2 <> Previous_Voltage_trafo_rat_L2_val THEN
+		Exec_Voltage_trafo_rat_L2 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Voltage_trafo_ratio_L2_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#11, 
+		nIndex:= 16#8010, 
+		pSrcBuf:= ADR(Voltage_trafo_rat_L2), 
+		cbBufLen:= SIZEOF(Voltage_trafo_rat_L2), 
+		bExecute:= Exec_Voltage_trafo_rat_L2, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Voltage_trafo_ratio_L2_WR.bBusy THEN
+    	Exec_Voltage_trafo_rat_L2 := FALSE;
+		IF NOT Voltage_trafo_ratio_L2_WR.bError THEN 
+			(* write successful *)
+			Error_Voltage_trafo_rat_L2 := FALSE;
+			IF Previous_Voltage_trafo_rat_L2_val <> Voltage_trafo_rat_L2 THEN
+				Previous_Voltage_trafo_rat_L2_val := Voltage_trafo_rat_L2;
+				Exec_READ_Voltage_trafo_rat_L2 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Voltage_trafo_rat_L2 := Voltage_trafo_ratio_L2_WR.bError;
+			Voltage_trafo_rat_L2 := Previous_Voltage_trafo_rat_L2_val;
+		END_IF
+	
+		Voltage_trafo_ratio_L2_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Voltage_trafo_ratio_L2_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8010, 
+		nSubIndex := 16#11, 
+		pDstBuf:= ADR(Voltage_trafo_rat_L2), 
+		cbBufLen:=SIZEOF(Voltage_trafo_rat_L2),
+		bExecute:= Exec_READ_Voltage_trafo_rat_L2);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Voltage_trafo_ratio_L2_RD.bBusy AND NOT Voltage_trafo_ratio_L2_WR.bBusy THEN
+    	Exec_READ_Voltage_trafo_rat_L2 := FALSE;
+		IF NOT Voltage_trafo_ratio_L2_RD.bError THEN 
+			(* write successful *)
+			Error_Voltage_trafo_rat_L2 := FALSE;
+			Previous_Voltage_trafo_rat_L2_val := Voltage_trafo_rat_L2;
+		ELSE 
+			(* write failed *)
+			Error_Voltage_trafo_rat_L2 := Voltage_trafo_ratio_L2_RD.bError;
+    END_IF
+
+    Voltage_trafo_ratio_L2_RD(bExecute := FALSE);
+	
+	END_IF
+	
+(********************************** VOLTAGE TRAFO RATIO L2 *******************************************)
+
+(********************************** VOLTAGE TRAFO RATIO L3 *******************************************)
+	(* Execution of the writing reading of nominal voltage. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Voltage_trafo_rat_L3 <> Previous_Voltage_trafo_rat_L3_val THEN
+		Exec_Voltage_trafo_rat_L3 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Voltage_trafo_ratio_L3_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#11, 
+		nIndex:= 16#8020, 
+		pSrcBuf:= ADR(Voltage_trafo_rat_L3), 
+		cbBufLen:= SIZEOF(Voltage_trafo_rat_L3), 
+		bExecute:= Exec_Voltage_trafo_rat_L3, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Voltage_trafo_ratio_L3_WR.bBusy THEN
+    	Exec_Voltage_trafo_rat_L3 := FALSE;
+		IF NOT Voltage_trafo_ratio_L3_WR.bError THEN 
+			(* write successful *)
+			Error_Voltage_trafo_rat_L3 := FALSE;
+			IF Previous_Voltage_trafo_rat_L3_val <> Voltage_trafo_rat_L3 THEN
+				Previous_Voltage_trafo_rat_L3_val := Voltage_trafo_rat_L3;
+				Exec_READ_Voltage_trafo_rat_L3 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Voltage_trafo_rat_L3 := Voltage_trafo_ratio_L3_WR.bError;
+			Voltage_trafo_rat_L3 := Previous_Voltage_trafo_rat_L3_val;
+		END_IF
+	
+		Voltage_trafo_ratio_L3_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Voltage_trafo_ratio_L3_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8020, 
+		nSubIndex := 16#11, 
+		pDstBuf:= ADR(Voltage_trafo_rat_L3), 
+		cbBufLen:=SIZEOF(Voltage_trafo_rat_L3),
+		bExecute:= Exec_READ_Voltage_trafo_rat_L3);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Voltage_trafo_ratio_L3_RD.bBusy AND NOT Voltage_trafo_ratio_L3_WR.bBusy THEN
+    	Exec_READ_Voltage_trafo_rat_L3 := FALSE;
+		IF NOT Voltage_trafo_ratio_L3_RD.bError THEN 
+			(* write successful *)
+			Error_Voltage_trafo_rat_L3 := FALSE;
+			Previous_Voltage_trafo_rat_L3_val := Voltage_trafo_rat_L3;
+		ELSE 
+			(* write failed *)
+			Error_Voltage_trafo_rat_L3 := Voltage_trafo_ratio_L3_RD.bError;
+    END_IF
+
+    Voltage_trafo_ratio_L3_RD(bExecute := FALSE);
+	
+	END_IF
+	
+(********************************** VOLTAGE TRAFO RATIO L3 *******************************************)
+
+(********************************** CURRENT TRAFO DELAY L1 *******************************************)
+	(* Execution of the writing reading of nominal voltage. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Current_trafo_dly_L1 <> Previous_Current_trafo_dly_L1_val THEN
+		Exec_Current_trafo_dly_L1 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Current_trafo_dly_L1_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#13, 
+		nIndex:= 16#8000, 
+		pSrcBuf:= ADR(Current_trafo_dly_L1), 
+		cbBufLen:= SIZEOF(Current_trafo_dly_L1), 
+		bExecute:= Exec_Current_trafo_dly_L1, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Current_trafo_dly_L1_WR.bBusy THEN
+    	Exec_Current_trafo_dly_L1 := FALSE;
+		IF NOT Current_trafo_dly_L1_WR.bError THEN 
+			(* write successful *)
+			Error_Current_trafo_dly_L1 := FALSE;
+			IF Previous_Current_trafo_dly_L1_val <> Current_trafo_dly_L1 THEN
+				Previous_Current_trafo_dly_L1_val := Current_trafo_dly_L1;
+				Exec_READ_Current_trafo_dly_L1 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Current_trafo_dly_L1 := Current_trafo_dly_L1_WR.bError;
+			Current_trafo_dly_L1 := Previous_Current_trafo_dly_L1_val;
+		END_IF
+	
+		Current_trafo_dly_L1_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Current_trafo_dly_L1_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8000, 
+		nSubIndex := 16#13, 
+		pDstBuf:= ADR(Current_trafo_dly_L1), 
+		cbBufLen:=SIZEOF(Current_trafo_dly_L1),
+		bExecute:= Exec_READ_Current_trafo_dly_L1);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Current_trafo_dly_L1_RD.bBusy AND NOT Current_trafo_dly_L1_WR.bBusy THEN
+    	Exec_READ_Current_trafo_dly_L1 := FALSE;
+		IF NOT Current_trafo_dly_L1_RD.bError THEN 
+			(* write successful *)
+			Error_Current_trafo_dly_L1 := FALSE;
+			Previous_Current_trafo_dly_L1_val := Current_trafo_dly_L1;
+		ELSE 
+			(* write failed *)
+			Error_Current_trafo_dly_L1 := Current_trafo_dly_L1_RD.bError;
+    END_IF
+
+    Current_trafo_dly_L1_RD(bExecute := FALSE);
+	
+	END_IF
+	
+(********************************** CURRENT TRAFO DELAY L1 *******************************************)
+
+(********************************** CURRENT TRAFO DELAY L2 *******************************************)
+	(* Execution of the writing reading of nominal voltage. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Current_trafo_dly_L2 <> Previous_Current_trafo_dly_L2_val THEN
+		Exec_Current_trafo_dly_L2 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Current_trafo_dly_L2_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#13, 
+		nIndex:= 16#8010, 
+		pSrcBuf:= ADR(Current_trafo_dly_L2), 
+		cbBufLen:= SIZEOF(Current_trafo_dly_L2), 
+		bExecute:= Exec_Current_trafo_dly_L2, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Current_trafo_dly_L2_WR.bBusy THEN
+    	Exec_Current_trafo_dly_L2 := FALSE;
+		IF NOT Current_trafo_dly_L2_WR.bError THEN 
+			(* write successful *)
+			Error_Current_trafo_dly_L2 := FALSE;
+			IF Previous_Current_trafo_dly_L2_val <> Current_trafo_dly_L2 THEN
+				Previous_Current_trafo_dly_L2_val := Current_trafo_dly_L2;
+				Exec_READ_Current_trafo_dly_L2 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Current_trafo_dly_L2 := Current_trafo_dly_L2_WR.bError;
+			Current_trafo_dly_L2 := Previous_Current_trafo_dly_L2_val;
+		END_IF
+	
+		Current_trafo_dly_L2_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Current_trafo_dly_L2_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8010, 
+		nSubIndex := 16#13, 
+		pDstBuf:= ADR(Current_trafo_dly_L2), 
+		cbBufLen:=SIZEOF(Current_trafo_dly_L2),
+		bExecute:= Exec_READ_Current_trafo_dly_L2);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Current_trafo_dly_L2_RD.bBusy AND NOT Current_trafo_dly_L2_WR.bBusy THEN
+    	Exec_READ_Current_trafo_dly_L2 := FALSE;
+		IF NOT Current_trafo_dly_L2_RD.bError THEN 
+			(* write successful *)
+			Error_Current_trafo_dly_L2 := FALSE;
+			Previous_Current_trafo_dly_L2_val := Current_trafo_dly_L2;
+		ELSE 
+			(* write failed *)
+			Error_Current_trafo_dly_L2 := Current_trafo_dly_L2_RD.bError;
+    END_IF
+
+    Current_trafo_dly_L2_RD(bExecute := FALSE);
+	
+	END_IF
+	
+(********************************** CURRENT TRAFO DELAY L2 *******************************************)
+
+(********************************** CURRENT TRAFO DELAY L3 *******************************************)
+	(* Execution of the writing reading of nominal voltage. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Current_trafo_dly_L3 <> Previous_Current_trafo_dly_L3_val THEN
+		Exec_Current_trafo_dly_L3 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Current_trafo_dly_L3_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#13, 
+		nIndex:= 16#8020, 
+		pSrcBuf:= ADR(Current_trafo_dly_L3), 
+		cbBufLen:= SIZEOF(Current_trafo_dly_L3), 
+		bExecute:= Exec_Current_trafo_dly_L3, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Current_trafo_dly_L3_WR.bBusy THEN
+    	Exec_Current_trafo_dly_L3 := FALSE;
+		IF NOT Current_trafo_dly_L3_WR.bError THEN 
+			(* write successful *)
+			Error_Current_trafo_dly_L3 := FALSE;
+			IF Previous_Current_trafo_dly_L3_val <> Current_trafo_dly_L3 THEN
+				Previous_Current_trafo_dly_L3_val := Current_trafo_dly_L3;
+				Exec_READ_Current_trafo_dly_L3 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Current_trafo_dly_L3 := Current_trafo_dly_L3_WR.bError;
+			Current_trafo_dly_L3 := Previous_Current_trafo_dly_L3_val;
+		END_IF
+	
+		Current_trafo_dly_L3_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Current_trafo_dly_L3_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8020, 
+		nSubIndex := 16#13, 
+		pDstBuf:= ADR(Current_trafo_dly_L3), 
+		cbBufLen:=SIZEOF(Current_trafo_dly_L3),
+		bExecute:= Exec_READ_Current_trafo_dly_L3);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Current_trafo_dly_L3_RD.bBusy AND NOT Current_trafo_dly_L3_WR.bBusy THEN
+    	Exec_READ_Current_trafo_dly_L3 := FALSE;
+		IF NOT Current_trafo_dly_L3_RD.bError THEN 
+			(* write successful *)
+			Error_Current_trafo_dly_L3 := FALSE;
+			Previous_Current_trafo_dly_L3_val := Current_trafo_dly_L3;
+		ELSE 
+			(* write failed *)
+			Error_Current_trafo_dly_L3 := Current_trafo_dly_L3_RD.bError;
+    END_IF
+
+    Current_trafo_dly_L3_RD(bExecute := FALSE);
+	
+	END_IF
+	
+(********************************** CURRENT TRAFO DELAY L3 *******************************************)
+
+(********************************* VOLTAGE GUARD MIN ERROR L1 ****************************************)
+	(* Execution of the writing reading of Voltage Guard Min Error L1. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Voltage_Guard_Min_Error_L1 <> Previous_Voltage_Guard_Min_Error_L1_val THEN
+		Exec_Voltage_Guard_Min_Error_L1 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Voltage_Guard_Min_Error_L1_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#11, 
+		nIndex:= 16#8001, 
+		pSrcBuf:= ADR(Voltage_Guard_Min_Error_L1), 
+		cbBufLen:= SIZEOF(Voltage_Guard_Min_Error_L1), 
+		bExecute:= Exec_Voltage_Guard_Min_Error_L1, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Voltage_Guard_Min_Error_L1_WR.bBusy THEN
+    	Exec_Voltage_Guard_Min_Error_L1 := FALSE;
+		IF NOT Voltage_Guard_Min_Error_L1_WR.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Min_Error_L1 := FALSE;
+			IF Previous_Voltage_Guard_Min_Error_L1_val <> Voltage_Guard_Min_Error_L1 THEN
+				Previous_Voltage_Guard_Min_Error_L1_val := Voltage_Guard_Min_Error_L1;
+				Exec_READ_Voltage_Guard_Min_Error_L1 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Min_Error_L1 := Voltage_Guard_Min_Error_L1_WR.bError;
+			Voltage_Guard_Min_Error_L1 := Previous_Voltage_Guard_Min_Error_L1_val;
+		END_IF
+	
+		Voltage_Guard_Min_Error_L1_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Voltage_Guard_Min_Error_L1_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8001, 
+		nSubIndex := 16#11, 
+		pDstBuf:= ADR(Voltage_Guard_Min_Error_L1), 
+		cbBufLen:=SIZEOF(Voltage_Guard_Min_Error_L1),
+		bExecute:= Exec_READ_Voltage_Guard_Min_Error_L1);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Voltage_Guard_Min_Error_L1_RD.bBusy AND NOT Voltage_Guard_Min_Error_L1_WR.bBusy THEN
+    	Exec_READ_Voltage_Guard_Min_Error_L1 := FALSE;
+		IF NOT Voltage_Guard_Min_Error_L1_RD.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Min_Error_L1 := FALSE;
+			Previous_Voltage_Guard_Min_Error_L1_val := Voltage_Guard_Min_Error_L1;
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Min_Error_L1 := Voltage_Guard_Min_Error_L1_RD.bError;
+    END_IF
+
+    Voltage_Guard_Min_Error_L1_RD(bExecute := FALSE);
+	
+	END_IF
+(******************************** VOLTAGE GUARD MIN ERROR L1 *****************************************)
+
+(********************************* VOLTAGE GUARD MIN ERROR L2 ****************************************)
+	(* Execution of the writing reading of Voltage Guard Min Error L2. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Voltage_Guard_Min_Error_L2 <> Previous_Voltage_Guard_Min_Error_L2_val THEN
+		Exec_Voltage_Guard_Min_Error_L2 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Voltage_Guard_Min_Error_L2_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#11, 
+		nIndex:= 16#8011, 
+		pSrcBuf:= ADR(Voltage_Guard_Min_Error_L2), 
+		cbBufLen:= SIZEOF(Voltage_Guard_Min_Error_L2), 
+		bExecute:= Exec_Voltage_Guard_Min_Error_L2, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Voltage_Guard_Min_Error_L2_WR.bBusy THEN
+    	Exec_Voltage_Guard_Min_Error_L2 := FALSE;
+		IF NOT Voltage_Guard_Min_Error_L2_WR.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Min_Error_L2 := FALSE;
+			IF Previous_Voltage_Guard_Min_Error_L2_val <> Voltage_Guard_Min_Error_L2 THEN
+				Previous_Voltage_Guard_Min_Error_L2_val := Voltage_Guard_Min_Error_L2;
+				Exec_READ_Voltage_Guard_Min_Error_L2 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Min_Error_L2 := Voltage_Guard_Min_Error_L2_WR.bError;
+			Voltage_Guard_Min_Error_L2 := Previous_Voltage_Guard_Min_Error_L2_val;
+		END_IF
+	
+		Voltage_Guard_Min_Error_L2_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Voltage_Guard_Min_Error_L2_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8011, 
+		nSubIndex := 16#11, 
+		pDstBuf:= ADR(Voltage_Guard_Min_Error_L2), 
+		cbBufLen:=SIZEOF(Voltage_Guard_Min_Error_L2),
+		bExecute:= Exec_READ_Voltage_Guard_Min_Error_L2);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Voltage_Guard_Min_Error_L2_RD.bBusy AND NOT Voltage_Guard_Min_Error_L2_WR.bBusy THEN
+    	Exec_READ_Voltage_Guard_Min_Error_L2 := FALSE;
+		IF NOT Voltage_Guard_Min_Error_L2_RD.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Min_Error_L2 := FALSE;
+			Previous_Voltage_Guard_Min_Error_L2_val := Voltage_Guard_Min_Error_L2;
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Min_Error_L2 := Voltage_Guard_Min_Error_L2_RD.bError;
+    END_IF
+
+    Voltage_Guard_Min_Error_L2_RD(bExecute := FALSE);
+	
+	END_IF
+(********************************* VOLTAGE GUARD MIN ERROR L2 ****************************************)
+
+(********************************* VOLTAGE GUARD MIN ERROR L3 ****************************************)
+	(* Execution of the writing reading of Voltage Guard Min Error L23. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Voltage_Guard_Min_Error_L3 <> Previous_Voltage_Guard_Min_Error_L3_val THEN
+		Exec_Voltage_Guard_Min_Error_L3 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Voltage_Guard_Min_Error_L3_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#11, 
+		nIndex:= 16#8021, 
+		pSrcBuf:= ADR(Voltage_Guard_Min_Error_L3), 
+		cbBufLen:= SIZEOF(Voltage_Guard_Min_Error_L3), 
+		bExecute:= Exec_Voltage_Guard_Min_Error_L3, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Voltage_Guard_Min_Error_L3_WR.bBusy THEN
+    	Exec_Voltage_Guard_Min_Error_L3 := FALSE;
+		IF NOT Voltage_Guard_Min_Error_L3_WR.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Min_Error_L3 := FALSE;
+			IF Previous_Voltage_Guard_Min_Error_L3_val <> Voltage_Guard_Min_Error_L3 THEN
+				Previous_Voltage_Guard_Min_Error_L3_val := Voltage_Guard_Min_Error_L3;
+				Exec_READ_Voltage_Guard_Min_Error_L3 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Min_Error_L3 := Voltage_Guard_Min_Error_L3_WR.bError;
+			Voltage_Guard_Min_Error_L3 := Previous_Voltage_Guard_Min_Error_L3_val;
+		END_IF
+	
+		Voltage_Guard_Min_Error_L3_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Voltage_Guard_Min_Error_L3_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8021, 
+		nSubIndex := 16#11, 
+		pDstBuf:= ADR(Voltage_Guard_Min_Error_L3), 
+		cbBufLen:=SIZEOF(Voltage_Guard_Min_Error_L3),
+		bExecute:= Exec_READ_Voltage_Guard_Min_Error_L3);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Voltage_Guard_Min_Error_L3_RD.bBusy AND NOT Voltage_Guard_Min_Error_L3_WR.bBusy THEN
+    	Exec_READ_Voltage_Guard_Min_Error_L3 := FALSE;
+		IF NOT Voltage_Guard_Min_Error_L3_RD.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Min_Error_L3 := FALSE;
+			Previous_Voltage_Guard_Min_Error_L3_val := Voltage_Guard_Min_Error_L3;
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Min_Error_L3 := Voltage_Guard_Min_Error_L3_RD.bError;
+    END_IF
+
+    Voltage_Guard_Min_Error_L3_RD(bExecute := FALSE);
+	
+	END_IF
+(******************************** VOLTAGE GUARD MIN ERROR L3 *****************************************)
+
+(********************************* VOLTAGE GUARD MIN WARNING L1 **************************************)
+	(* Execution of the writing reading of Voltage Guard Min Error L1. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Voltage_Guard_Min_Warning_L1 <> Previous_Voltage_Guard_Min_Warning_L1_val THEN
+		Exec_Voltage_Guard_Min_Warning_L1 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Voltage_Guard_Min_Warning_L1_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#12, 
+		nIndex:= 16#8001, 
+		pSrcBuf:= ADR(Voltage_Guard_Min_Warning_L1), 
+		cbBufLen:= SIZEOF(Voltage_Guard_Min_Warning_L1), 
+		bExecute:= Exec_Voltage_Guard_Min_Warning_L1, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Voltage_Guard_Min_Warning_L1_WR.bBusy THEN
+    	Exec_Voltage_Guard_Min_Warning_L1 := FALSE;
+		IF NOT Voltage_Guard_Min_Warning_L1_WR.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Min_Warning_L1 := FALSE;
+			IF Previous_Voltage_Guard_Min_Warning_L1_val <> Voltage_Guard_Min_Warning_L1 THEN
+				Previous_Voltage_Guard_Min_Warning_L1_val := Voltage_Guard_Min_Warning_L1;
+				Exec_READ_Voltage_Guard_Min_Warning_L1 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Min_Warning_L1 := Voltage_Guard_Min_Warning_L1_WR.bError;
+			Voltage_Guard_Min_Warning_L1 := Previous_Voltage_Guard_Min_Warning_L1_val;
+		END_IF
+	
+		Voltage_Guard_Min_Warning_L1_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Voltage_Guard_Min_Warning_L1_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8001, 
+		nSubIndex := 16#12, 
+		pDstBuf:= ADR(Voltage_Guard_Min_Warning_L1), 
+		cbBufLen:=SIZEOF(Voltage_Guard_Min_Warning_L1),
+		bExecute:= Exec_READ_Voltage_Guard_Min_Warning_L1);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Voltage_Guard_Min_Warning_L1_RD.bBusy AND NOT Voltage_Guard_Min_Warning_L1_WR.bBusy THEN
+    	Exec_READ_Voltage_Guard_Min_Warning_L1 := FALSE;
+		IF NOT Voltage_Guard_Min_Warning_L1_RD.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Min_Warning_L1 := FALSE;
+			Previous_Voltage_Guard_Min_Warning_L1_val := Voltage_Guard_Min_Warning_L1;
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Min_Warning_L1 := Voltage_Guard_Min_Warning_L1_RD.bError;
+    END_IF
+
+    Voltage_Guard_Min_Warning_L1_RD(bExecute := FALSE);
+	
+	END_IF
+(********************************* VOLTAGE GUARD MIN WARNING L1 **************************************)
+
+(********************************* VOLTAGE GUARD MIN WARNING L2 **************************************)
+	(* Execution of the writing reading of Voltage Guard Min Error L2. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Voltage_Guard_Min_Warning_L2 <> Previous_Voltage_Guard_Min_Warning_L2_val THEN
+		Exec_Voltage_Guard_Min_Warning_L2 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Voltage_Guard_Min_Warning_L2_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#12, 
+		nIndex:= 16#8011, 
+		pSrcBuf:= ADR(Voltage_Guard_Min_Warning_L2), 
+		cbBufLen:= SIZEOF(Voltage_Guard_Min_Warning_L2), 
+		bExecute:= Exec_Voltage_Guard_Min_Warning_L2, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Voltage_Guard_Min_Warning_L2_WR.bBusy THEN
+    	Exec_Voltage_Guard_Min_Warning_L2 := FALSE;
+		IF NOT Voltage_Guard_Min_Warning_L2_WR.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Min_Warning_L2 := FALSE;
+			IF Previous_Voltage_Guard_Min_Warning_L2_val <> Voltage_Guard_Min_Warning_L2 THEN
+				Previous_Voltage_Guard_Min_Warning_L2_val := Voltage_Guard_Min_Warning_L2;
+				Exec_READ_Voltage_Guard_Min_Warning_L2 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Min_Warning_L2 := Voltage_Guard_Min_Warning_L2_WR.bError;
+			Voltage_Guard_Min_Warning_L2 := Previous_Voltage_Guard_Min_Warning_L2_val;
+		END_IF
+	
+		Voltage_Guard_Min_Warning_L2_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Voltage_Guard_Min_Warning_L2_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8011, 
+		nSubIndex := 16#12, 
+		pDstBuf:= ADR(Voltage_Guard_Min_Warning_L2), 
+		cbBufLen:=SIZEOF(Voltage_Guard_Min_Warning_L2),
+		bExecute:= Exec_READ_Voltage_Guard_Min_Warning_L2);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Voltage_Guard_Min_Warning_L2_RD.bBusy AND NOT Voltage_Guard_Min_Warning_L2_WR.bBusy THEN
+    	Exec_READ_Voltage_Guard_Min_Warning_L2 := FALSE;
+		IF NOT Voltage_Guard_Min_Warning_L2_RD.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Min_Warning_L2 := FALSE;
+			Previous_Voltage_Guard_Min_Warning_L2_val := Voltage_Guard_Min_Warning_L2;
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Min_Warning_L2 := Voltage_Guard_Min_Warning_L2_RD.bError;
+    END_IF
+
+    Voltage_Guard_Min_Warning_L2_RD(bExecute := FALSE);
+	
+	END_IF
+(********************************* VOLTAGE GUARD MIN WARNING L2 ***************************************)
+
+(********************************* VOLTAGE GUARD MIN WARNING L3 **************************************)
+	(* Execution of the writing reading of Voltage Guard Min Error L3. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Voltage_Guard_Min_Warning_L3 <> Previous_Voltage_Guard_Min_Warning_L3_val THEN
+		Exec_Voltage_Guard_Min_Warning_L3 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Voltage_Guard_Min_Warning_L3_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#12, 
+		nIndex:= 16#8021, 
+		pSrcBuf:= ADR(Voltage_Guard_Min_Warning_L3), 
+		cbBufLen:= SIZEOF(Voltage_Guard_Min_Warning_L3), 
+		bExecute:= Exec_Voltage_Guard_Min_Warning_L3, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Voltage_Guard_Min_Warning_L3_WR.bBusy THEN
+    	Exec_Voltage_Guard_Min_Warning_L3 := FALSE;
+		IF NOT Voltage_Guard_Min_Warning_L3_WR.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Min_Warning_L3 := FALSE;
+			IF Previous_Voltage_Guard_Min_Warning_L3_val <> Voltage_Guard_Min_Warning_L3 THEN
+				Previous_Voltage_Guard_Min_Warning_L3_val := Voltage_Guard_Min_Warning_L3;
+				Exec_READ_Voltage_Guard_Min_Warning_L3 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Min_Warning_L3 := Voltage_Guard_Min_Warning_L3_WR.bError;
+			Voltage_Guard_Min_Warning_L3 := Previous_Voltage_Guard_Min_Warning_L3_val;
+		END_IF
+	
+		Voltage_Guard_Min_Warning_L3_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Voltage_Guard_Min_Warning_L3_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8021, 
+		nSubIndex := 16#12, 
+		pDstBuf:= ADR(Voltage_Guard_Min_Warning_L3), 
+		cbBufLen:=SIZEOF(Voltage_Guard_Min_Warning_L3),
+		bExecute:= Exec_READ_Voltage_Guard_Min_Warning_L3);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Voltage_Guard_Min_Warning_L3_RD.bBusy AND NOT Voltage_Guard_Min_Warning_L3_WR.bBusy THEN
+    	Exec_READ_Voltage_Guard_Min_Warning_L3 := FALSE;
+		IF NOT Voltage_Guard_Min_Warning_L3_RD.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Min_Warning_L3 := FALSE;
+			Previous_Voltage_Guard_Min_Warning_L3_val := Voltage_Guard_Min_Warning_L3;
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Min_Warning_L3 := Voltage_Guard_Min_Warning_L3_RD.bError;
+    END_IF
+
+    Voltage_Guard_Min_Warning_L3_RD(bExecute := FALSE);
+	
+	END_IF
+(********************************* VOLTAGE GUARD MIN WARNING L3 ***************************************)
+
+(********************************* VOLTAGE GUARD MAX WARNING L1 **************************************)
+	(* Execution of the writing reading of Voltage Guard Max Warning L1. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Voltage_Guard_Max_Warning_L1 <> Previous_Voltage_Guard_Max_Warning_L1_val THEN
+		Exec_Voltage_Guard_Max_Warning_L1 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Voltage_Guard_Max_Warning_L1_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#13, 
+		nIndex:= 16#8001, 
+		pSrcBuf:= ADR(Voltage_Guard_Max_Warning_L1), 
+		cbBufLen:= SIZEOF(Voltage_Guard_Max_Warning_L1), 
+		bExecute:= Exec_Voltage_Guard_Max_Warning_L1, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Voltage_Guard_Max_Warning_L1_WR.bBusy THEN
+    	Exec_Voltage_Guard_Max_Warning_L1 := FALSE;
+		IF NOT Voltage_Guard_Max_Warning_L1_WR.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Max_Warning_L1 := FALSE;
+			IF Previous_Voltage_Guard_Max_Warning_L1_val <> Voltage_Guard_Max_Warning_L1 THEN
+				Previous_Voltage_Guard_Max_Warning_L1_val := Voltage_Guard_Max_Warning_L1;
+				Exec_READ_Voltage_Guard_Max_Warning_L1 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Max_Warning_L1 := Voltage_Guard_Max_Warning_L1_WR.bError;
+			Voltage_Guard_Max_Warning_L1 := Previous_Voltage_Guard_Max_Warning_L1_val;
+		END_IF
+	
+		Voltage_Guard_Max_Warning_L1_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Voltage_Guard_Max_Warning_L1_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8001, 
+		nSubIndex := 16#13, 
+		pDstBuf:= ADR(Voltage_Guard_Max_Warning_L1), 
+		cbBufLen:=SIZEOF(Voltage_Guard_Max_Warning_L1),
+		bExecute:= Exec_READ_Voltage_Guard_Max_Warning_L1);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Voltage_Guard_Max_Warning_L1_RD.bBusy AND NOT Voltage_Guard_Max_Warning_L1_WR.bBusy THEN
+    	Exec_READ_Voltage_Guard_Max_Warning_L1 := FALSE;
+		IF NOT Voltage_Guard_Max_Warning_L1_RD.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Max_Warning_L1 := FALSE;
+			Previous_Voltage_Guard_Max_Warning_L1_val := Voltage_Guard_Max_Warning_L1;
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Max_Warning_L1 := Voltage_Guard_Max_Warning_L1_RD.bError;
+    END_IF
+
+    Voltage_Guard_Max_Warning_L1_RD(bExecute := FALSE);
+	
+	END_IF
+(********************************* VOLTAGE GUARD MAX WARNING L1 **************************************)
+
+(********************************* VOLTAGE GUARD MAX WARNING L2 **************************************)
+	(* Execution of the writing reading of Voltage Guard Max Warning L2. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Voltage_Guard_Max_Warning_L2 <> Previous_Voltage_Guard_Max_Warning_L2_val THEN
+		Exec_Voltage_Guard_Max_Warning_L2 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Voltage_Guard_Max_Warning_L2_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#13, 
+		nIndex:= 16#8011, 
+		pSrcBuf:= ADR(Voltage_Guard_Max_Warning_L2), 
+		cbBufLen:= SIZEOF(Voltage_Guard_Max_Warning_L2), 
+		bExecute:= Exec_Voltage_Guard_Max_Warning_L2, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Voltage_Guard_Max_Warning_L2_WR.bBusy THEN
+    	Exec_Voltage_Guard_Max_Warning_L2 := FALSE;
+		IF NOT Voltage_Guard_Max_Warning_L2_WR.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Max_Warning_L2 := FALSE;
+			IF Previous_Voltage_Guard_Max_Warning_L2_val <> Voltage_Guard_Max_Warning_L2 THEN
+				Previous_Voltage_Guard_Max_Warning_L2_val := Voltage_Guard_Max_Warning_L2;
+				Exec_READ_Voltage_Guard_Max_Warning_L2 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Max_Warning_L2 := Voltage_Guard_Max_Warning_L2_WR.bError;
+			Voltage_Guard_Max_Warning_L2 := Previous_Voltage_Guard_Max_Warning_L2_val;
+		END_IF
+	
+		Voltage_Guard_Max_Warning_L2_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Voltage_Guard_Max_Warning_L2_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8011, 
+		nSubIndex := 16#13, 
+		pDstBuf:= ADR(Voltage_Guard_Max_Warning_L2), 
+		cbBufLen:=SIZEOF(Voltage_Guard_Max_Warning_L2),
+		bExecute:= Exec_READ_Voltage_Guard_Max_Warning_L2);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Voltage_Guard_Max_Warning_L2_RD.bBusy AND NOT Voltage_Guard_Max_Warning_L2_WR.bBusy THEN
+    	Exec_READ_Voltage_Guard_Max_Warning_L2 := FALSE;
+		IF NOT Voltage_Guard_Max_Warning_L2_RD.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Max_Warning_L2 := FALSE;
+			Previous_Voltage_Guard_Max_Warning_L2_val := Voltage_Guard_Max_Warning_L2;
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Max_Warning_L2 := Voltage_Guard_Max_Warning_L2_RD.bError;
+    END_IF
+
+    Voltage_Guard_Max_Warning_L2_RD(bExecute := FALSE);
+	
+	END_IF
+(********************************* VOLTAGE GUARD MAX WARNING L2 **************************************)
+
+(********************************* VOLTAGE GUARD MAX WARNING L3 **************************************)
+	(* Execution of the writing reading of Voltage Guard Max Warning L3. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Voltage_Guard_Max_Warning_L3 <> Previous_Voltage_Guard_Max_Warning_L3_val THEN
+		Exec_Voltage_Guard_Max_Warning_L3 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Voltage_Guard_Max_Warning_L3_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#13, 
+		nIndex:= 16#8021, 
+		pSrcBuf:= ADR(Voltage_Guard_Max_Warning_L3), 
+		cbBufLen:= SIZEOF(Voltage_Guard_Max_Warning_L3), 
+		bExecute:= Exec_Voltage_Guard_Max_Warning_L3, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Voltage_Guard_Max_Warning_L3_WR.bBusy THEN
+    	Exec_Voltage_Guard_Max_Warning_L3 := FALSE;
+		IF NOT Voltage_Guard_Max_Warning_L3_WR.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Max_Warning_L3 := FALSE;
+			IF Previous_Voltage_Guard_Max_Warning_L3_val <> Voltage_Guard_Max_Warning_L3 THEN
+				Previous_Voltage_Guard_Max_Warning_L3_val := Voltage_Guard_Max_Warning_L3;
+				Exec_READ_Voltage_Guard_Max_Warning_L3 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Max_Warning_L3 := Voltage_Guard_Max_Warning_L3_WR.bError;
+			Voltage_Guard_Max_Warning_L3 := Previous_Voltage_Guard_Max_Warning_L3_val;
+		END_IF
+	
+		Voltage_Guard_Max_Warning_L3_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Voltage_Guard_Max_Warning_L3_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8021, 
+		nSubIndex := 16#13, 
+		pDstBuf:= ADR(Voltage_Guard_Max_Warning_L3), 
+		cbBufLen:=SIZEOF(Voltage_Guard_Max_Warning_L3),
+		bExecute:= Exec_READ_Voltage_Guard_Max_Warning_L3);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Voltage_Guard_Max_Warning_L3_RD.bBusy AND NOT Voltage_Guard_Max_Warning_L3_WR.bBusy THEN
+    	Exec_READ_Voltage_Guard_Max_Warning_L3 := FALSE;
+		IF NOT Voltage_Guard_Max_Warning_L3_RD.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Max_Warning_L3 := FALSE;
+			Previous_Voltage_Guard_Max_Warning_L3_val := Voltage_Guard_Max_Warning_L3;
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Max_Warning_L3 := Voltage_Guard_Max_Warning_L3_RD.bError;
+    END_IF
+
+    Voltage_Guard_Max_Warning_L3_RD(bExecute := FALSE);
+	
+	END_IF
+(********************************* VOLTAGE GUARD MAX WARNING L3 **************************************)
+
+(********************************* VOLTAGE GUARD MAX ERROR L1 ****************************************)
+	(* Execution of the writing reading of Voltage Guard Max Error L1. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Voltage_Guard_Max_Error_L1 <> Previous_Voltage_Guard_Max_Error_L1_val THEN
+		Exec_Voltage_Guard_Max_Error_L1 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Voltage_Guard_Max_Error_L1_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#14, 
+		nIndex:= 16#8001, 
+		pSrcBuf:= ADR(Voltage_Guard_Max_Error_L1), 
+		cbBufLen:= SIZEOF(Voltage_Guard_Max_Error_L1), 
+		bExecute:= Exec_Voltage_Guard_Max_Error_L1, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Voltage_Guard_Max_Error_L1_WR.bBusy THEN
+    	Exec_Voltage_Guard_Max_Error_L1 := FALSE;
+		IF NOT Voltage_Guard_Max_Error_L1_WR.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Max_Error_L1 := FALSE;
+			IF Previous_Voltage_Guard_Max_Error_L1_val <> Voltage_Guard_Max_Error_L1 THEN
+				Previous_Voltage_Guard_Max_Error_L1_val := Voltage_Guard_Max_Error_L1;
+				Exec_READ_Voltage_Guard_Max_Error_L1 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Max_Error_L1 := Voltage_Guard_Max_Error_L1_WR.bError;
+			Voltage_Guard_Max_Error_L1 := Previous_Voltage_Guard_Max_Error_L1_val;
+		END_IF
+	
+		Voltage_Guard_Max_Error_L1_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Voltage_Guard_Max_Error_L1_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8001, 
+		nSubIndex := 16#14, 
+		pDstBuf:= ADR(Voltage_Guard_Max_Error_L1), 
+		cbBufLen:=SIZEOF(Voltage_Guard_Max_Error_L1),
+		bExecute:= Exec_READ_Voltage_Guard_Max_Error_L1);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Voltage_Guard_Max_Error_L1_RD.bBusy AND NOT Voltage_Guard_Max_Error_L1_WR.bBusy THEN
+    	Exec_READ_Voltage_Guard_Max_Error_L1 := FALSE;
+		IF NOT Voltage_Guard_Max_Error_L1_RD.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Max_Error_L1 := FALSE;
+			Previous_Voltage_Guard_Max_Error_L1_val := Voltage_Guard_Max_Error_L1;
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Max_Error_L1 := Voltage_Guard_Max_Error_L1_RD.bError;
+    END_IF
+
+    Voltage_Guard_Max_Error_L1_RD(bExecute := FALSE);
+	
+	END_IF
+(******************************** VOLTAGE GUARD MAX ERROR L1 *****************************************)
+
+(********************************* VOLTAGE GUARD MAX ERROR L2 ****************************************)
+	(* Execution of the writing reading of Voltage Guard Max Error L2. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Voltage_Guard_Max_Error_L2 <> Previous_Voltage_Guard_Max_Error_L2_val THEN
+		Exec_Voltage_Guard_Max_Error_L2 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Voltage_Guard_Max_Error_L2_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#14, 
+		nIndex:= 16#8011, 
+		pSrcBuf:= ADR(Voltage_Guard_Max_Error_L2), 
+		cbBufLen:= SIZEOF(Voltage_Guard_Max_Error_L2), 
+		bExecute:= Exec_Voltage_Guard_Max_Error_L2, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Voltage_Guard_Max_Error_L2_WR.bBusy THEN
+    	Exec_Voltage_Guard_Max_Error_L2 := FALSE;
+		IF NOT Voltage_Guard_Max_Error_L2_WR.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Max_Error_L2 := FALSE;
+			IF Previous_Voltage_Guard_Max_Error_L2_val <> Voltage_Guard_Max_Error_L2 THEN
+				Previous_Voltage_Guard_Max_Error_L2_val := Voltage_Guard_Max_Error_L2;
+				Exec_READ_Voltage_Guard_Max_Error_L2 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Max_Error_L2 := Voltage_Guard_Max_Error_L2_WR.bError;
+			Voltage_Guard_Max_Error_L2 := Previous_Voltage_Guard_Max_Error_L2_val;
+		END_IF
+	
+		Voltage_Guard_Max_Error_L2_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Voltage_Guard_Max_Error_L2_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8011, 
+		nSubIndex := 16#14, 
+		pDstBuf:= ADR(Voltage_Guard_Max_Error_L2), 
+		cbBufLen:=SIZEOF(Voltage_Guard_Max_Error_L2),
+		bExecute:= Exec_READ_Voltage_Guard_Max_Error_L2);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Voltage_Guard_Max_Error_L2_RD.bBusy AND NOT Voltage_Guard_Max_Error_L2_WR.bBusy THEN
+    	Exec_READ_Voltage_Guard_Max_Error_L2 := FALSE;
+		IF NOT Voltage_Guard_Max_Error_L2_RD.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Max_Error_L2 := FALSE;
+			Previous_Voltage_Guard_Max_Error_L2_val := Voltage_Guard_Max_Error_L2;
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Max_Error_L2 := Voltage_Guard_Max_Error_L2_RD.bError;
+    END_IF
+
+    Voltage_Guard_Max_Error_L2_RD(bExecute := FALSE);
+	
+	END_IF
+(******************************** VOLTAGE GUARD MAX ERROR L2 *****************************************)
+
+(********************************* VOLTAGE GUARD MAX ERROR L3 ****************************************)
+	(* Execution of the writing reading of Voltage Guard Max Error L3. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Voltage_Guard_Max_Error_L3 <> Previous_Voltage_Guard_Max_Error_L3_val THEN
+		Exec_Voltage_Guard_Max_Error_L3 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Voltage_Guard_Max_Error_L3_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#14, 
+		nIndex:= 16#8021, 
+		pSrcBuf:= ADR(Voltage_Guard_Max_Error_L3), 
+		cbBufLen:= SIZEOF(Voltage_Guard_Max_Error_L3), 
+		bExecute:= Exec_Voltage_Guard_Max_Error_L3, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Voltage_Guard_Max_Error_L3_WR.bBusy THEN
+    	Exec_Voltage_Guard_Max_Error_L3 := FALSE;
+		IF NOT Voltage_Guard_Max_Error_L3_WR.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Max_Error_L3 := FALSE;
+			IF Previous_Voltage_Guard_Max_Error_L3_val <> Voltage_Guard_Max_Error_L3 THEN
+				Previous_Voltage_Guard_Max_Error_L3_val := Voltage_Guard_Max_Error_L3;
+				Exec_READ_Voltage_Guard_Max_Error_L3 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Max_Error_L3 := Voltage_Guard_Max_Error_L3_WR.bError;
+			Voltage_Guard_Max_Error_L3 := Previous_Voltage_Guard_Max_Error_L3_val;
+		END_IF
+	
+		Voltage_Guard_Max_Error_L3_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Voltage_Guard_Max_Error_L3_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8021, 
+		nSubIndex := 16#14, 
+		pDstBuf:= ADR(Voltage_Guard_Max_Error_L3), 
+		cbBufLen:=SIZEOF(Voltage_Guard_Max_Error_L3),
+		bExecute:= Exec_READ_Voltage_Guard_Max_Error_L3);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Voltage_Guard_Max_Error_L3_RD.bBusy AND NOT Voltage_Guard_Max_Error_L3_WR.bBusy THEN
+    	Exec_READ_Voltage_Guard_Max_Error_L3 := FALSE;
+		IF NOT Voltage_Guard_Max_Error_L3_RD.bError THEN 
+			(* write successful *)
+			Error_Voltage_Guard_Max_Error_L3 := FALSE;
+			Previous_Voltage_Guard_Max_Error_L3_val := Voltage_Guard_Max_Error_L3;
+		ELSE 
+			(* write failed *)
+			Error_Voltage_Guard_Max_Error_L3 := Voltage_Guard_Max_Error_L3_RD.bError;
+    END_IF
+
+    Voltage_Guard_Max_Error_L3_RD(bExecute := FALSE);
+	
+	END_IF
+(******************************** VOLTAGE GUARD MAX ERROR L3 *****************************************)
+
+END_IF
+
+IF EL3_Selection = 'EL3453' THEN
+	
+	(* Reset the error selection *)
+	Error_selection := FALSE;
+	
+	
+(********************************** CURRENT TRAFO RANGE L1 *******************************************)
+	(* Execution of the writing reading of nominal voltage. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Current_trafo_range_L1 <> Previous_Current_trafo_range_L1_val THEN
+		Exec_Current_trafo_range_L1 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Current_trafo_range_L1_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#14, 
+		nIndex:= 16#8000, 
+		pSrcBuf:= ADR(Current_trafo_range_L1), 
+		cbBufLen:= SIZEOF(Current_trafo_range_L1), 
+		bExecute:= Exec_Current_trafo_range_L1, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Current_trafo_range_L1_WR.bBusy THEN
+    	Exec_Current_trafo_range_L1 := FALSE;
+		IF NOT Current_trafo_range_L1_WR.bError THEN 
+			(* write successful *)
+			Error_Current_trafo_range_L1 := FALSE;
+			IF Previous_Current_trafo_range_L1_val <> Current_trafo_range_L1 THEN
+				Previous_Current_trafo_range_L1_val := Current_trafo_range_L1;
+				Exec_READ_Current_trafo_range_L1 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Current_trafo_range_L1 := Current_trafo_range_L1_WR.bError;
+			Current_trafo_range_L1 := Previous_Current_trafo_range_L1_val;
+		END_IF
+	
+		Current_trafo_range_L1_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Current_trafo_range_L1_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8000, 
+		nSubIndex := 16#14, 
+		pDstBuf:= ADR(Current_trafo_range_L1), 
+		cbBufLen:=SIZEOF(Current_trafo_range_L1),
+		bExecute:= Exec_READ_Current_trafo_range_L1);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Current_trafo_range_L1_RD.bBusy AND NOT Current_trafo_range_L1_WR.bBusy THEN
+    	Exec_READ_Current_trafo_range_L1 := FALSE;
+		IF NOT Current_trafo_range_L1_RD.bError THEN 
+			(* write successful *)
+			Error_Current_trafo_range_L1 := FALSE;
+			Previous_Current_trafo_range_L1_val := Current_trafo_range_L1;
+		ELSE 
+			(* write failed *)
+			Error_Current_trafo_range_L1 := Current_trafo_range_L1_RD.bError;
+    	END_IF
+
+    Current_trafo_range_L1_RD(bExecute := FALSE);
+	
+	END_IF
+	
+(********************************** CURRENT TRAFO RANGE L1 *******************************************)
+
+(********************************** CURRENT TRAFO RANGE L2 *******************************************)
+	(* Execution of the writing reading of nominal voltage. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Current_trafo_range_L2 <> Previous_Current_trafo_range_L2_val THEN
+		Exec_Current_trafo_range_L2 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Current_trafo_range_L2_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#14, 
+		nIndex:= 16#8010, 
+		pSrcBuf:= ADR(Current_trafo_range_L2), 
+		cbBufLen:= SIZEOF(Current_trafo_range_L2), 
+		bExecute:= Exec_Current_trafo_range_L2, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Current_trafo_range_L2_WR.bBusy THEN
+    	Exec_Current_trafo_range_L2 := FALSE;
+		IF NOT Current_trafo_range_L2_WR.bError THEN 
+			(* write successful *)
+			Error_Current_trafo_range_L2 := FALSE;
+			IF Previous_Current_trafo_range_L2_val <> Current_trafo_range_L2 THEN
+				Previous_Current_trafo_range_L2_val := Current_trafo_range_L2;
+				Exec_READ_Current_trafo_range_L2 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Current_trafo_range_L2 := Current_trafo_range_L2_WR.bError;
+			Current_trafo_range_L2 := Previous_Current_trafo_range_L2_val;
+		END_IF
+	
+		Current_trafo_range_L2_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Current_trafo_range_L2_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8010, 
+		nSubIndex := 16#14, 
+		pDstBuf:= ADR(Current_trafo_range_L2), 
+		cbBufLen:=SIZEOF(Current_trafo_range_L2),
+		bExecute:= Exec_READ_Current_trafo_range_L2);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Current_trafo_range_L2_RD.bBusy AND NOT Current_trafo_range_L2_WR.bBusy THEN
+    	Exec_READ_Current_trafo_range_L2 := FALSE;
+		IF NOT Current_trafo_range_L2_RD.bError THEN 
+			(* write successful *)
+			Error_Current_trafo_range_L2 := FALSE;
+			Previous_Current_trafo_range_L2_val := Current_trafo_range_L2;
+		ELSE 
+			(* write failed *)
+			Error_Current_trafo_range_L2 := Current_trafo_range_L2_RD.bError;
+    	END_IF
+
+    Current_trafo_range_L2_RD(bExecute := FALSE);
+	
+	END_IF
+	
+(********************************** CURRENT TRAFO RANGE L2 *******************************************)
+
+(********************************** CURRENT TRAFO RANGE L3 *******************************************)
+	(* Execution of the writing reading of nominal voltage. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Current_trafo_range_L3 <> Previous_Current_trafo_range_L3_val THEN
+		Exec_Current_trafo_range_L3 := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Current_trafo_range_L3_WR(
+		sNetId:= netID_internal, 
+		nSlaveAddr:= Slave_Add_global_assign, 
+		nSubIndex:= 16#14, 
+		nIndex:= 16#8020, 
+		pSrcBuf:= ADR(Current_trafo_range_L3), 
+		cbBufLen:= SIZEOF(Current_trafo_range_L3), 
+		bExecute:= Exec_Current_trafo_range_L3, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Current_trafo_range_L3_WR.bBusy THEN
+    	Exec_Current_trafo_range_L3 := FALSE;
+		IF NOT Current_trafo_range_L3_WR.bError THEN 
+			(* write successful *)
+			Error_Current_trafo_range_L3 := FALSE;
+			IF Previous_Current_trafo_range_L3_val <> Current_trafo_range_L3 THEN
+				Previous_Current_trafo_range_L3_val := Current_trafo_range_L3;
+				Exec_READ_Current_trafo_range_L3 := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Current_trafo_range_L3 := Current_trafo_range_L3_WR.bError;
+			Current_trafo_range_L3 := Previous_Current_trafo_range_L3_val;
+		END_IF
+	
+		Current_trafo_range_L3_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Current_trafo_range_L3_RD(
+		sNetId:= netID_internal,
+		nSlaveAddr := Slave_Add_global_assign, 
+		nIndex:= 16#8020, 
+		nSubIndex := 16#14, 
+		pDstBuf:= ADR(Current_trafo_range_L3), 
+		cbBufLen:=SIZEOF(Current_trafo_range_L3),
+		bExecute:= Exec_READ_Current_trafo_range_L3);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Current_trafo_range_L3_RD.bBusy AND NOT Current_trafo_range_L3_WR.bBusy THEN
+    	Exec_READ_Current_trafo_range_L3 := FALSE;
+		IF NOT Current_trafo_range_L3_RD.bError THEN 
+			(* write successful *)
+			Error_Current_trafo_range_L3 := FALSE;
+			Previous_Current_trafo_range_L3_val := Current_trafo_range_L3;
+		ELSE 
+			(* write failed *)
+			Error_Current_trafo_range_L3 := Current_trafo_range_L3_RD.bError;
+    	END_IF
+
+    Current_trafo_range_L3_RD(bExecute := FALSE);
+	
+	END_IF
+	
+(********************************** CURRENT TRAFO RANGE L3 *******************************************)
+
+
+END_IF
+
+(* It is necessary to know what is the power measurement boards that is going to be configured *)	
+IF EL3_Selection = 'EL3783' THEN
+	
+	(* In the first scan cycle, the function performs a reading to get the parameters from the board *)
+	(* It is necessary send the request in two times, otherwise the last frames reports error*)
+	
+	IF INIT_THIRD = TRUE THEN	
+		IF INIT AND Counter_Init_2 <= 1 THEN
+			CASE Counter_init_2 OF
+				//Current Range
+				0: Exec_READ_Current_Range := TRUE;
+				
+			END_CASE
+			Counter_init_2 := Counter_init_2 + 1;
+		END_IF
+	END_IF
+
+	Delay_third_Init (IN := NOT(INIT_THIRD), PT := T#200MS, Q => INIT_THIRD, ET => );
+	
+	(* Reset the error selection *)
+	Error_selection := FALSE;
+	
+(************************************** CURRENT RANGE **********************************************)
+	(* Execution of the writing reading of Current Range. When the previous value is diferent to the
+	current one, the is executed the command*)
+	IF Current_Range <> Previous_Current_Range_val THEN
+		Exec_Current_Range := TRUE;
+	END_IF
+	
+	(* Function to write the new value in the CoE parameter*)
+	Current_Range_WR(
+		sNetId:= netID_internal_2, 
+		nSlaveAddr:= Slave_Add_global_assign_2, 
+		nSubIndex:= 16#11, 
+		nIndex:= 16#F80D, 
+		pSrcBuf:= ADR(Current_Range), 
+		cbBufLen:= SIZEOF(Current_Range), 
+		bExecute:= Exec_Current_Range, 
+		tTimeout:= T#1S);
+	
+	(* Logic to handle the errors and launch the reading*)	
+	IF NOT Current_Range_WR.bBusy THEN
+    	Exec_Current_Range := FALSE;
+		IF NOT Current_Range_WR.bError THEN 
+			(* write successful *)
+			Error_Current_Range := FALSE;
+			IF Previous_Current_Range_val <> Current_Range THEN
+				Previous_Current_Range_val := Current_Range;
+				Exec_READ_Current_Range := TRUE;
+			END_IF
+		ELSE 
+			(* write failed *)
+			Error_Current_Range := Current_Range_WR.bError;
+			Current_Range := Previous_Current_Range_val;
+		END_IF
+	
+		Current_Range_WR(bExecute := FALSE);
+	
+	END_IF
+	
+	(* After writting, it is necessary to check if the parameter has been writting correctly*)
+	Current_Range_RD(
+		sNetId:= netID_internal_2,
+		nSlaveAddr := Slave_Add_global_assign_2, 
+		nIndex:= 16#F80D, 
+		nSubIndex := 16#11, 
+		pDstBuf:= ADR(Current_Range), 
+		cbBufLen:=SIZEOF(Current_Range),
+		bExecute:= Exec_READ_Current_Range);
+	
+	(* Logic to handle the errors in the reading*)	
+	IF NOT Current_Range_RD.bBusy AND NOT Current_Range_WR.bBusy THEN
+    	Exec_READ_Current_Range := FALSE;
+		IF NOT Current_Range_RD.bError THEN 
+			(* write successful *)
+			Error_Current_Range := FALSE;
+			Previous_Current_Range_val := Current_Range;
+		ELSE 
+			(* write failed *)
+			Error_Current_Range := Current_Range_RD.bError;
+    	END_IF
+
+    	Current_Range_RD(bExecute := FALSE);
+	
+	END_IF
+	
+(********************************** CURRENT RANGE *******************************************)
+
+END_IF
+
+//If non of EL3443 or EL3453 or EL3783 is selected then "Error selection" became True
+	
+IF EL3_Selection <> 'EL3783' AND EL3_Selection <> 'EL3443' AND EL3_Selection <> 'EL3453' THEN 
+	Error_selection := TRUE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="METER_EL3453_CFG">
+      <LineId Id="326" Count="25" />
+      <LineId Id="356" Count="1969" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
