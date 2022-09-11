@@ -46,6 +46,11 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"457"</v>
+              <v n="TextDefault">"%.2d kVA"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"143"</v>
               <v n="TextDefault">"%.2f"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -56,6 +61,11 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"989"</v>
+              <v n="TextDefault">"%.2f kVA"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"459"</v>
               <v n="TextDefault">"%.2f kW"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -63,6 +73,11 @@
             <o>
               <v n="TextID">"238"</v>
               <v n="TextDefault">"%.3f"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"468"</v>
+              <v n="TextDefault">"%.3f kVA"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -78,6 +93,11 @@
             <o>
               <v n="TextID">"633"</v>
               <v n="TextDefault">"%.3f V"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"1112"</v>
+              <v n="TextDefault">"%d kVA"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
@@ -517,6 +537,21 @@ config"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"1101"</v>
+              <v n="TextDefault">"S minalç"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"229"</v>
+              <v n="TextDefault">"S nominal"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"161"</v>
+              <v n="TextDefault">"S nominalç"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"309"</v>
               <v n="TextDefault">"Sat max"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -524,6 +559,11 @@ config"</v>
             <o>
               <v n="TextID">"659"</v>
               <v n="TextDefault">"Sat min"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"255"</v>
+              <v n="TextDefault">"SS-PPC ON/OFF"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>

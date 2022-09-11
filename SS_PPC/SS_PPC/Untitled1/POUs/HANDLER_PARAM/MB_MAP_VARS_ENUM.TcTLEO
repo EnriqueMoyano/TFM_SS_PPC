@@ -106,6 +106,8 @@
 	S_tot_pu:= 1106,
 	V_phase_avg_pu:= 1108,
 	V_line_avg_pu:= 1110,
+	Meter_status:= 1130,
+	Lost_comms_enable:= 1131,
 	Active_er_pos_kWh:= 1200,
 	Active_er_neg_kWh:= 1204,
 	Active_er_tot_kWh:= 1208,
@@ -113,14 +115,12 @@
 	React_er_neg_kVArh:= 1216,
 	React_er_tot_kVArh:= 1220,
 	Energies_reset:= 1224,
-	Meter_status:= 1130,
-	Lost_comms_enable:= 1131,
-	V_ratio_RS:= 1200,
-	V_ratio_ST:= 1202,
-	V_ratio_TR:= 1204,
-	I_ratio_R:=	1206,
-	I_ratio_S:=	1208,
-	I_ratio_T:=	1210
+	V_ratio_RS:= 1300,
+	V_ratio_ST:= 1302,
+	V_ratio_TR:= 1304,
+	I_ratio_R:=	1306,
+	I_ratio_S:=	1308,
+	I_ratio_T:=	1310
 
 );
 END_TYPE]]></Declaration>
@@ -644,6 +644,16 @@ END_TYPE]]></Declaration>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"Meter_status"</v>
+              <v n="TextDefault">"1130"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"Lost_comms_enable"</v>
+              <v n="TextDefault">"1131"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"Active_er_pos_kWh"</v>
               <v n="TextDefault">"1200"</v>
               <l n="LanguageTexts" t="ArrayList" />
@@ -679,43 +689,33 @@ END_TYPE]]></Declaration>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
-              <v n="TextID">"Meter_status"</v>
-              <v n="TextDefault">"1130"</v>
-              <l n="LanguageTexts" t="ArrayList" />
-            </o>
-            <o>
-              <v n="TextID">"Lost_comms_enable"</v>
-              <v n="TextDefault">"1131"</v>
-              <l n="LanguageTexts" t="ArrayList" />
-            </o>
-            <o>
               <v n="TextID">"V_ratio_RS"</v>
-              <v n="TextDefault">"1200"</v>
+              <v n="TextDefault">"1300"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
               <v n="TextID">"V_ratio_ST"</v>
-              <v n="TextDefault">"1202"</v>
+              <v n="TextDefault">"1302"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
               <v n="TextID">"V_ratio_TR"</v>
-              <v n="TextDefault">"1204"</v>
+              <v n="TextDefault">"1304"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
               <v n="TextID">"I_ratio_R"</v>
-              <v n="TextDefault">"1206"</v>
+              <v n="TextDefault">"1306"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
               <v n="TextID">"I_ratio_S"</v>
-              <v n="TextDefault">"1208"</v>
+              <v n="TextDefault">"1308"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
               <v n="TextID">"I_ratio_T"</v>
-              <v n="TextDefault">"1210"</v>
+              <v n="TextDefault">"1310"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>

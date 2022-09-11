@@ -7,13 +7,17 @@ Id;Default
 297;%.1f kW
 75;%.1f kW%
 250;%.1fkVAr
+457;%.2d kVA
 143;%.2f
 848;%.2f %%
+989;%.2f kVA
 459;%.2f kW
 238;%.3f
+468;%.3f kVA
 824;%.3f kVAr
 667;%.3f kW
 633;%.3f V
+1112;%d kVA
 942;%d kVAr
 637;%d kVArh
 422;%d kW
@@ -101,8 +105,12 @@ Id;Default
 220;Q_3ph
 276;Q_control
 346;Q_reference
+1101;S minalç
+229;S nominal
+161;S nominalç
 309;Sat max
 659;Sat min
+255;SS-PPC ON/OFF
 784;V ratio RS
 616;V ratio ST
 833;V ratio TR

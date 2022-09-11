@@ -12,8 +12,8 @@ STRUCT
 	UnitID: BYTE:= 1;					//Modbus ID if necessary
 	LengthRead: WORD:= 10;				//Amount of registers read from modbus
 	LengthWrite: WORD:= 10;				//Amount of registers written via modbus
-	InitAdressRead: WORD:= 4500;
-	InitAdressWrite: WORD:= 4550;
+	InitAdressRead: WORD:= 7000;
+	InitAdressWrite: WORD:= 8000;
 	cbLenght: UDINT:= 2;
 	READING: ARRAY [1..5] OF WORD;
     bReadBusy: BOOL;

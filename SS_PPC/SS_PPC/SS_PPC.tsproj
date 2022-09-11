@@ -197,9 +197,6 @@
 				<Task Id="5" Priority="2" CycleTime="10000" AmsPort="352" AdtTasks="true">
 					<Name>Meter</Name>
 				</Task>
-				<Task Id="6" Priority="10" CycleTime="2000000" AmsPort="353" AdtTasks="true">
-					<Name>GUI_task</Name>
-				</Task>
 				<Task Id="7" Priority="30" CycleTime="2000000" AmsPort="354" DisableFpExceptions="true" AdtTasks="true">
 					<Name>VISU_TASK</Name>
 				</Task>
@@ -207,7 +204,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{68A350B9-11BA-4732-8896-90A741CD2BA4}" Name="Untitled1" PrjFilePath="Untitled1\Untitled1.plcproj" TmcFilePath="Untitled1\Untitled1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Untitled1\Untitled1.tmc" TmcHash="{467F37A5-BB6D-1757-A7F1-528481DFDA19}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Untitled1\Untitled1.tmc" TmcHash="{1585EE9C-DC53-CBB2-638F-CD8363C39745}">
 					<Name>Untitled1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1" ContextId="1" AreaNo="16">
@@ -344,7 +341,7 @@ Single-phase data]]></Comment>
 							<Type>REAL</Type>
 						</Var>
 					</Vars>
-					<Vars VarGrpType="1" ContextId="3" AreaNo="48">
+					<Vars VarGrpType="1" ContextId="2" AreaNo="32">
 						<Name>PlcTask_1 Inputs</Name>
 						<Var>
 							<Name>GVL_POWERMETER.M_board_Meter_status</Name>
@@ -373,15 +370,6 @@ Single-phase data]]></Comment>
 						</Context>
 						<Context>
 							<Id NeedCalleeCall="true">2</Id>
-							<Name>GUI_task</Name>
-							<ManualConfig>
-								<OTCID>#x02010060</OTCID>
-							</ManualConfig>
-							<Priority>10</Priority>
-							<CycleTime>200000000</CycleTime>
-						</Context>
-						<Context>
-							<Id NeedCalleeCall="true">3</Id>
 							<Name>PlcTask_1</Name>
 							<ManualConfig>
 								<OTCID>#x02010030</OTCID>
@@ -390,7 +378,7 @@ Single-phase data]]></Comment>
 							<CycleTime>5000000</CycleTime>
 						</Context>
 						<Context>
-							<Id NeedCalleeCall="true">4</Id>
+							<Id NeedCalleeCall="true">3</Id>
 							<Name>VISU_TASK</Name>
 							<ManualConfig>
 								<OTCID>#x02010070</OTCID>
@@ -402,7 +390,6 @@ Single-phase data]]></Comment>
 					<TaskPouOids>
 						<TaskPouOid Prio="1" OTCID="#x08502003"/>
 						<TaskPouOid Prio="2" OTCID="#x08502002"/>
-						<TaskPouOid Prio="10" OTCID="#x08502004"/>
 						<TaskPouOid Prio="20" OTCID="#x08502001"/>
 						<TaskPouOid Prio="30" OTCID="#x08502005"/>
 					</TaskPouOids>

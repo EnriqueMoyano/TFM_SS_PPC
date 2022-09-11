@@ -29,6 +29,13 @@ GVL_POWERMETER.V_line_avg_Volt:= AVG_3(GVL_POWERMETER.Power_analyzer.V_L1L2_Volt
 										GVL_POWERMETER.Power_analyzer.V_L2L3_Volt, 
 										GVL_POWERMETER.Power_analyzer.V_L3L1_Volt);
 
+//Basis for per unit calculations
+IF GVL_PLANT_DEF.Plant_capacity_nom <= 0 THEN
+	S_nom_facility_inv:= 0;
+ELSE
+	S_nom_facility_inv:= 1 / GVL_PLANT_DEF.Plant_capacity_nom;
+END_IF
+
 //Per unit values obtention - Single-phase powers
 GVL_POWERMETER.P_L1_pu:= GVL_POWERMETER.Power_analyzer.P_L1_kW * S_nom_facility_inv;
 GVL_POWERMETER.P_L2_pu:= GVL_POWERMETER.Power_analyzer.P_L2_kW * S_nom_facility_inv;
@@ -126,7 +133,12 @@ Q_inverters:= 0;]]></ST>
       <LineId Id="165" Count="0" />
       <LineId Id="167" Count="1" />
       <LineId Id="31" Count="0" />
-      <LineId Id="18" Count="9" />
+      <LineId Id="254" Count="2" />
+      <LineId Id="258" Count="1" />
+      <LineId Id="257" Count="0" />
+      <LineId Id="260" Count="0" />
+      <LineId Id="253" Count="0" />
+      <LineId Id="19" Count="8" />
       <LineId Id="74" Count="0" />
       <LineId Id="28" Count="0" />
       <LineId Id="34" Count="2" />
